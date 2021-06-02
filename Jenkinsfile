@@ -1,4 +1,8 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> cf52946450f3f616cb35cf8b8c2183c21a4319b4
 Node{
 	stage("Clone")
 	{
@@ -11,8 +15,12 @@ Node{
 	
 	
 }
+<<<<<<< HEAD
 =======
 Tessting
 
 New thing to test
 >>>>>>> upstream/master
+=======
+
+>>>>>>> cf52946450f3f616cb35cf8b8c2183c21a4319b4

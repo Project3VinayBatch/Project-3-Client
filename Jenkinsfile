@@ -1,4 +1,5 @@
 
+
 node{
 	stage("Clone")
 	{
@@ -6,9 +7,10 @@ node{
 	}
 	stage("Build")
 	{
-		sh "ng build -prod"
+		sh "cd ${WORKSPACE}"
+		sh "ng build --prod"
 	}
 	
-	
-}
+}	
+
 

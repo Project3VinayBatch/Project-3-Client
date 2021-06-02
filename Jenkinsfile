@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Node{
 	stage("Clone")
 	{
@@ -10,3 +11,8 @@ Node{
 	
 	
 }
+=======
+Tessting
+
+New thing to test
+>>>>>>> upstream/master

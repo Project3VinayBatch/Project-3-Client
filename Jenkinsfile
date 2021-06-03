@@ -7,6 +7,7 @@ node{
 	}
 	stage("Build")
 	{
+    sh "npm install"
 		sh "cd ${WORKSPACE}"
 		sh "ng build --prod"
 	}

@@ -1,11 +1,14 @@
 <p>
-  <mat-toolbar color="primary">
+  <mat-toolbar class="navbar" color="primary">
     <mat-toolbar-row>
       <span>My App</span>
       <span class="example-spacer"></span>
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-      </button>
+      <div class="navbar-nav">
+        <button mat-button href="/all-initiative">Login</button>
+        <button mat-button href="/all-initiative">List of Initiatives</button>
+        <button mat-button href="/new-initiative">Logout</button>
+      </div> 
+      <img src="../../assets/img/rev-logo.png" class="rev">
     </mat-toolbar-row>
   </mat-toolbar>
 </p>

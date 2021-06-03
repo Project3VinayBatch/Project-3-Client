@@ -11,7 +11,6 @@ import { Test2Component } from './test2/test2.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -23,6 +22,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { AllInitiativeComponent } from './all-initiative/all-initiative.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { LinksComponent } from './links/links.component';
+
 
 @NgModule({
   declarations: [
@@ -30,9 +32,9 @@ import { AllInitiativeComponent } from './all-initiative/all-initiative.componen
     TestComponent,
     Test2Component,
     HeaderComponent,
-    FooterComponent,
     NavBarComponent,
-    AllInitiativeComponent
+    AllInitiativeComponent,
+    LinksComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { AllInitiativeComponent } from './all-initiative/all-initiative.componen
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

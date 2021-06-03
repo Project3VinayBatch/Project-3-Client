@@ -27,11 +27,7 @@
               "src/assets"
             ],
             "styles": [
-<<<<<<< HEAD
-              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
-=======
               "src/custom-theme.scss",
->>>>>>> ea5317f969199533c2d23d09fc04cbd867bfe9ff
               "src/styles.css"
             ],
             "scripts": []

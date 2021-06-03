@@ -1,3 +1,23 @@
 mat-grid-tile {
-    background: lightblue;
+    background: #474C55;
   }
+  .mat-grid-tile-header{
+    background:#F26925
+  }
+
+  .desc{margin-bottom: 40%; /*this is my description card*/
+  
+  border-style: solid;
+  border-color: black;
+  clear: both;}
+  
+  .poc{margin-bottom: 0%;}
+
+  .div1{border-top: 3px solid #bbb}
+
+  .column {
+    float: left;
+    width: 50%;}
+
+
+  

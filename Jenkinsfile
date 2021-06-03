@@ -8,8 +8,7 @@ node{
 	}
 	stage("Build")
 	{
-    sh "export PATH=$PATH:/usr/local/bin"
-    sh "cd ${WORKSPACE}"
+    sh "export PATH=$PATH:/usr/local/bin/npm"
     sh "npm install"
 		sh "ng build --prod"
 	}

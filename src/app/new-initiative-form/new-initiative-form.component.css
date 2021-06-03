@@ -1,0 +1,93 @@
+/* #F26925  -orange*/
+/* #FFFFFF - white*/
+/* #474C55 - dark grey*/
+/* #72A4C2 - blue */
+/* #FCB414 - yellow */
+/* #B9B9BA - light grey*/
+
+.main-div{
+background-color: #FFFFFF;
+color: #474C55;
+/* position: absolute; */
+float: left;
+/* remove float, turn to absolute or fixed, once implemented */
+z-index: 20;
+border: .5px solid #474C55;
+margin-left: 5%;
+margin-right: 5%;
+width: 90%;
+border-radius: 15px;
+font-family: "Futura-Std-Book";
+/* overwrite fonts as needed */
+}
+.header{
+  background-color: #474C55;
+  /* #F26925; */
+  color: #FFFFFF;
+  /* needs more space between letters... */
+  padding: 1em 1em 1em 2em;
+  font-size: 12pt;
+  
+  /* fix this */
+  border-bottom: 1px solid #474C55;
+  border-radius: 15px 15px 5px 5px;
+}
+.form-label{
+  padding: 22em 1em 1em .5em;
+  /* color: aqua; */
+  /* depreciated */
+}
+h3{
+/* padding: 1em 1em 1em 2em; */
+padding-left: 0;
+padding-top: 1em;
+}
+.alignment{
+  padding-left: 1em;
+  padding-right: 1.5em;
+}
+input{
+  display: block;
+  width: 100%;
+  /* margin-left: 1em; */
+}
+textarea{
+  width: 100%;
+  /* 95% good on small screens 
+    99% on large
+    ...97 is decent compromise but not optimal
+  */
+  /* angular has a resizable value that should be */
+}
+button[mat-raised-button]{
+  background-color: #B9B9BA;
+  flex-direction: row-reverse;
+}
+.full-width {
+  width: 100%;
+}
+
+.shipping-card {
+  min-width: 120px;
+  margin: 20px auto;
+}
+
+.mat-radio-button {
+  display: block;
+  margin: 5px 0;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.col:last-child {
+  margin-right: 0;
+}
+/* figure out how to curve edges - simple */

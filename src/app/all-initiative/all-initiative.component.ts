@@ -2,24 +2,24 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { TableTestDataSource, TableTestItem } from './table-test-datasource';
+import { AllInitiativeDataSource, AllInitiativeItem } from './all-initiative-datasource';
 
 @Component({
-  selector: 'app-table-test',
-  templateUrl: './table-test.component.html',
-  styleUrls: ['./table-test.component.css']
+  selector: 'app-all-initiative',
+  templateUrl: './all-initiative.component.html',
+  styleUrls: ['./all-initiative.component.css']
 })
-export class TableTestComponent implements AfterViewInit {
+export class AllInitiativeComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<TableTestItem>;
-  dataSource: TableTestDataSource;
+  @ViewChild(MatTable) table!: MatTable<AllInitiativeItem>;
+  dataSource: AllInitiativeDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'name'];
 
   constructor() {
-    this.dataSource = new TableTestDataSource();
+    this.dataSource = new AllInitiativeDataSource();
   }
 
   ngAfterViewInit(): void {

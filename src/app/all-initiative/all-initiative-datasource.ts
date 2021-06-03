@@ -5,13 +5,13 @@ import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 
 // TODO: Replace this with your own data model type
-export interface TableTestItem {
+export interface AllInitiativeItem {
   name: string;
   id: number;
 }
 
 // TODO: replace this with real data from your application
-const EXAMPLE_DATA: TableTestItem[] = [
+const EXAMPLE_DATA: AllInitiativeItem[] = [
   {id: 1, name: 'Hydrogen'},
   {id: 2, name: 'Helium'},
   {id: 3, name: 'Lithium'},
@@ -35,12 +35,12 @@ const EXAMPLE_DATA: TableTestItem[] = [
 ];
 
 /**
- * Data source for the TableTest view. This class should
+ * Data source for the AllInitiative view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class TableTestDataSource extends DataSource<TableTestItem> {
-  data: TableTestItem[] = EXAMPLE_DATA;
+export class AllInitiativeDataSource extends DataSource<AllInitiativeItem> {
+  data: AllInitiativeItem[] = EXAMPLE_DATA;
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
 
@@ -53,7 +53,7 @@ export class TableTestDataSource extends DataSource<TableTestItem> {
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<TableTestItem[]> {
+  connect(): Observable<AllInitiativeItem[]> {
     if (this.paginator && this.sort) {
       // Combine everything that affects the rendered data into one update
       // stream for the data-table to consume.
@@ -76,7 +76,7 @@ export class TableTestDataSource extends DataSource<TableTestItem> {
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: TableTestItem[]): TableTestItem[] {
+  private getPagedData(data: AllInitiativeItem[]): AllInitiativeItem[] {
     if (this.paginator) {
       const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
       return data.splice(startIndex, this.paginator.pageSize);
@@ -89,7 +89,7 @@ export class TableTestDataSource extends DataSource<TableTestItem> {
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: TableTestItem[]): TableTestItem[] {
+  private getSortedData(data: AllInitiativeItem[]): AllInitiativeItem[] {
     if (!this.sort || !this.sort.active || this.sort.direction === '') {
       return data;
     }

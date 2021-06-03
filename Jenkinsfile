@@ -8,8 +8,8 @@ node{
 	}
 	stage("Build")
 	{
+    sh "cd ${WORKSPACE}"
     sh "npm install"
-		sh "cd ${WORKSPACE}"
 		sh "ng build --prod"
 	}
 	

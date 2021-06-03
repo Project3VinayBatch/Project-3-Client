@@ -59,10 +59,41 @@ textarea{
   */
   /* angular has a resizable value that should be */
 }
+.flex-container{
+  display:flex;
+  flex-direction: row-reverse;
+  padding: 2em 0;
+}
 button[mat-raised-button]{
   background-color: #B9B9BA;
-  flex-direction: row-reverse;
+  /* flex-direction: column-reverse; */
+  /* display: flex;
+ 
+  flex-wrap: wrap; */
 }
+
+
+.form-div{
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 90%;
+  border-radius: 15px;
+  font-family: "Futura-Std-Book";
+  border: .5px solid #474C55;
+}
+mat-form-field {
+  width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
 .full-width {
   width: 100%;
 }

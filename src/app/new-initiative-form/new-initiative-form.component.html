@@ -3,7 +3,7 @@
     Create Initiative
   </div>
   <div class="alignment">
-    <form> 
+    <form>
 
       <!-- this needs to add white space... bffer div? padding! -->
       <!-- <label for="title-input" class="form-label">Title</label> -->
@@ -13,10 +13,11 @@
       <h3>Description</h3>
       <textarea rows="20"></textarea>
       <!-- add some space here... -->
-     <!-- <button>Cancel</button> <button>Submit</button> -->
-     <button mat-raised-button>Cancel</button>
-     <button mat-raised-button>Submit</button>
-
+      <!-- <button>Cancel</button> <button>Submit</button> -->
+      <div class="flex-container">
+        <button mat-raised-button>Submit</button>
+        <button mat-raised-button>Cancel</button>
+      </div>
 
       <!-- https://material.angular.io/components/form-field/overview -->
       <!-- https://material.angular.io/components/input/overview -->
@@ -25,18 +26,39 @@
 
 </div>
 
+
+<br />
 <hr />
-<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
-  <mat-card-title>Faux Information</mat-card-title>
-  <!-- need to style this... -->
-      <mat-form-field>
+<br />
+
+
+<div class="form-div">
+  <!-- replacing main-div -->
+  <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+    <div class="header alignment">
+      <mat-card-title>Create Initiative</mat-card-title>
+    </div>
+    <div class="alignment">
+      <mat-form-field appearance="outline">
         <input matInput>
         <mat-error *ngIf="addressForm.controls['firstName'].hasError('required')">
           First name is <strong>required</strong>
         </mat-error>
       </mat-form-field>
-</form>
-
+      <mat-form-field appearance="outline">
+        <textarea matInput> </textarea>
+        <mat-error *ngIf="addressForm.controls['firstName'].hasError('required')">
+          First name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <!-- need to style this... why is it blue?-->
+    <div class="flex-container">
+      <button mat-raised-button>Submit</button>
+      <button mat-raised-button>Cancel</button>
+    </div>
+  </form>
+</div>
 
 
 

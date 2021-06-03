@@ -9,11 +9,19 @@ import { TableTestComponent } from './table-test/table-test.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { NewInitiativeFormComponent } from './new-initiative-form/new-initiative-form.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCardModule } from '@angular/material/card';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TableTestComponent
+    TableTestComponent,
+    NewInitiativeFormComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +30,13 @@ import { MatSortModule } from '@angular/material/sort';
     MatSliderModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatCardModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,13 @@
+.full-width-table {
+  width: 100%;
+}
+.mat-header-cell{
+  background-color: #474C55;
+  color:  #FFFFFF;
+}
+.mat-sort-header{
+  font-size: 150%;
+}
+.mat-cell{
+  color: #72A4C2;
+}

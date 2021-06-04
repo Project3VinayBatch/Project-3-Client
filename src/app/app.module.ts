@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { TestComponent } from './test/test.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { Test2Component } from './test2/test2.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
@@ -19,7 +19,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
-import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -31,7 +30,6 @@ import { AllInitiativeComponent } from './all-initiative/all-initiative.componen
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LinksComponent } from './links/links.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +39,7 @@ import { LinksComponent } from './links/links.component';
     NewInitiativeFormComponent,
     NavBarComponent,
     AllInitiativeComponent,
-    LinksComponent
+    LinksComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,9 +64,9 @@ import { LinksComponent } from './links/links.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    FlexLayoutModule
+    FlexLayoutModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

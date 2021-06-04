@@ -17,14 +17,14 @@ margin-left: 5%;
 margin-right: 5%;
 width: 90%;
 border-radius: 15px;
+/* border-radius: 7px; */
 font-family: "Futura-Std-Book";
 /* overwrite fonts as needed */
+margin-bottom: 20px;
 }
 .header{
   background-color: #474C55;
-  /* #F26925; */
   color: #FFFFFF;
-  /* needs more space between letters... */
   padding: 1em 1em 1em 2em;
   font-size: 12pt;
   
@@ -85,7 +85,10 @@ mat-form-field {
   width: 100%;
 }
 
-
+.temp-div{
+  margin-top: 25px;
+margin-bottom: 25px;
+}
 
 
 

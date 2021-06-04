@@ -26,11 +26,11 @@
 
 </div>
 
-
+<div class="temp-div"></div>
 <br />
 <hr />
 <br />
-
+<div class="temp-div"></div>
 
 <div class="form-div">
   <!-- replacing main-div -->
@@ -54,13 +54,17 @@
     </div>
     <!-- need to style this... why is it blue?-->
     <div class="flex-container">
-      <button mat-raised-button>Submit</button>
-      <button mat-raised-button>Cancel</button>
+      <button mat-raised-button (click)="clickSubmit()">Submit</button>
+      <button mat-raised-button (click)="clickCancel()">Cancel</button>
     </div>
   </form>
 </div>
 
 
+
+<div class="temp-div"></div>
+
+<!-- 
 
 <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
   <mat-card class="shipping-card">
@@ -162,4 +166,4 @@
       <button mat-raised-button color="primary" type="submit">Submit</button>
     </mat-card-actions>
   </mat-card>
-</form>
+</form> -->

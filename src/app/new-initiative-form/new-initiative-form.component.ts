@@ -12,6 +12,23 @@ import {MatGridListModule} from '@angular/material/grid-list';
   styleUrls: ['./new-initiative-form.component.css']
 })
 export class NewInitiativeFormComponent {
+
+  //variables
+
+  //functions
+    clickCancel(){
+
+    }
+    clickSubmit(){
+      
+    }
+  //constructor
+
+
+
+
+
+
   addressForm = this.fb.group({
     company: null,
     firstName: [null, Validators.required],

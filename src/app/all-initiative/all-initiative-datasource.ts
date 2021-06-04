@@ -6,8 +6,8 @@ import { Observable, of as observableOf, merge } from 'rxjs';
 
 // TODO: Replace this with your own data model type
 export interface AllInitiativeItem {
-  name: string;
-  id: number;
+  title: string;
+  description: string;
 }
 
 // TODO: replace this with real data from your application
@@ -78,8 +78,8 @@ export class AllInitiativeDataSource extends DataSource<AllInitiativeItem> {
     return data.sort((a, b) => {
       const isAsc = this.sort?.direction === 'asc';
       switch (this.sort?.active) {
-        case 'name': return compare(a.name, b.name, isAsc);
-        case 'id': return compare(+a.id, +b.id, isAsc);
+        case 'title': return compare(a.title, b.title, isAsc);
+        case 'description': return compare(+a.description, +b.description, isAsc);
         default: return 0;
       }
     });

@@ -18,25 +18,23 @@
 
 
 
-<hr />
-
 
 <div class="form-div">
   <!-- replacing main-div -->
-  <form [formGroup]="initiativeForm" novalidate >
+  <form [formGroup]="initiativeForm" novalidate>
     <div class="header alignment">
       <mat-card-title>Create Initiative</mat-card-title>
     </div>
     <div class="alignment">
       <h3>Title</h3>
-      <mat-form-field appearance="none" >
+      <mat-form-field appearance="none">
         <!-- test this with full width class -->
         <input matInput formControlName="title">
         <mat-error *ngIf="initiativeForm.controls['title'].hasError('required')">
           Title is <strong>required</strong>
         </mat-error>
         <!-- <mat-error *ngIf="initiativeForm.controls['title'].hasError('required')">
-          First name is <strong>required</strong>
+          Title is <strong>required</strong>
         </mat-error> -->
       </mat-form-field>
       <h3>Description</h3>
@@ -46,11 +44,12 @@
           Description is <strong>required</strong>
         </mat-error>
       </mat-form-field>
-    </div>
-    <!-- need to style this... why is it blue?-->
-    <div class="flex-container alignment">
-      <button mat-raised-button  (click)="clickSubmit()">Submit</button>
-      <button mat-raised-button (click)="clickCancel()">Cancel</button>
+
+      <!-- need to style this... why is it blue?-->
+      <div class="flex-container alignment">
+        <button mat-raised-button (click)="clickSubmit()">Submit</button>
+        <button mat-raised-button (click)="clickCancel()">Cancel</button>
+      </div>
     </div>
   </form>
 </div>

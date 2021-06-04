@@ -39,6 +39,7 @@ import { MatCardModule } from '@angular/material/card';
     NavBarComponent,
     AllInitiativeComponent,
     LinksComponent,
+
   ],
   imports: [
     BrowserModule,

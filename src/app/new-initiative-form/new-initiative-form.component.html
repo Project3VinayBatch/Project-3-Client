@@ -35,6 +35,7 @@
       <mat-card-title>Create Initiative</mat-card-title>
     </div>
     <div class="alignment">
+      <h3>Title</h3>
       <mat-form-field appearance="outline">
         <input matInput>
         <mat-error *ngIf="initiativeForm.controls['title'].hasError('required')">
@@ -44,6 +45,7 @@
           First name is <strong>required</strong>
         </mat-error> -->
       </mat-form-field>
+      <h3>Description</h3>
       <mat-form-field appearance="outline">
         <textarea matInput> </textarea>
         <mat-error *ngIf="initiativeForm.controls['firstName'].hasError('required')">

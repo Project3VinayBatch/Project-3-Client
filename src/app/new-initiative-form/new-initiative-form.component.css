@@ -13,14 +13,12 @@ float: left;
 /* remove float, turn to absolute or fixed, once implemented */
 z-index: 20;
 border: .5px solid #474C55;
-margin-left: 5%;
-margin-right: 5%;
 width: 90%;
 border-radius: 15px;
 /* border-radius: 7px; */
 font-family: "Futura-Std-Book";
 /* overwrite fonts as needed */
-margin-bottom: 20px;
+margin: 4em 5% 4em 5%;
 }
 .header{
   background-color: #474C55;
@@ -66,10 +64,7 @@ textarea{
 }
 button[mat-raised-button]{
   background-color: #B9B9BA;
-  /* flex-direction: column-reverse; */
-  /* display: flex;
- 
-  flex-wrap: wrap; */
+ margin-left: 1em;
 }
 
 
@@ -80,6 +75,7 @@ button[mat-raised-button]{
   border-radius: 15px;
   font-family: "Futura-Std-Book";
   border: .5px solid #474C55;
+
 }
 mat-form-field {
   width: 100%;
@@ -90,6 +86,15 @@ mat-form-field {
 margin-bottom: 25px;
 }
 
+.form-div:focus{
+  border: 1px solid #FCB414;
+}
+
+
+/* mat-error  !!! */
+mat-error{
+  color: #F26925;
+}
 
 
 

@@ -8,7 +8,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { Test2Component } from './test2/test2.component';
-import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { HeaderComponent } from './header/header.component';
 import { MatTableModule } from '@angular/material/table';
@@ -28,7 +27,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { AllInitiativeComponent } from './all-initiative/all-initiative.component';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { LinksComponent } from './links/links.component';
 
 
@@ -65,8 +63,7 @@ import { LinksComponent } from './links/links.component';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule,
-    FlexLayoutModule
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

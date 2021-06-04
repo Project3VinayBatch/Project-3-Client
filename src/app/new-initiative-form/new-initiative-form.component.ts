@@ -14,7 +14,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 export class NewInitiativeFormComponent {
   initiativeForm = this.fb.group({
     title: [null, Validators.required],
-    description: [],
+    description: [null, Validators.required],
 //look up other validators
 
   })
@@ -24,13 +24,14 @@ export class NewInitiativeFormComponent {
     clickCancel(){
 
     }
-    // clickSubmit(){
+    clickSubmit(){
       
-    // }
+    }
     
     //not in use
     onSubmit(): void {
     alert('Thanks!');
+    // this is running for each button...
   }
   //constructor
 

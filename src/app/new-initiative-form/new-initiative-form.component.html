@@ -1,27 +1,20 @@
-<div class="main-div">
+<!-- <div class="main-div">
   <div class="header alignment">
     Create Initiative
   </div>
   <div class="alignment">
     <form>
-      <!-- <label for="title-input" class="form-label">Title</label> -->
       <h3>Title</h3>
-      <!-- <br/> -->
       <input id="title-input">
       <h3>Description</h3>
       <textarea rows="20"></textarea>
-      <!-- add some space here... -->
-      <!-- <button>Cancel</button> <button>Submit</button> -->
       <div class="flex-container alignment">
         <button mat-raised-button>Submit</button>
-        <!-- need space between buttons -->
         <button mat-raised-button>Cancel</button>
       </div>
-
     </form>
   </div>
-
-</div>
+</div> -->
 
 
 
@@ -36,8 +29,9 @@
     </div>
     <div class="alignment">
       <h3>Title</h3>
-      <mat-form-field appearance="outline">
-        <input matInput>
+      <mat-form-field appearance="none" >
+        <!-- test this with full width class -->
+        <input matInput formControlName="title">
         <mat-error *ngIf="initiativeForm.controls['title'].hasError('required')">
           Title is <strong>required</strong>
         </mat-error>
@@ -46,10 +40,10 @@
         </mat-error> -->
       </mat-form-field>
       <h3>Description</h3>
-      <mat-form-field appearance="outline">
-        <textarea matInput> </textarea>
-        <mat-error *ngIf="initiativeForm.controls['firstName'].hasError('required')">
-          First name is <strong>required</strong>
+      <mat-form-field appearance="none">
+        <textarea rows="20" matInput formControlName="description"> </textarea>
+        <mat-error *ngIf="initiativeForm.controls['description'].hasError('required')">
+          Description is <strong>required</strong>
         </mat-error>
       </mat-form-field>
     </div>

@@ -5,21 +5,7 @@
 /* #FCB414 - yellow */
 /* #B9B9BA - light grey*/
 
-.main-div{
-background-color: #FFFFFF;
-color: #474C55;
-/* position: absolute; */
-float: left;
-/* remove float, turn to absolute or fixed, once implemented */
-z-index: 20;
-border: .5px solid #474C55;
-width: 90%;
-border-radius: 15px;
-/* border-radius: 7px; */
-font-family: "Futura-Std-Book";
-/* overwrite fonts as needed */
-margin: 4em 5% 4em 5%;
-}
+
 .header{
   background-color: #474C55;
   color: #FFFFFF;
@@ -30,15 +16,13 @@ margin: 4em 5% 4em 5%;
   border-bottom: 1px solid #474C55;
   border-radius: 15px 15px 5px 5px;
 }
-.form-label{
-  padding: 22em 1em 1em .5em;
-  /* color: aqua; */
-  /* depreciated */
-}
+
 h3{
 /* padding: 1em 1em 1em 2em; */
 padding-left: 0;
 padding-top: 1em;
+font-family: 'Futura-Std-Heavy';
+font-size: 18pt;
 }
 .alignment{
   padding-left: 1em;
@@ -64,7 +48,8 @@ textarea{
 }
 button[mat-raised-button]{
   background-color: #B9B9BA;
- margin-left: 1em;
+ /* margin-left: 1em; */
+ margin-right: 1.5em;
 }
 
 
@@ -75,26 +60,30 @@ button[mat-raised-button]{
   border-radius: 15px;
   font-family: "Futura-Std-Book";
   border: .5px solid #474C55;
-
+  font-size: 14pt;
 }
 mat-form-field {
   width: 100%;
+  /* border: 1px solid red; */
 }
-
-.temp-div{
-  margin-top: 25px;
-margin-bottom: 25px;
+mat-formfield:focus{
+  /* border: solid red; */
 }
-
-.form-div:focus{
-  border: 1px solid #FCB414;
-}
-
-
 /* mat-error  !!! */
 mat-error{
   color: #F26925;
 }
+input{
+  border: 1px solid black;
+}
+textarea{
+  border: 1px solid black;
+}
+/* eed to figure out where the default border comign from */
+
+
+
+
 
 
 
@@ -130,3 +119,33 @@ mat-error{
   margin-right: 0;
 }
 /* figure out how to curve edges - simple */
+
+
+
+
+
+
+
+
+
+/* DEPRECIATED */
+.form-label{
+  padding: 22em 1em 1em .5em;
+  /* color: aqua; */
+  /* depreciated: need to reimplement */
+}
+.main-div{
+background-color: #FFFFFF;
+color: #474C55;
+/* position: absolute; */
+float: left;
+/* remove float, turn to absolute or fixed, once implemented */
+z-index: 20;
+border: .5px solid #474C55;
+width: 90%;
+border-radius: 15px;
+/* border-radius: 7px; */
+font-family: "Futura-Std-Book";
+/* overwrite fonts as needed */
+margin: 4em 5% 4em 5%;
+}

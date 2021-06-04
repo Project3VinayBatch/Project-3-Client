@@ -28,6 +28,7 @@ import { MatListModule } from '@angular/material/list';
 import { AllInitiativeComponent } from './all-initiative/all-initiative.component';
 import { LinksComponent } from './links/links.component';
 import { MatCardModule } from '@angular/material/card';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MatCardModule } from '@angular/material/card';
     NavBarComponent,
     AllInitiativeComponent,
     LinksComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,

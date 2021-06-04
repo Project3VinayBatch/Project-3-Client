@@ -23,7 +23,7 @@
 
 <div class="form-div">
   <!-- replacing main-div -->
-  <form [formGroup]="initiativeForm" novalidate (ngSubmit)="onSubmit()">
+  <form [formGroup]="initiativeForm" novalidate >
     <div class="header alignment">
       <mat-card-title>Create Initiative</mat-card-title>
     </div>
@@ -49,7 +49,7 @@
     </div>
     <!-- need to style this... why is it blue?-->
     <div class="flex-container alignment">
-      <button mat-raised-button (click)="onSubmit()">Submit</button>
+      <button mat-raised-button  (click)="clickSubmit()">Submit</button>
       <button mat-raised-button (click)="clickCancel()">Cancel</button>
     </div>
   </form>

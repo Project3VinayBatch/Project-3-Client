@@ -28,11 +28,7 @@ export class NewInitiativeFormComponent {
       
     }
     
-    //not in use
-    onSubmit(): void {
-    alert('Thanks!');
-    // this is running for each button...
-  }
+  
   //constructor
 
   constructor(private fb: FormBuilder) {}

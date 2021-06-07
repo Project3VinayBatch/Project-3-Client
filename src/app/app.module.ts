@@ -5,9 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
-
 import { MatGridListModule } from '@angular/material/grid-list';
-import { Test2Component } from './test2/test2.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -30,6 +28,7 @@ import { HeaderComponent } from './header/header.component';
 import { Test3Component } from './test3/test3.component';
 import { MatCardModule } from '@angular/material/card';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({

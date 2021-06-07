@@ -1,18 +1,16 @@
-.main-div{
+/* .main-div{
     background-color: #FFFFFF;
     color: #474C55;
-    /* position: absolute; */
     float: left;
-    /* remove float, turn to absolute or fixed, once implemented */
     z-index: 20;
     border: .5px solid #474C55;
     margin-left: 5%;
     margin-right: 5%;
     width: 90%;
     border-radius: 15px;
-    font-family: "Futura-Std-Book";
-    /* overwrite fonts as needed */
-    }
+    font-family: 'Futura-Std-Book';
+    font-family: 'Futura-Std-Medium';
+    } */
     .header{
       background-color: #474C55;
       /* #F26925; */
@@ -27,13 +25,15 @@
     }
     .form-label{
       padding: 22em 1em 1em .5em;
-      /* color: aqua; */
-      /* depreciated */
     }
     h3{
-    /* padding: 1em 1em 1em 2em; */
     padding-left: 0;
     padding-top: 1em;
+    /* font-family: 'Futura-Std-Heavy'; */
+    /* font-family: 'Futura-Std-Book'; */
+    font-family: 'Futura-Std-Heavy';
+    font-family: 'test';
+    font-size: 18pt;
     }
     label{
         border: black;
@@ -43,17 +43,18 @@
       padding-right: 1.5em;
     }
     input{
+      border: 1px solid black;
       display: block;
-      width: 100%;
-      /* margin-left: 1em; */
+      width: 99%;
+      padding: .5%;
     }
     textarea{
       width: 100%;
-      /* 95% good on small screens 
-        99% on large
-        ...97 is decent compromise but not optimal
-      */
-      /* angular has a resizable value that should be */
+      border: 1px solid black;
+      display: block;
+      width: 99%;
+      padding: .5%;
+      
     }
     .flex-container{
       display:flex;
@@ -66,17 +67,22 @@
       /* display: flex;
      
       flex-wrap: wrap; */
+      margin-right: 1.5em;
     }
-    
     
     .form-div{
       margin-left: 5%;
       margin-right: 5%;
       width: 90%;
       border-radius: 15px;
-      font-family: "Futura-Std-Book";
+      /* font-family: "Futura-Std-Book"; */
+      font-family: 'Futura-Std-Book';
       border: .5px solid #474C55;
     }
     mat-form-field {
       width: 100%;
+      font-family: 'Futura-Std-Book';
+    }
+    mat-card-title{
+      font-family: 'Futura-Std-Heavy';
     }

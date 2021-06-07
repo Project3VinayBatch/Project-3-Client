@@ -28,7 +28,7 @@ font-size: 18pt;
   padding-left: 1em;
   padding-right: 1.5em;
 }
-input{
+.matInput{
   display: block;
   width: 99%;
   padding: .5%;

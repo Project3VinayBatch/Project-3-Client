@@ -8,7 +8,7 @@ const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'all-initiative', component:AllInitiativeComponent},
   {path: 'new-initiative', component:NewInitiativeFormComponent},
-  {path: 'sign-in', component:SignInComponent}
+  {path: 'sign-in', component:SignInComponent},
 ];
 
 @NgModule({

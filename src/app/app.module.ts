@@ -5,7 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
-import {MatGridListModule} from '@angular/material/grid-list';
+
+import { MatGridListModule } from '@angular/material/grid-list';
+import { Test2Component } from './test2/test2.component';
+import { MatCardModule } from '@angular/material/card';
+
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -15,7 +19,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
-import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -30,7 +33,6 @@ import { HeaderComponent } from './header/header.component';
 import { Test3Component } from './test3/test3.component';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +42,7 @@ import { Test3Component } from './test3/test3.component';
     AllInitiativeComponent,
     LinksComponent,
     Test3Component,
+
   ],
   imports: [
     BrowserModule,
@@ -64,12 +67,9 @@ import { Test3Component } from './test3/test3.component';
     MatIconModule,
     MatListModule,
     FlexLayoutModule,
-  
-    
 
-  
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

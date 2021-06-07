@@ -1,0 +1,20 @@
+<div class="form-div">
+    <form [formGroup]="loginForm" novalidate >
+        <div class="header alignment">
+            <mat-card-title>Login to account</mat-card-title>
+        </div>
+        <div class="alignment">
+            <mat-form-field appearance="Email">
+                <h3>Email</h3>
+                <input matInput id="email" placeholder="someone@revature.com" value="{{this.email}}">
+            </mat-form-field>
+            <mat-form-field appearance="password">
+                <h3>Password</h3>
+                <input matInput id="password" placeholder="Password" type="password" value={{this.password}}>
+            </mat-form-field>
+        </div>
+        <div class="flex-container">
+            <button mat-raised-button (click)= "verify()">Submit</button>
+        </div>
+    </form>
+</div>

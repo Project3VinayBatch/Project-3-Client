@@ -1,0 +1,30 @@
+.full-width-table {
+  width: 100%;
+}
+.mat-header-cell{
+  background-color: #474C55;
+  color:  #FFFFFF;
+}
+.mat-sort-header{
+  font-size: 150%;
+  font-family: 'Futura-Std-Heavy';
+}
+.mat-cell{
+  color: #72A4C2;
+}
+.main-div{
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 90%;
+  border: .5px solid #474C55;
+  border-radius: 15px;
+}
+.round{
+  border-radius: 15px;
+}
+.round-left{
+  border-radius: 13px 0px 0px 0px;
+}
+.round-right{
+  border-radius: 0px 13px 0px 0px;
+}

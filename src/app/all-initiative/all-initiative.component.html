@@ -17,14 +17,11 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-<<<<<<< HEAD
-=======
     <div class="plus-btn-div">
       <i class="fas fa-plus-circle" (click)="openModal()"></i>
       <!-- <i class="fas fa-plus"></i> -->
       <!-- above is no circle plus icon -->
     </div>
->>>>>>> 27351d8d48332074f9a5ef277d4568fb43d76099
     <mat-paginator #paginator [length]="dataSource?.data?.length" [pageIndex]="0" [pageSize]="10"
       [pageSizeOptions]="[5, 10, 20]" class="round">
     </mat-paginator>

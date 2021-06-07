@@ -6,15 +6,14 @@
         </div>
         <div class="alignment">
             <mat-form-field appearance="Email">
-                <label>Email</label>
-                <textarea matInput id="email" placeholder="someone@revature.com">{{this.email}}</textarea>
+                <h3>Email</h3>
+                <input matInput id="email" placeholder="someone@revature.com" value="{{this.email}}">
             </mat-form-field>
             <mat-form-field appearance="password">
-                <label>Password</label>
-                <textarea matInput id="password" placeholder="Password">{{this.password}}</textarea>
+                <h3>Password</h3>
+                <input matInput id="password" placeholder="Password" type="password" value={{this.password}}>
             </mat-form-field>
         </div>
-        <!-- need to style this... why is it blue?-->
         <div class="flex-container">
             <button mat-raised-button (click)= "verify()">Submit</button>
         </div>

@@ -1,5 +1,10 @@
-.header{
-    text-align: center;
-    border-style: solid;
-    color: #F26925;
+
+mat-card-title{font-size: 50px;
+justify-content: center;
+text-align: center;
 }
+
+mat-card-content{}
+
+mat-card{background-color: #F26925;
+margin-top: 0px;}

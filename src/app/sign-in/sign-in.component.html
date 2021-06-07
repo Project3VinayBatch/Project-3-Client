@@ -6,11 +6,11 @@
         <div class="alignment">
             <mat-form-field appearance="Email">
                 <h3>Email</h3>
-                <input matInput id="email" placeholder="someone@revature.com" value="{{this.email}}">
+                <input matInput id="email" placeholder="someone@revature.com" value="{{this.user.username}}">
             </mat-form-field>
             <mat-form-field appearance="password">
                 <h3>Password</h3>
-                <input matInput id="password" placeholder="Password" type="password" value={{this.password}}>
+                <input matInput id="password" placeholder="Password" type="password" value={{this.user.password}}>
             </mat-form-field>
         </div>
         <div class="flex-container">

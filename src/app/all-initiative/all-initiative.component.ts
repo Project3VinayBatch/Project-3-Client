@@ -27,4 +27,7 @@ export class AllInitiativeComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
   }
+  openModal(){
+    console.log("open modal!");
+  }
 }

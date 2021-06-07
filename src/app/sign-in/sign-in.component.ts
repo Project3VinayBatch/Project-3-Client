@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-in',
@@ -8,9 +8,17 @@ import { FormBuilder } from '@angular/forms';
 })
 export class SignInComponent implements OnInit {
 
-  email: string;
-  password: string;
+
   loginForm = this.fb.group({
+      email: [null, 
+        Validators.required,
+        Validators.email
+      ],
+      password: [null, 
+        Validators.required, 
+        Validators.minLength(8),
+      ]
+            
   })
 
   constructor(private fb: FormBuilder) { }
@@ -19,8 +27,15 @@ export class SignInComponent implements OnInit {
   }
 
   onSubmit(): void{
+    console.log("submit");
+    //will call service
+
+    //temp
+    //if no errors should go to list of initiatives
+
+
   }
-  verify(): void{
-    alert(this.email+" "+this.password);
-  }
+  // verify(): void{
+  //   alert(this.email+" "+this.password);
+  // }
 }

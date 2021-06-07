@@ -4,7 +4,14 @@ justify-content: center;
 text-align: center;
 }
 
-mat-card-content{}
+mat-card-content{
 
-mat-card{background-color: #F26925;
-margin-top: 0px;}
+
+}
+
+mat-card{
+    background-color: #F26925;
+    /* width: 100px; */
+    margin-top: 0px;
+}
+

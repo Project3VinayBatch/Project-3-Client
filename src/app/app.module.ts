@@ -8,8 +8,6 @@ import { MatSliderModule } from '@angular/material/slider';
 
 import { MatGridListModule } from '@angular/material/grid-list';
 import { Test2Component } from './test2/test2.component';
-import { MatCardModule } from '@angular/material/card';
-
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -27,10 +25,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { AllInitiativeComponent } from './all-initiative/all-initiative.component';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { LinksComponent } from './links/links.component';
 import { HeaderComponent } from './header/header.component';
 import { Test3Component } from './test3/test3.component';
+import { MatCardModule } from '@angular/material/card';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 
 @NgModule({
@@ -42,7 +41,7 @@ import { Test3Component } from './test3/test3.component';
     AllInitiativeComponent,
     LinksComponent,
     Test3Component,
-
+    SignInComponent
   ],
   imports: [
     BrowserModule,
@@ -62,12 +61,10 @@ import { Test3Component } from './test3/test3.component';
     ReactiveFormsModule,
     LayoutModule,
     MatToolbarModule,
-    MatButtonModule,
     MatSidenavModule,
     MatIconModule,
     MatListModule,
     FlexLayoutModule,
-
   ],
   providers: [],
   bootstrap: [AppComponent],

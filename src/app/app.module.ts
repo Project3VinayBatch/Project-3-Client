@@ -26,19 +26,20 @@ import { MatListModule } from '@angular/material/list';
 import { AllInitiativeComponent } from './all-initiative/all-initiative.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LinksComponent } from './links/links.component';
-import { Test2Component } from './test2/test2.component';
-import { TestComponent } from './test/test.component';
 import { HeaderComponent } from './header/header.component';
+import { Test3Component } from './test3/test3.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
     NewInitiativeFormComponent,
     NavBarComponent,
     AllInitiativeComponent,
-    LinksComponent
+    LinksComponent,
+    Test3Component,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +56,6 @@ import { HeaderComponent } from './header/header.component';
     MatButtonModule,
     MatSelectModule,
     MatRadioModule,
-    MatCardModule,
     ReactiveFormsModule,
     LayoutModule,
     MatToolbarModule,
@@ -64,9 +64,8 @@ import { HeaderComponent } from './header/header.component';
     MatIconModule,
     MatListModule,
     FlexLayoutModule,
-    TestComponent,
-    Test2Component,
-    HeaderComponent,
+  
+    
 
   
   ],

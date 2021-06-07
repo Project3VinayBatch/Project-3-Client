@@ -1,19 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 @font-face {
-    font-family: "Futura-Std-Book";
-    src: local("Futura-Std-Book"), url(./assets/fonts/Futura-Std-Book.otf);
+    font-family: 'Futura-Std-Book';
+    src:  url(./assets/fonts/Futura-Std-Book.otf);
 }
 @font-face {
-    font-family: "Futura-Std-Bold";
-    src: local("Futura-Std-Bold"), url(./assets/fonts/Futura-Std-Bold.otf);
+    font-family: 'Futura-Std-Bold';
+    src:  url(./assets/fonts/Futura-Std-Bold.otf);
 }
 @font-face {
-    font-family: "Futura-Std-Heavy";
-    src: local("Futura-Std-Heavy"), url(./assets/fonts/Futura-Std-Heavy.otf);
+    font-family: 'Futura-Std-Heavy';
+    src:  url(./assets/fonts/Futura-Std-Heavy.otf);
 }
 @font-face {
-    font-family: "Futura-Std-Medium";
-    src: local("Futura-Std-Medium"), url(./assets/fonts/Futura-Std-Medium.otf);
+    font-family: 'Futura-Std-Medium';
+    src:  url(./assets/fonts/Futura-Std-Medium.otf);
 }
 
 

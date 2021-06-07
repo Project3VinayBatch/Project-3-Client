@@ -13,18 +13,18 @@ export class SignInComponent implements OnInit {
   loginForm = this.fb.group({
       email: [null, 
         Validators.required,
-        Validators.email
+        // Validators.email
       ],
       password: [null, 
         Validators.required, 
-        Validators.minLength(8),
+        // Validators.minLength(8),
       ]
             
   })
 
   constructor(private fb: FormBuilder) {
-    this.user.username="";
-    this.user.password=""; 
+    // this.user.username="";
+    // this.user.password=""; 
   }
 
   ngOnInit(): void {
@@ -33,11 +33,13 @@ export class SignInComponent implements OnInit {
 
   onSubmit(): void{
     console.log("submit");
+    console.log(this.loginForm.get('email').value);
+    // console.log(this.fb);
+    //if validation pass...
+
     //will call service
 
-    //temp
-    //if no errors should go to list of initiatives
-
+    //else...
 
   }
   // verify(): void{

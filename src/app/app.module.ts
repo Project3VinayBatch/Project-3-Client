@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -31,6 +31,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     LinksComponent,
     Test3Component,
     SignInComponent
-  ],
+  ],schemas:[CUSTOM_ELEMENTS_SCHEMA],
+
+
   imports: [
     BrowserModule,
     AppRoutingModule,

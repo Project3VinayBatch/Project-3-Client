@@ -32,16 +32,11 @@ input{
   display: block;
   width: 99%;
   padding: .5%;
-  /* width: 98%; */
-  /* margin-right: 1em; */
-  /* margin-left: 1em; */
-/* padding-left: 1em;
-margin-left: 1em; */
-
 }
 textarea{
+  /* color: #F26925; */
   width: 100%;
-  padding: .5em;
+  /* padding: .5%; */
   /* 95% good on small screens 
     99% on large
     ...97 is decent compromise but not optimal
@@ -74,9 +69,7 @@ mat-form-field {
   width: 100%;
   /* border: 1px solid red; */
 }
-mat-formfield:focus{
-  /* border: solid red; */
-}
+
 /* mat-error  !!! */
 mat-error{
   color: #F26925;

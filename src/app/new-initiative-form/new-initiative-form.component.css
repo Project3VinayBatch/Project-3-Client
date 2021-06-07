@@ -11,7 +11,7 @@
   color: #FFFFFF;
   padding: 1em 1em 1em 2em;
   font-size: 12pt;
-  
+  font-family: 'Futura-Std-Heavy';
   /* fix this */
   border-bottom: 1px solid #474C55;
   border-radius: 15px 15px 5px 5px;
@@ -28,21 +28,6 @@ font-size: 18pt;
   padding-left: 1em;
   padding-right: 1.5em;
 }
-.matInput{
-  display: block;
-  width: 99%;
-  padding: .5%;
-}
-textarea{
-  /* color: #F26925; */
-  width: 100%;
-  /* padding: .5%; */
-  /* 95% good on small screens 
-    99% on large
-    ...97 is decent compromise but not optimal
-  */
-  /* angular has a resizable value that should be */
-}
 .flex-container{
   display:flex;
   flex-direction: row-reverse;
@@ -53,8 +38,6 @@ button[mat-raised-button]{
  /* margin-left: 1em; */
  margin-right: 1.5em;
 }
-
-
 .form-div{
   margin-left: 5%;
   margin-right: 5%;
@@ -76,11 +59,17 @@ mat-error{
 }
 input{
   border: 1px solid black;
+  display: block;
+  width: 99%;
+  padding: .5%;
 }
 textarea{
   border: 1px solid black;
+  display: block;
+  width: 99%;
+  padding: .5%;
 }
-/* eed to figure out where the default border comign from */
+
 
 
 
@@ -119,7 +108,6 @@ textarea{
 .col:last-child {
   margin-right: 0;
 }
-/* figure out how to curve edges - simple */
 
 
 

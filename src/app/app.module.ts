@@ -29,6 +29,7 @@ import { MatListModule } from '@angular/material/list';
 import { AllInitiativeComponent } from './all-initiative/all-initiative.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LinksComponent } from './links/links.component';
+import { FileComponent } from './file/file.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { LinksComponent } from './links/links.component';
     NavBarComponent,
     AllInitiativeComponent,
     LinksComponent,
+    FileComponent,
   ],
   imports: [
     BrowserModule,

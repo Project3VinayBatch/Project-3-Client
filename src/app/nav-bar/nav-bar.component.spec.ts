@@ -6,8 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
 import { NavBarComponent } from './nav-bar.component';
+import {TestbedHarnessEnvironment} from '@angular/cdk/testing/testbed';
 
 describe('NavBarComponent', () => {
   let component: NavBarComponent;
@@ -24,6 +24,7 @@ describe('NavBarComponent', () => {
         MatListModule,
         MatSidenavModule,
         MatToolbarModule,
+        TestbedHarnessEnvironment,
       ]
     }).compileComponents();
   }));

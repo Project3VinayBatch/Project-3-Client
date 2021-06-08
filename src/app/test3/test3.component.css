@@ -8,9 +8,7 @@
     border-radius: 10px;
     padding: 20px;
     }
-.child-3{
-    background-color: green;
-    }
+
     
     .container{
      margin: 15px;
@@ -29,5 +27,16 @@
     margin-left: 28%;   
 }
 .child-3{
-    background-color: whitesmoke;
+    
+    flex-direction: row;
+    box-sizing: border-box;
+    display: flex;
+    background-color: #F26925;
+
+}
+
+.flex-container1{flex-direction: row;
+    box-sizing: border-box;
+    display: flex;
+
 }

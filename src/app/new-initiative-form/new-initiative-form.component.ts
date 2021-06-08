@@ -22,7 +22,7 @@ export class NewInitiativeFormComponent {
 
   //functions
     clickCancel(){
-
+      
     }
     clickSubmit(){
       

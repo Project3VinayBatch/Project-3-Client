@@ -10,9 +10,9 @@ import { InitiativeGuard } from './initiative.guard';
 
 
 const routes: Routes = [
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'all-initiative', component:AllInitiativeComponent, canActivate: [UserGuardGuard]},
-  {path: 'new-initiative', component:NewInitiativeFormComponent, canActivate: [UserGuardGuard], canDeactivate:[InitiativeGuard]},
+  {path: '', redirectTo: '/sign-in', pathMatch: 'full'},
+  {path: 'all-initiative', component:AllInitiativeComponent},
+  {path: 'new-initiative', component:NewInitiativeFormComponent},
   {path: 'sign-in', component:SignInComponent},
   {path: 'view-initiative', component:Test3Component, canActivate: [UserGuardGuard]}
 ];

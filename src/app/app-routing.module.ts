@@ -6,7 +6,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { Test3Component } from './test3/test3.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: '', redirectTo: '/sign-in', pathMatch: 'full'},
   {path: 'all-initiative', component:AllInitiativeComponent},
   {path: 'new-initiative', component:NewInitiativeFormComponent},
   {path: 'sign-in', component:SignInComponent},

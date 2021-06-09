@@ -19,7 +19,12 @@ export class NavBarComponent {
 
   constructor(private breakpointObserver: BreakpointObserver, private router: Router) {}
 
+<<<<<<< HEAD
   toLogin(){
     this.router
   }
+=======
+  
+
+>>>>>>> upstream/master
 }

@@ -2,6 +2,8 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Initiative } from '../model/initiative';
 import { AllInitiativeDataSource, AllInitiativeItem } from './all-initiative-datasource';
 
 @Component({
@@ -10,15 +12,17 @@ import { AllInitiativeDataSource, AllInitiativeItem } from './all-initiative-dat
   styleUrls: ['./all-initiative.component.css']
 })
 export class AllInitiativeComponent implements AfterViewInit {
+
+  initiatives: Initiative[];
+  
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<AllInitiativeItem>;
   dataSource: AllInitiativeDataSource;
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['title', 'description'];
 
-  constructor() {
+  constructor(private activatedRoute: ActivatedRoute, public router: Router) {
     this.dataSource = new AllInitiativeDataSource();
   }
 
@@ -29,5 +33,9 @@ export class AllInitiativeComponent implements AfterViewInit {
   }
   openModal(){
     console.log("open modal!");
+    //all this function needs to do is route to the newinitiativeComponent
+    this.router.navigate(['new-initiative']);
+    //add in route guard... 
+    //...canDeativate to prevent leaving without changing?
   }
 }

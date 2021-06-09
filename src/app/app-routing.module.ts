@@ -5,17 +5,29 @@ import { NewInitiativeFormComponent } from './new-initiative-form/new-initiative
 
 import { SignInComponent } from './sign-in/sign-in.component';
 import { Test3Component } from './test3/test3.component';
+import { AuthService } from './auth.service';
+import { UserGuardGuard } from './user-guard.guard';
+import { InitiativeGuard } from './initiative.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
   { path: 'all-initiative', component: AllInitiativeComponent },
-  { path: 'new-initiative', component: NewInitiativeFormComponent },
+  {
+    path: 'new-initiative',
+    component: NewInitiativeFormComponent,
+    canDeactivate: [InitiativeGuard],
+  },
   { path: 'sign-in', component: SignInComponent },
-  { path: 'view-initiative', component: Test3Component },
+  {
+    path: 'view-initiative',
+    component: Test3Component,
+    canActivate: [UserGuardGuard],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
+  providers: [AuthService],
 })
 export class AppRoutingModule {}

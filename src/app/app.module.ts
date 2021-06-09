@@ -30,7 +30,7 @@ import { MatCardModule } from '@angular/material/card';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -41,12 +41,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     AllInitiativeComponent,
     LinksComponent,
     Test3Component,
-    SignInComponent
-  ],schemas:[CUSTOM_ELEMENTS_SCHEMA],
-
+    SignInComponent,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSliderModule,

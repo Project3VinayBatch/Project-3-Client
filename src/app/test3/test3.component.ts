@@ -12,4 +12,8 @@ export class Test3Component implements OnInit {
   ngOnInit(): void {
   }
 
+   clickEvent() { alert("Button clicked")
+    
+  }
+
 }

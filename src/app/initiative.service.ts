@@ -12,5 +12,7 @@ export class InitiativeService {
 
   postInitiative(initiativeDTO: InitiativeDTO): Observable<InitiativeDTO> {
     return this.http.post<InitiativeDTO>(this.initiativePostUrl, initiativeDTO);
+  //checkauthsercive to get the JWT??
+  //or in component?
   }
 }

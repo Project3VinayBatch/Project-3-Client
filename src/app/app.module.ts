@@ -30,6 +30,8 @@ import { MatCardModule } from '@angular/material/card';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +47,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSliderModule,

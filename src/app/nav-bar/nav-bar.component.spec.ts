@@ -9,9 +9,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { NavBarComponent } from './nav-bar.component';
 
 import { RouterTestingModule } from '@angular/router/testing';
-import { Router } from '@angular/router';
-
-import {TestbedHarnessEnvironment} from '@angular/cdk/testing/testbed';
+import { Router, RouterLink } from '@angular/router';
+import { By } from '@angular/platform-browser';
 
 describe('NavBarComponent', () => {
   let component: NavBarComponent;
@@ -28,10 +27,7 @@ describe('NavBarComponent', () => {
         MatListModule,
         MatSidenavModule,
         MatToolbarModule,
-
-        RouterTestingModule
-
-        TestbedHarnessEnvironment,
+        RouterTestingModule,
 
       ]
     }).compileComponents();
@@ -47,26 +43,27 @@ describe('NavBarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should logout', () => {
+  it('should route to logout', () => {
     const fixture = TestBed.createComponent(NavBarComponent);
 
-    const btn = fixture.debugElement.nativeElement.querySelector('#logout-btn');
-    expect(btn.routerLink).toEqual(!'/new-initiative')
+    const btn = fixture.debugElement.nativeElement.querySelector('#logout-btn').getAttribute('routerlink');
+    expect(btn).toEqual('/logout')
+    //change to whatever the logout route will be
   });
 
-  it('should login', () => {
+
+  it('should route to sign-in', () => {
     const fixture = TestBed.createComponent(NavBarComponent);
 
-    const btn = fixture.debugElement.nativeElement.querySelector('#login-btn');
-    //expect(btn.routerLink).toEqual("/sign-in")
-    const router = TestBed.inject(Router); //Get the router from the TestBed.
-    // @ts-ignore: force this private property value for testing.
-    router.url='/sign-in';
-
-    const spy = spyOn(router, 'navigate'); //Register a Spy on the router navigate function
-    expect(spy).toHaveBeenCalledWith(['/sign-in']); //Check if the router has been called with 'login'
+    const btn = fixture.debugElement.nativeElement.querySelector('#login-btn').getAttribute('routerlink');
+    expect(btn).toEqual('/sign-in')
+  });
   
+  it('should route to all initiative', () => {
+    const fixture = TestBed.createComponent(NavBarComponent);
 
+    const btn = fixture.debugElement.nativeElement.querySelector('#all-initiatives').getAttribute('routerlink');
+    expect(btn).toEqual('/all-initiative')
   });
 
 });

@@ -23,9 +23,11 @@ export class NewInitiativeFormComponent {
   //functions
     clickCancel(){
       
+      //return to all initiatives
     }
     clickSubmit(){
       
+      //this should sent the user to the new initiative view
     }
     
   

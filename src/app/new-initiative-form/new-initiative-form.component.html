@@ -40,6 +40,7 @@
       <h3>Description</h3>
       <mat-form-field appearance="none">
         <textarea rows="20" matInput formControlName="description"> </textarea>
+        <!-- rows.. 20 is too much -->
         <mat-error *ngIf="initiativeForm.controls['description'].hasError('required')">
           Description is <strong>required</strong>
         </mat-error>

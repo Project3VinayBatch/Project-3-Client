@@ -8,11 +8,16 @@ import { InitiativeDTO } from './model/initiativeDTO';
 })
 export class InitiativeService {
   private initiativePostUrl = 'http://localhost:8080/initiative';
+  private initiativesGetUrl = 'http://localhost:8080/initiatives'
   constructor(private http: HttpClient) {}
 
   postInitiative(initiativeDTO: InitiativeDTO): Observable<InitiativeDTO> {
     return this.http.post<InitiativeDTO>(this.initiativePostUrl, initiativeDTO);
   //checkauthsercive to get the JWT??
   //or in component?
+  }
+
+  getInitiatives(): Observable<InitiativeDTO[]> {
+    return this.http.get<InitiativeDTO[]>(this.initiativesGetUrl);
   }
 }

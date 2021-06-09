@@ -16,9 +16,6 @@
   </div>
 </div> -->
 
-
-
-
 <div class="form-div">
   <!-- replacing main-div -->
   <form [formGroup]="initiativeForm" novalidate>
@@ -29,8 +26,10 @@
       <h3>Title</h3>
       <mat-form-field appearance="none">
         <!-- test this with full width class -->
-        <input matInput formControlName="title">
-        <mat-error *ngIf="initiativeForm.controls['title'].hasError('required')">
+        <input matInput formControlName="title" [(ngModel)]="title" />
+        <mat-error
+          *ngIf="initiativeForm.controls['title'].hasError('required')"
+        >
           Title is <strong>required</strong>
         </mat-error>
         <!-- <mat-error *ngIf="initiativeForm.controls['title'].hasError('required')">
@@ -39,9 +38,16 @@
       </mat-form-field>
       <h3>Description</h3>
       <mat-form-field appearance="none">
-        <textarea rows="20" matInput formControlName="description"> </textarea>
-        <!-- rows.. 20 is too much -->
-        <mat-error *ngIf="initiativeForm.controls['description'].hasError('required')">
+        <textarea
+          rows="20"
+          matInput
+          formControlName="description"
+          [(ngModel)]="description"
+        >
+        </textarea>
+        <mat-error
+          *ngIf="initiativeForm.controls['description'].hasError('required')"
+        >
           Description is <strong>required</strong>
         </mat-error>
       </mat-form-field>

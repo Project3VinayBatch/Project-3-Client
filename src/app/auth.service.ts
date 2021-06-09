@@ -12,6 +12,8 @@ export class AuthService {
 
   constructor() { }
 
+//main purpose is to return true or false depending on whether JWT is valid
+
   isLoggedIn(): boolean {
     console.log("auth service returning true - needs implementation");
     return true;

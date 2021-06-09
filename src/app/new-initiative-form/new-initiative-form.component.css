@@ -5,59 +5,28 @@
 /* #FCB414 - yellow */
 /* #B9B9BA - light grey*/
 
-.main-div{
-background-color: #FFFFFF;
-color: #474C55;
-/* position: absolute; */
-float: left;
-/* remove float, turn to absolute or fixed, once implemented */
-z-index: 20;
-border: .5px solid #474C55;
-margin-left: 5%;
-margin-right: 5%;
-width: 90%;
-border-radius: 15px;
-font-family: "Futura-Std-Book";
-/* overwrite fonts as needed */
-}
+
 .header{
   background-color: #474C55;
-  /* #F26925; */
   color: #FFFFFF;
-  /* needs more space between letters... */
   padding: 1em 1em 1em 2em;
   font-size: 12pt;
-  
+  font-family: 'Futura-Std-Heavy';
   /* fix this */
   border-bottom: 1px solid #474C55;
   border-radius: 15px 15px 5px 5px;
 }
-.form-label{
-  padding: 22em 1em 1em .5em;
-  /* color: aqua; */
-  /* depreciated */
-}
+
 h3{
 /* padding: 1em 1em 1em 2em; */
 padding-left: 0;
 padding-top: 1em;
+font-family: 'Futura-Std-Heavy';
+font-size: 18pt;
 }
 .alignment{
   padding-left: 1em;
   padding-right: 1.5em;
-}
-input{
-  display: block;
-  width: 100%;
-  /* margin-left: 1em; */
-}
-textarea{
-  width: 100%;
-  /* 95% good on small screens 
-    99% on large
-    ...97 is decent compromise but not optimal
-  */
-  /* angular has a resizable value that should be */
 }
 .flex-container{
   display:flex;
@@ -66,24 +35,42 @@ textarea{
 }
 button[mat-raised-button]{
   background-color: #B9B9BA;
-  /* flex-direction: column-reverse; */
-  /* display: flex;
- 
-  flex-wrap: wrap; */
+ /* margin-left: 1em; */
+ margin-right: 1.5em;
 }
-
-
 .form-div{
   margin-left: 5%;
   margin-right: 5%;
   width: 90%;
-  border-radius: 15px;
+  border-radius: 15px; /*rounds corners: alt = 7*/
   font-family: "Futura-Std-Book";
   border: .5px solid #474C55;
+  font-size: 14pt;
+  /* padding: 0 1em 3em 1em; */
 }
 mat-form-field {
   width: 100%;
+  /* border: 1px solid red; */
 }
+
+/* mat-error  !!! */
+mat-error{
+  color: #F26925;
+}
+input{
+  border: 1px solid black;
+  display: block;
+  width: 99%;
+  padding: .5%;
+}
+textarea{
+  border: 1px solid black;
+  display: block;
+  width: 99%;
+  padding: .5%;
+}
+
+
 
 
 
@@ -121,4 +108,33 @@ mat-form-field {
 .col:last-child {
   margin-right: 0;
 }
-/* figure out how to curve edges - simple */
+
+
+
+
+
+
+
+
+
+/* DEPRECIATED */
+.form-label{
+  padding: 22em 1em 1em .5em;
+  /* color: aqua; */
+  /* depreciated: need to reimplement */
+}
+.main-div{
+background-color: #FFFFFF;
+color: #474C55;
+/* position: absolute; */
+float: left;
+/* remove float, turn to absolute or fixed, once implemented */
+z-index: 20;
+border: .5px solid #474C55;
+width: 90%;
+border-radius: 15px;
+/* border-radius: 7px; */
+font-family: "Futura-Std-Book";
+/* overwrite fonts as needed */
+margin: 4em 5% 4em 5%;
+}

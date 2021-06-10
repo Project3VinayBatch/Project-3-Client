@@ -11,19 +11,34 @@ import { InitiativeGuard } from './guard/initiative.guard';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
-  { path: 'all-initiative', component: AllInitiativeComponent },
+  { 
+    path: '', component: AllInitiativeComponent ,
+    // redirectTo: '/sign-in', pathMatch: 'full',
+    canActivate: [UserGuardGuard],
+  },
+  { 
+    path: 'all-initiative', 
+    component: AllInitiativeComponent ,
+    canActivate: [UserGuardGuard],
+  },
   {
     path: 'new-initiative',
     component: NewInitiativeFormComponent,
     canDeactivate: [InitiativeGuard],
+    canActivate: [UserGuardGuard],
   },
-  { path: 'sign-in', component: SignInComponent },
+  { 
+    path: 'sign-in', component: SignInComponent },
   {
     path: 'view-initiative',
     component: Test3Component,
     canActivate: [UserGuardGuard],
   },
+  { 
+    path: 'success-initiative', component: AllInitiativeComponent,
+    canActivate: [UserGuardGuard], 
+  },
+  // redirect after it works...
 ];
 
 @NgModule({
@@ -31,4 +46,4 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [AuthService],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

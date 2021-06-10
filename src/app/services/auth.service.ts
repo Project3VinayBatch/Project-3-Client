@@ -17,6 +17,7 @@ export class AuthService {
   isLoggedIn(): boolean {
     console.log("auth service returning true - needs implementation");
     //check to see if there is a jwt and return whether user is logged in
+    //this still needs to be implemented; just here for testing
     return true;
     // return false;
   }

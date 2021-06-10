@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Initiative } from '../model/initiative';
+import { InitiativeDTO } from '../model/initiativeDTO';
+import { User } from '../model/user';
+import { SpecificService } from '../services/specific.service';
 import { InitiativeService } from '../services/initiative.service';
-
 
 @Component({
   selector: 'app-test3',
@@ -8,26 +11,51 @@ import { InitiativeService } from '../services/initiative.service';
   styleUrls: ['./test3.component.css'],
 })
 export class Test3Component implements OnInit {
-  selectedFile: File;
-  constructor(private initiativeService: InitiativeService) {}
+  public user:User;
+  public initiative:Initiative;
+  public initiative1:InitiativeDTO;
+  userinfo:String = "/5/17";
+  initId:String = "5";
+  public isButtonVisible:boolean = true;
 
-  ngOnInit(): void {
-    this.selectedFile = null;
+  
+  constructor(private service: SpecificService) {
+    this.user = new User();
+    this.initiative = new Initiative;
+  
+    
+   }
+  
+  ngOnInit(): void{
+    this.getMembers() ;{
+      this.service.getMembers(this.initId).subscribe(res1 => {
+        this.initiative = res1;
+        console.log(res1);
+      })  
+    }
+
   }
 
-  clickEvent() {
-    alert('Button clicked');
+
+
+   clickEvent() { alert("Button clicked")  
   }
-  upload() {
-    console.log(this.selectedFile);
-    this.initiativeService
-      .postFile(this.selectedFile, 'ale', 4)
-      .subscribe((res) => {
-        console.log(res);
-      });
-  }
-  getFile(event) {
-    this.selectedFile = event.target.files[0];
-    console.log(this.selectedFile);
-  }
+
+  addMembers():void {
+    this.service.addMembers(this.userinfo).subscribe(res => {
+      this.user = res;
+      console.log(res);
+      if(res==null){console.log("what the! it worked!");
+    this.isButtonVisible=false;}
+      else{console.log("this wont work");
+    this.isButtonVisible=true;}
+    })
+}
+
+getMembers():void {}
+//   this.service.getMembers(this.initId).subscribe(res => {
+//     this.user = res;
+//     console.log(res);
+//   })  
+// }
 }

@@ -17,22 +17,55 @@
 } */
 .navbar{
   position: sticky;
-}
-.example-spacer {
-  flex: 1 1 auto;
-}
-.mat-toolbar-row{
+  word-wrap: normal;
   background-color: #72A4C2;
   color:  #FFFFFF;
+  /* overflow: scroll; */
+  /* overflow: auto; */
+margin-bottom: 3em;
+}
+.example-spacer {
+  /* flex: 1 1 auto; */
+}
+.mat-toolbar-row{
+
 }
 .rev{
   right: 10px;
-  width: 160; 
+  width: 160px; 
   height: 50px;
   padding-left: 10px;
 }
 .flex-container{
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
+  flex-direction: row-reverse;
   flex-wrap: wrap;
+  /* text-overflow: ellipsis; */
+  align-content: flex-start;
+  justify-content: space-evenly;
 }
+.top-marg{
+  padding-top: 1em;
+}
+
+
+
+@media only screen and (max-width: 1200px) {
+  .navbar{
+    /* height: 180px; */
+  }
+}
+@media only screen and (max-width: 706px) {
+  /* picture drops down at 706 */
+  .navbar{
+    height: 90px;
+  }
+
+}
+@media only screen and (max-width: 480px) {
+  .navbar{
+    height: 160px;
+  }
+}
+/* under 300px is an issue */

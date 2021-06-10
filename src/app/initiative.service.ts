@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { InitiativeDTO } from './model/initiativeDTO';
@@ -14,14 +14,34 @@ export class InitiativeService {
 
   postInitiative(initiativeDTO: InitiativeDTO): Observable<InitiativeDTO> {
     return this.http.post<InitiativeDTO>(this.initiativePostUrl, initiativeDTO);
+    //checkauthsercive to get the JWT??
+    //or in component?
   }
 
   getInitiatives(): Observable<InitiativeDTO[]> {
     return this.http.get<InitiativeDTO[]>(this.initiativesGetUrl);
   }
 
-  //File Upload
-  postFile(initiativeDTO: InitiativeDTO): Observable<InitiativeDTO> {
-    return this.http.post<InitiativeDTO>(this.initiativePostUrl, initiativeDTO);
+  //File Requests
+  postFile(
+    file: File,
+    username: string,
+    initiativeId: number
+  ): Observable<HttpEvent<{}>> {
+    const data = new FormData();
+    data.append('file', file);
+    const request = new HttpRequest(
+      'POST',
+      this.fileUploadPostUrl + username + '/' + initiativeId,
+      data,
+      {
+        reportProgress: true,
+        responseType: 'text',
+      }
+    );
+
+    return this.http.request(request);
   }
+
+  getFilesByInitiative() {}
 }

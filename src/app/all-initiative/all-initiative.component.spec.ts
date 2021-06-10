@@ -3,6 +3,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { RouterTestingModule } from "@angular/router/testing";
 
 import { AllInitiativeComponent } from './all-initiative.component';
 
@@ -18,6 +19,8 @@ describe('AllInitiativeComponent', () => {
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
+        RouterTestingModule
+        
       ]
     }).compileComponents();
   }));

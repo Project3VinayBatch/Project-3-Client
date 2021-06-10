@@ -5,7 +5,7 @@ import { MatTable } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Initiative } from '../model/initiative';
 import { InitiativeService } from '../services/initiative.service';
-import { AllInitiativeDataSource, AllInitiativeList } from './all-initiative-list';
+import { AllInitiativeDataSource} from './all-initiative-list';
 
 @Component({
   selector: 'app-all-initiative',
@@ -18,13 +18,13 @@ export class AllInitiativeComponent implements AfterViewInit {
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<AllInitiativeList>;
+  @ViewChild(MatTable) table!: MatTable<Initiative>;
   dataSource: AllInitiativeDataSource;
 
   displayedColumns = ['title', 'description'];
 
   constructor(private activatedRoute: ActivatedRoute, public router: Router, private initiativeService:InitiativeService) {
-    this.dataSource = new AllInitiativeDataSource();
+    this.dataSource = new AllInitiativeDataSource(initiativeService);
   }
 
   ngAfterViewInit(): void {

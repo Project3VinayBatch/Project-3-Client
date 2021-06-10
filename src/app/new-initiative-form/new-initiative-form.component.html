@@ -26,7 +26,7 @@
       <h3>Title</h3>
       <mat-form-field appearance="none">
         <!-- test this with full width class -->
-        <input matInput formControlName="title" [(ngModel)]="title" />
+        <input matInput formControlName="title" />
         <mat-error
           *ngIf="initiativeForm.controls['title'].hasError('required')"
         >
@@ -39,10 +39,10 @@
       <h3>Description</h3>
       <mat-form-field appearance="none">
         <textarea
-          rows="20"
+          rows="15"
           matInput
           formControlName="description"
-          [(ngModel)]="description"
+          
         >
         </textarea>
         <mat-error

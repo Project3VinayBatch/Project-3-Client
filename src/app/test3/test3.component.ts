@@ -3,17 +3,17 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-test3',
   templateUrl: './test3.component.html',
-  styleUrls: ['./test3.component.css']
+  styleUrls: ['./test3.component.css'],
 })
 export class Test3Component implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  clickEvent() {
+    alert('Button clicked');
   }
-
-   clickEvent() { alert("Button clicked")
+  upload() {
     
   }
-
 }

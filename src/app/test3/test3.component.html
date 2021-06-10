@@ -1,38 +1,53 @@
 <mat-card-title class="title">Specific Initiatives View</mat-card-title>
-    <div class="flex-container" fxLayout="row" fxLayoutAlign= "none" fxLayoutGap="30px">
-        <div class="child-1" fxFlex="80">
-            <mat-card-title>Description</mat-card-title>
-            <mat-divider></mat-divider>
-            <mat-card>Hear lies some descriptive information about the current iniative using
-                html and no bootstrap or angular materials, its not exactly what I was
-                looking for but this will do for now. Carry on!</mat-card>
-             <mat-divider></mat-divider>
-             <div class="flex-container1" fxLayout="row" fxLayoutAlign= "none" fxLayoutGap="20px">
-                <div class="child-3" fxFlex=50%>
-                    <app-links></app-links>
-                    <app-links></app-links>
-                    <app-links></app-links>
-                </div>
-             </div>
-
-            <button mat-raised-button class="button">Click Me</button>
-            
-        </div>
-        <div class="child-2" fxFlex="20">
-            <div>
-                <mat-card-title >Point of Contact</mat-card-title>
-            <mat-card>Contact: Kenneth Marshall</mat-card>
-            </div>
-            <br>
-            <div>
-                <mat-card-title >Members</mat-card-title>
-            <mat-card>List of Members</mat-card>
-            </div>
-            <br>
-            <br>
-            <button (click)="clickEvent()" mat-raised-button class="button2">Click Me</button>
-
-            
-        </div>
+<div
+  class="flex-container"
+  fxLayout="row"
+  fxLayoutAlign="none"
+  fxLayoutGap="30px"
+>
+  <div class="child-1" fxFlex="80">
+    <mat-card-title>Description</mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card
+      >Hear lies some descriptive information about the current iniative using
+      html and no bootstrap or angular materials, its not exactly what I was
+      looking for but this will do for now. Carry on!</mat-card
+    >
+    <mat-divider></mat-divider>
+    <div
+      class="flex-container1"
+      fxLayout="row"
+      fxLayoutAlign="none"
+      fxLayoutGap="20px"
+    >
+      <div class="child-3" fxFlex="50%">
+        <app-links></app-links>
+        <app-links></app-links>
+        <app-links></app-links>
+      </div>
     </div>
-   
+
+    <button mat-raised-button class="button">Click Me</button>
+  </div>
+  <div class="child-2" fxFlex="20">
+    <div>
+      <mat-card-title>Point of Contact</mat-card-title>
+      <mat-card>Contact: Kenneth Marshall</mat-card>
+    </div>
+    <br />
+    <div>
+      <mat-card-title>Members</mat-card-title>
+      <mat-card>List of Members</mat-card>
+    </div>
+    <br />
+    <br />
+    <button (click)="clickEvent()" mat-raised-button class="button2">
+      Click Me
+    </button>
+  </div>
+  <div>
+    <label>Upload a file</label>
+    <input type="file" />
+    <button (click)="upload()">Submit</button>
+  </div>
+</div>

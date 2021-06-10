@@ -8,7 +8,8 @@ import { InitiativeDTO } from './model/initiativeDTO';
 })
 export class InitiativeService {
   private initiativePostUrl = 'http://localhost:8080/initiative';
-  private initiativesGetUrl = 'http://localhost:8080/initiatives'
+  private initiativesGetUrl = 'http://localhost:8080/initiatives';
+  private fileUploadPostUrl = 'http://localhost:8080/uploadFile/';
   constructor(private http: HttpClient) {}
 
   postInitiative(initiativeDTO: InitiativeDTO): Observable<InitiativeDTO> {
@@ -17,5 +18,10 @@ export class InitiativeService {
 
   getInitiatives(): Observable<InitiativeDTO[]> {
     return this.http.get<InitiativeDTO[]>(this.initiativesGetUrl);
+  }
+
+  //File Upload
+  postFile(initiativeDTO: InitiativeDTO): Observable<InitiativeDTO> {
+    return this.http.post<InitiativeDTO>(this.initiativePostUrl, initiativeDTO);
   }
 }

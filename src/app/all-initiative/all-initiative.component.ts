@@ -3,8 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { InitiativeService } from '../initiative.service';
 import { Initiative } from '../model/initiative';
+import { InitiativeService } from '../services/initiative.service';
 import { AllInitiativeDataSource, AllInitiativeList } from './all-initiative-list';
 
 @Component({

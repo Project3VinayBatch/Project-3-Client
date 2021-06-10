@@ -7,7 +7,7 @@ export class Initiative {
     createdById: string;
     title: string;
     description: string;
-    pointOfContactId: User;
+    pointOfContact: User;
     createdOn: string;
     updatedAt: string;
     members: User[];

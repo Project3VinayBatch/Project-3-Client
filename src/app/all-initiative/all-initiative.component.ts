@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Initiative } from '../model/initiative';
+import { InitiativeDTO } from '../model/initiativeDTO';
 import { InitiativeService } from '../services/initiative.service';
 import { AllInitiativeDataSource} from './all-initiative-list';
 
@@ -25,6 +26,10 @@ export class AllInitiativeComponent implements AfterViewInit {
 
   constructor(private activatedRoute: ActivatedRoute, public router: Router, private initiativeService:InitiativeService) {
     this.dataSource = new AllInitiativeDataSource(initiativeService);
+    initiativeService.getInitiatives().subscribe(res =>{
+      console.log(res);
+      this.fill(res);
+    });
   }
 
   ngAfterViewInit(): void {
@@ -32,12 +37,21 @@ export class AllInitiativeComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
   }
+  fill(list: Initiative[]){
+    console.log(this.dataSource);
+    this.dataSource.initiativeList = list;
+    console.log(this.dataSource.initiativeList);
+  }
   openModal(){
     console.log("open modal!");
     //all this function needs to do is route to the newinitiativeComponent
     this.router.navigate(['new-initiative']);
     //add in route guard... 
     //...canDeativate to prevent leaving without changing?
+  }
+
+  getRecord(row:number){
+    console.log(row);
   }
 //   ngOnInit():void{
 // //need to set initiatives

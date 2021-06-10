@@ -28,12 +28,13 @@ export class AllInitiativeDataSource extends DataSource<Initiative> {
     //old, end testing (uncomment comments below).....................
     initiativeList: Initiative[] = [{
         "createdBy": 1,
-        "title": "God",
-        "description": "He who shail go",
-        "pointOfContactId": 1,
-        "state": 1,
-        "members": []
-    }];
+"description": "He who shail go",
+"members": null,
+"pointOfContactId": 1,
+"state": 0,
+"title": "God"
+    }
+    ];
     connect(): Observable<Initiative[]> {
         if (this.paginator && this.sort) {
             // Combine everything that affects the rendered data into one update
@@ -54,11 +55,10 @@ export class AllInitiativeDataSource extends DataSource<Initiative> {
     constructor(private initiativeService: InitiativeService) {
         super();
         initiativeService.getInitiatives().subscribe(res => {
+            
             console.log(res);
-            this.initiativeList = res;
-            console.log(this.initiativeList);
         });
-               
+        console.log(this.initiativeList);
     }
     private getPagedData(data: Initiative[]): Initiative[] {
         if (this.paginator) {

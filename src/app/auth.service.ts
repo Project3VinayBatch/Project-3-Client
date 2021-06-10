@@ -16,8 +16,22 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     console.log("auth service returning true - needs implementation");
+    //check to see if there is a jwt and return whether user is logged in
     return true;
     // return false;
   }
+
+//getInfo from local storage??
+  saveUserIdToStorage(){
+    //this needs to save users id to localstorage...
+    //...maybe change to saveUserInfo...tolocalstorage
+
+
+  }
+  getUserIdFromStorage(){
+
+//?
+  }
+  //need a get from token?
 
 }

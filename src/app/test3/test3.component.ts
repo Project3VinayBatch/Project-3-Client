@@ -3,11 +3,12 @@ import { Initiative } from '../model/initiative';
 import { InitiativeDTO } from '../model/initiativeDTO';
 import { User } from '../model/user';
 import { SpecificService } from '../services/specific.service';
+import { InitiativeService } from '../services/initiative.service';
 
 @Component({
   selector: 'app-test3',
   templateUrl: './test3.component.html',
-  styleUrls: ['./test3.component.css']
+  styleUrls: ['./test3.component.css'],
 })
 export class Test3Component implements OnInit {
   public user:User;

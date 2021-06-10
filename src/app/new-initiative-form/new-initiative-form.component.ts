@@ -4,8 +4,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { InitiativeService } from '../initiative.service';
+import { InitiativeService } from '../services/initiative.service';
 import { InitiativeDTO } from '../model/initiativeDTO';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-initiative-form',
@@ -20,7 +21,8 @@ export class NewInitiativeFormComponent {
 
   constructor(
     private fb: FormBuilder,
-    private initiativeService: InitiativeService
+    private initiativeService: InitiativeService,
+    private router:Router,
   ) {}
 
   initiativeForm = this.fb.group({
@@ -32,13 +34,22 @@ export class NewInitiativeFormComponent {
   //variables
 
   //functions
-  clickCancel() {}
+  
+  clickCancel() {
+    //make this route to all inititatives!
+    console.log(this.initiativeForm.controls.title.value);
+    this.router.navigate(["all-initiative"]);
+  }
   clickSubmit() {
+    //make this route to the new initiative...
     //test
-    const newInitiative = new InitiativeDTO(1, this.title, this.description, 1);
+    const newInitiative = new InitiativeDTO(1, this.initiativeForm.controls.title.value, this.initiativeForm.controls.description.value, 1);
     console.log(newInitiative);
     this.initiativeService.postInitiative(newInitiative).subscribe((res) => {
       console.log(res);
+      //need an if success
+      this.router.navigate(["success-initiative"]);
+      //this should probably go to a specific initiative
     });
   }
 }

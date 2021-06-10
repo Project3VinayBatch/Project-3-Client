@@ -28,3 +28,5 @@ enum InitiativeState {
   ACTIVE,
   INACTIVE,
 }
+
+

@@ -1,15 +1,17 @@
-import { Files } from "./files";
 import { User } from "./user";
 
 export class Initiative {
-    id: number;
-    createdBy: User;
-    createdById: string;
+    createdBy: number;
     title: string;
     description: string;
-    pointOfContact: User;
-    createdOn: string;
-    updatedAt: string;
+    pointOfContactId: number;
+    state: InitiativeState;
     members: User[];
-    files: Files[];
 }
+
+enum InitiativeState {
+    COMPLETE,
+    ACTIVE,
+    INACTIVE,
+  }
+  

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InitiativeService } from '../initiative.service';
+import { InitiativeService } from '../services/initiative.service';
 
 @Component({
   selector: 'app-test3',
@@ -12,7 +12,7 @@ export class Test3Component implements OnInit {
 
   ngOnInit(): void {
     this.selectedFile = null;
-    this.s3DownloadFile();
+    // this.s3DownloadFile();
   }
 
   clickEvent() {

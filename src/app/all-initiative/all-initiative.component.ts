@@ -46,7 +46,7 @@ export class AllInitiativeComponent implements AfterViewInit {
 //     console.log(res);
 
 //   }); 
-  // console.log(this.initiatives);
+//   console.log(this.initiatives);
 
-  // }
+//   }
 }

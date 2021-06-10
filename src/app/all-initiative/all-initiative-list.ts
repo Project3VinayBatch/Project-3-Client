@@ -1,12 +1,31 @@
-import { DataSource } from "@angular/cdk/collections";
+import { CollectionViewer, DataSource } from "@angular/cdk/collections";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { map } from 'rxjs/operators';
-import { Observable, of as observableOf, merge } from 'rxjs';
+import { Observable, of as observableOf, merge, BehaviorSubject } from 'rxjs';
 import { InitiativeService } from "../services/initiative.service";
 import { Initiative } from "../model/Initiative";
 
 export class AllInitiativeDataSource extends DataSource<Initiative> {
+    //gorm testing something fro mhere down to .................
+    //I think we want to simply subscrip to the initiativeList and have th all-initiative component call api...
+
+
+    // private testingInitiatives = new BehaviorSubject<Initiative[]>([]);
+
+    // private loadingSubject = new BehaviorSubject<boolean>(false);
+    // public loading$ = this.loadingSubject.asObservable();
+    // connect(collectionViewer: CollectionViewer): Observable<Initiative[]> {
+    //     return this.testingInitiatives.asObservable();
+    // }
+
+    // disconnect(collectionViewer: CollectionViewer): void {
+    //     this.testingInitiatives.complete();
+    //     this.testingInitiatives.complete();
+    // }
+
+
+    //old, end testing (uncomment comments below).....................
     initiativeList: Initiative[] = [{
         "createdBy": 1,
         "title": "God",
@@ -28,7 +47,7 @@ export class AllInitiativeDataSource extends DataSource<Initiative> {
         }
     }
     disconnect(): void { }
-    data: Initiative[] = this.initiativeList;
+    data: Initiative[] = this.initiativeList; //thi needs to be a subscription...
     paginator: MatPaginator | undefined;
     sort: MatSort | undefined;
 
@@ -39,8 +58,7 @@ export class AllInitiativeDataSource extends DataSource<Initiative> {
             this.initiativeList = res;
             console.log(this.initiativeList);
         });
-        
-        
+               
     }
     private getPagedData(data: Initiative[]): Initiative[] {
         if (this.paginator) {

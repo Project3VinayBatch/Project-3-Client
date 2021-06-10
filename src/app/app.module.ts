@@ -30,7 +30,9 @@ import { MatCardModule } from '@angular/material/card';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CallbackComponent } from './callback/callback.component';
+import { AuthHeaderInterceptor } from './auth-header.interceptor';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { HttpClientModule } from '@angular/common/http';
     LinksComponent,
     Test3Component,
     SignInComponent,
+    CallbackComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
@@ -69,7 +72,13 @@ import { HttpClientModule } from '@angular/common/http';
     MatListModule,
     FlexLayoutModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHeaderInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

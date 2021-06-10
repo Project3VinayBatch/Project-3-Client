@@ -1,6 +1,7 @@
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Initiative } from '../model/initiative';
 import { InitiativeDTO } from '../model/initiativeDTO';
 
 @Injectable({
@@ -18,8 +19,8 @@ export class InitiativeService {
     //or in component?
   }
 
-  getInitiatives(): Observable<InitiativeDTO[]> {
-    return this.http.get<InitiativeDTO[]>(this.initiativesGetUrl);
+  getInitiatives(): Observable<Initiative[]> {
+    return this.http.get<Initiative[]>(this.initiativesGetUrl);
   }
 
   //File Requests

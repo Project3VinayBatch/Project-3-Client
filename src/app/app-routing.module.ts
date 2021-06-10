@@ -8,13 +8,14 @@ import { Test3Component } from './test3/test3.component';
 import { AuthService } from './services/auth.service';
 import { UserGuardGuard } from './guard/user-guard.guard';
 import { InitiativeGuard } from './guard/initiative.guard';
+import { CallbackComponent } from './callback/callback.component';
 
 
 const routes: Routes = [
   { 
-    path: '', component: AllInitiativeComponent ,
+    path: '', component: SignInComponent ,
     // redirectTo: '/sign-in', pathMatch: 'full',
-    canActivate: [UserGuardGuard],
+    // canActivate: [UserGuardGuard],
   },
   { 
     path: 'all-initiative', 
@@ -37,6 +38,10 @@ const routes: Routes = [
   { 
     path: 'success-initiative', component: AllInitiativeComponent,
     canActivate: [UserGuardGuard], 
+  },
+  {
+    path: 'callback',
+    component: CallbackComponent,
   },
   // redirect after it works...
 ];

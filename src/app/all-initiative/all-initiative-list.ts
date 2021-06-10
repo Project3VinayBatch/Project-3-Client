@@ -3,23 +3,19 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
+import { InitiativeService } from "../services/initiative.service";
+import { Initiative } from "../model/Initiative";
 
-export interface AllInitiativeList {
-    title: string;
-    description: string;
-    state: InitiativeState;
-}
-
-enum InitiativeState {
-    COMPLETE,
-    ACTIVE,
-    INACTIVE,
-}
-
-var initiativeList: AllInitiativeList[] = [];
-
-export class AllInitiativeDataSource extends DataSource<AllInitiativeList> {
-    connect(): Observable<AllInitiativeList[]> {
+export class AllInitiativeDataSource extends DataSource<Initiative> {
+    initiativeList: Initiative[] = [{
+        "createdBy": 1,
+        "title": "God",
+        "description": "He who shail go",
+        "pointOfContactId": 1,
+        "state": 1,
+        "members": []
+    }];
+    connect(): Observable<Initiative[]> {
         if (this.paginator && this.sort) {
             // Combine everything that affects the rendered data into one update
             // stream for the data-table to consume.
@@ -32,14 +28,21 @@ export class AllInitiativeDataSource extends DataSource<AllInitiativeList> {
         }
     }
     disconnect(): void { }
-    data: AllInitiativeList[] = initiativeList;
+    data: Initiative[] = this.initiativeList;
     paginator: MatPaginator | undefined;
     sort: MatSort | undefined;
 
-    constructor() {
+    constructor(private initiativeService: InitiativeService) {
         super();
+        initiativeService.getInitiatives().subscribe(res => {
+            console.log(res);
+            this.initiativeList = res;
+            console.log(this.initiativeList);
+        });
+        
+        
     }
-    private getPagedData(data: AllInitiativeList[]): AllInitiativeList[] {
+    private getPagedData(data: Initiative[]): Initiative[] {
         if (this.paginator) {
             const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
             return data.splice(startIndex, this.paginator.pageSize);
@@ -47,7 +50,7 @@ export class AllInitiativeDataSource extends DataSource<AllInitiativeList> {
             return data;
         }
     }
-    private getSortedData(data: AllInitiativeList[]): AllInitiativeList[] {
+    private getSortedData(data: Initiative[]): Initiative[] {
         if (!this.sort || !this.sort.active || this.sort.direction === '') {
             return data;
         }

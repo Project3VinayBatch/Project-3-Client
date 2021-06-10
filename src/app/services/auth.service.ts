@@ -1,38 +1,53 @@
+  
 import { Injectable } from '@angular/core';
-
-
-//PURPOSE OF THIS IS TO PREVENT USERS FROM ACCESSING ROUTES UNTIL THEY ARE LOGGED IN
-//will want an Admin guard as well... but may not need it for this sprint
-
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+  private authorizeEndpoint = '/oauth2/authorization/github';
+  private tokenEndpoint = '/login/oauth2/code/github';
+  private baseUrl = environment.baseUrl;
+  private tokenKey = 'token';
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
 
-//main purpose is to return true or false depending on whether JWT is valid
+  login() {
+    console.log('login from security service');
+    window.open(this.baseUrl + this.authorizeEndpoint, '_self');
+  }
+
+  updateToken(token: string) {
+    localStorage.setItem(this.tokenKey, token);
+  }
+
+  fetchToken(code: string, state: string): Observable<any> {
+    console.log('fetchToken: ');
+    console.log(
+      this.baseUrl + this.tokenEndpoint + '?code=' + code + '&state=' + state
+    );
+    return this.http.get(
+      this.baseUrl + this.tokenEndpoint + '?code=' + code + '&state=' + state
+    );
+  }
+
+  getToken() {
+    return localStorage.getItem(this.tokenKey);
+  }
 
   isLoggedIn(): boolean {
-    console.log("auth service returning true - needs implementation");
-    //check to see if there is a jwt and return whether user is logged in
-    //this still needs to be implemented; just here for testing
-    return true;
-    // return false;
+    const token = this.getToken();
+    return token != null;
   }
 
-//getInfo from local storage??
-  saveUserIdToStorage(){
-    //this needs to save users id to localstorage...
-    //...maybe change to saveUserInfo...tolocalstorage
-
-
+  removeToken() {
+    localStorage.removeItem(this.tokenKey);
   }
-  getUserIdFromStorage(){
 
-//?
+  logout(): Observable<any> {
+    return this.http.post(this.baseUrl + '/logout', this.getToken());
   }
-  //need a get from token?
-
 }

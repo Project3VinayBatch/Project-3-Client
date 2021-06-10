@@ -32,8 +32,12 @@ export class NewInitiativeFormComponent {
   //variables
 
   //functions
-  clickCancel() {}
+  
+  clickCancel() {
+    //make this route to all inititatives!
+  }
   clickSubmit() {
+    //make this route to the new initiative...
     //test
     const newInitiative = new InitiativeDTO(1, this.title, this.description, 1);
     console.log(newInitiative);

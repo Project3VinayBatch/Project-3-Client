@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { NewInitiativeFormComponent } from './new-initiative-form/new-initiative-form.component';
+import { NewInitiativeFormComponent } from '../new-initiative-form/new-initiative-form.component';
 
 @Injectable({
   providedIn: 'root'

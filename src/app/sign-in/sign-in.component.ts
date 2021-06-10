@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { User } from '../model/user';
+import { AuthService } from '../services/auth.service';
+
 
 @Component({
   selector: 'app-sign-in',
@@ -22,7 +24,7 @@ export class SignInComponent implements OnInit {
             
   })
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authService:AuthService) {
     // this.user.username="";
     // this.user.password=""; 
   }
@@ -31,18 +33,11 @@ export class SignInComponent implements OnInit {
 
   }
 
-  onSubmit(): void{
-    console.log("submit");
-    console.log(this.loginForm.get('email').value);
-    // console.log(this.fb);
-    //if validation pass...
 
-    //will call service
 
-    //else...
-
+  login(): void{
+    this.authService.login();
+    
   }
-  // verify(): void{
-  //   alert(this.email+" "+this.password);
-  // }
+
 }

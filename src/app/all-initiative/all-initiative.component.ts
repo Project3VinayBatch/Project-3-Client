@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
+import { InitiativeService } from '../initiative.service';
 import { Initiative } from '../model/initiative';
 import { AllInitiativeDataSource, AllInitiativeList } from './all-initiative-list';
 
@@ -22,7 +23,7 @@ export class AllInitiativeComponent implements AfterViewInit {
 
   displayedColumns = ['title', 'description'];
 
-  constructor(private activatedRoute: ActivatedRoute, public router: Router) {
+  constructor(private activatedRoute: ActivatedRoute, public router: Router, private initiativeService:InitiativeService) {
     this.dataSource = new AllInitiativeDataSource();
   }
 
@@ -38,4 +39,14 @@ export class AllInitiativeComponent implements AfterViewInit {
     //add in route guard... 
     //...canDeativate to prevent leaving without changing?
   }
+//   ngOnInit():void{
+// //need to set initiatives
+//   this.initiativeService.getInitiatives()
+//   .subscribe(res => {
+//     console.log(res);
+
+//   }); 
+  // console.log(this.initiatives);
+
+  // }
 }

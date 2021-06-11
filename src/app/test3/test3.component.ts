@@ -12,13 +12,39 @@ export class Test3Component implements OnInit {
   selectedFile: File;
   constructor(private initiativeService: InitiativeService) {}
 
+  iconList = [
+    // array of icon class list based on type
+    { type: 'xlsx', icon: 'fa fa-file-excel-o' },
+    { type: 'pdf', icon: 'fa fa-file-pdf-o' },
+    { type: 'txt', icon: 'fa fa-file-text' },
+    { type: 'jpg', icon: 'fa fa-file-image-o' },
+  ];
+
+  getFileExtension(filename) {
+    // this will give you icon class name
+    let ext = filename.split('.').pop();
+    let obj = this.iconList.filter((row) => {
+      if (row.type === ext) {
+        return true;
+      }
+    });
+    if (obj.length > 0) {
+      let icon = obj[0].icon;
+      return icon;
+    } else {
+      return '';
+    }
+  }
+
   ngOnInit(): void {
     this.selectedFile = null;
+    this.displayFileNames();
   }
 
   clickEvent() {
     alert('Button clicked');
   }
+
   upload() {
     console.log(this.selectedFile);
     this.initiativeService

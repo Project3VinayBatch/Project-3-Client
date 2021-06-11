@@ -56,5 +56,15 @@
     />
     <button type="button" (click)="upload()">Upload</button>
   </div>
-  <div></div>
+  <div>
+    <h3>Files:</h3>
+    <div *ngFor="let filename of documentList">
+      <i
+        class="{{ getFileExtension(filename) }}"
+        style="color: orange"
+        aria-hidden="true"
+      ></i>
+      {{ filename }}
+    </div>
+  </div>
 </div>

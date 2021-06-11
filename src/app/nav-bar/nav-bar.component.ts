@@ -20,14 +20,12 @@ export class NavBarComponent {
 
     logout(){
       console.log("testing log out");
-     
-      //logout endpoint not available yet
-      // this.authservice.logout();
-       localStorage.clear();
+     //call authservice!
+      this.authservice.logout();
     }
   constructor(
     private breakpointObserver: BreakpointObserver,
     private router: Router,
-    private authservice:AuthService
+    private authservice:AuthService,
   ) {}
 }

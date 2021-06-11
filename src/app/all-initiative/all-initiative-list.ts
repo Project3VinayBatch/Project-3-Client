@@ -8,12 +8,13 @@ import { Initiative } from "../model/Initiative";
 
 export class AllInitiativeDataSource extends DataSource<Initiative> {
     initiativeList: Initiative[] =[{
+        "id": 1,
         "createdBy": 1,
 "description": "He who shail go",
 "members": null,
 "pointOfContactId": 1,
 "state": 0,
-"title": "God"
+"title": "new"
     }
     ];
     connect(): Observable<Initiative[]> {
@@ -32,14 +33,11 @@ export class AllInitiativeDataSource extends DataSource<Initiative> {
     data: Initiative[] = this.initiativeList;
     paginator: MatPaginator | undefined;
     sort: MatSort | undefined;
+    
 
     constructor(private initiativeService: InitiativeService) {
         super();
-        initiativeService.getInitiatives().subscribe(res => {
-            
-            console.log(res);
-        });
-        console.log(this.initiativeList);
+        this.list();
     }
     private getPagedData(data: Initiative[]): Initiative[] {
         if (this.paginator) {
@@ -48,6 +46,16 @@ export class AllInitiativeDataSource extends DataSource<Initiative> {
         } else {
             return data;
         }
+    }
+    public list(): void{
+        this.initiativeService.getInitiatives().subscribe(res => {
+            this.fill(res);
+        });
+    }
+    private fill(list: Initiative[]): void{
+        console.log(this.data);
+    this.data = list;
+    console.log(this.data); 
     }
     private getSortedData(data: Initiative[]): Initiative[] {
         if (!this.sort || !this.sort.active || this.sort.direction === '') {

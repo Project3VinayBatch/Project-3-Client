@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { InitiativeService } from '../initiative.service';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { InitiativeService } from '../services/initiative.service';
 
 @Component({
   selector: 'app-test3',
@@ -7,12 +7,13 @@ import { InitiativeService } from '../initiative.service';
   styleUrls: ['./test3.component.css'],
 })
 export class Test3Component implements OnInit {
+  @ViewChild('takeInput', { static: false }) //this is for the file upload
+  inputClear: ElementRef;
   selectedFile: File;
   constructor(private initiativeService: InitiativeService) {}
 
   ngOnInit(): void {
     this.selectedFile = null;
-    this.s3DownloadFile();
   }
 
   clickEvent() {
@@ -24,10 +25,13 @@ export class Test3Component implements OnInit {
       .postFile(this.selectedFile, 'ale', 4)
       .subscribe((res) => {
         console.log(res);
+        this.inputClear.nativeElement.value = '';
       });
   }
   getFile(event) {
     this.selectedFile = event.target.files[0];
     console.log(this.selectedFile);
   }
+
+  displayFileNames() {}
 }

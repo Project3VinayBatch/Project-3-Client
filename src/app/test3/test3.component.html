@@ -48,6 +48,7 @@
   <div>
     <label>Upload a file</label>
     <input
+      #takeInput
       type="file"
       id="customFile"
       (change)="getFile($event)"
@@ -55,9 +56,5 @@
     />
     <button type="button" (click)="upload()">Upload</button>
   </div>
-  <a
-    href="https://s3.cloudLocation.amazonaws.com/revature-project-three/DockerGuide.txt"
-    >link</a
-  >
   <div></div>
 </div>

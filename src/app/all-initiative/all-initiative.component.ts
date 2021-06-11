@@ -69,7 +69,7 @@ export class AllInitiativeComponent implements AfterViewInit, OnInit {
     console.log("load");
   }
   getRecord(row: Initiative) {
-    sessionStorage.setItem("id", row.id.toString());
+    sessionStorage.setItem("id", String(row.initiativeId));
     this.router.navigate(['view-initiative']);
     console.log(row);
   }

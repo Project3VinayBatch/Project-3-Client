@@ -1,15 +1,12 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TestComponent } from './test/test.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { Test2Component } from './test2/test2.component';
 import { MatMenuModule } from '@angular/material/menu';
-import { HeaderComponent } from './header/header.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -27,23 +24,33 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { AllInitiativeComponent } from './all-initiative/all-initiative.component';
 import { LinksComponent } from './links/links.component';
+import { HeaderComponent } from './header/header.component';
+import { Test3Component } from './test3/test3.component';
 import { MatCardModule } from '@angular/material/card';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CallbackComponent } from './callback/callback.component';
+import { AuthHeaderInterceptor } from './auth-header.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent,
-    Test2Component,
     HeaderComponent,
     NewInitiativeFormComponent,
     NavBarComponent,
     AllInitiativeComponent,
     LinksComponent,
-    SignInComponent
+    Test3Component,
+    SignInComponent,
+    CallbackComponent,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSliderModule,
@@ -63,8 +70,15 @@ import { SignInComponent } from './sign-in/sign-in.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
+    FlexLayoutModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHeaderInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

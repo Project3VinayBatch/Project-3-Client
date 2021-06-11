@@ -6,8 +6,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-
 import { NavBarComponent } from './nav-bar.component';
+
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router, RouterLink } from '@angular/router';
+import { By } from '@angular/platform-browser';
 
 describe('NavBarComponent', () => {
   let component: NavBarComponent;
@@ -24,6 +27,8 @@ describe('NavBarComponent', () => {
         MatListModule,
         MatSidenavModule,
         MatToolbarModule,
+        RouterTestingModule,
+
       ]
     }).compileComponents();
   }));
@@ -37,4 +42,28 @@ describe('NavBarComponent', () => {
   it('should compile', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should route to logout', () => {
+    const fixture = TestBed.createComponent(NavBarComponent);
+
+    const btn = fixture.debugElement.nativeElement.querySelector('#logout-btn').getAttribute('routerlink');
+    expect(btn).toEqual('/logout')
+    //change to whatever the logout route will be
+  });
+
+
+  it('should route to sign-in', () => {
+    const fixture = TestBed.createComponent(NavBarComponent);
+
+    const btn = fixture.debugElement.nativeElement.querySelector('#login-btn').getAttribute('routerlink');
+    expect(btn).toEqual('/sign-in')
+  });
+  
+  it('should route to all initiative', () => {
+    const fixture = TestBed.createComponent(NavBarComponent);
+
+    const btn = fixture.debugElement.nativeElement.querySelector('#all-initiatives').getAttribute('routerlink');
+    expect(btn).toEqual('/all-initiative')
+  });
+
 });

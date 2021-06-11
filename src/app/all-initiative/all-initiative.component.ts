@@ -2,7 +2,10 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { AllInitiativeDataSource, AllInitiativeItem } from './all-initiative-datasource';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Initiative } from '../model/initiative';
+import { InitiativeService } from '../services/initiative.service';
+import { AllInitiativeDataSource} from './all-initiative-list';
 
 @Component({
   selector: 'app-all-initiative',
@@ -10,16 +13,18 @@ import { AllInitiativeDataSource, AllInitiativeItem } from './all-initiative-dat
   styleUrls: ['./all-initiative.component.css']
 })
 export class AllInitiativeComponent implements AfterViewInit {
+
+  initiatives: Initiative[];
+  
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<AllInitiativeItem>;
+  @ViewChild(MatTable) table!: MatTable<Initiative>;
   dataSource: AllInitiativeDataSource;
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'name'];
+  displayedColumns = ['title', 'description'];
 
-  constructor() {
-    this.dataSource = new AllInitiativeDataSource();
+  constructor(private activatedRoute: ActivatedRoute, public router: Router, private initiativeService:InitiativeService) {
+    this.dataSource = new AllInitiativeDataSource(initiativeService);
   }
 
   ngAfterViewInit(): void {
@@ -27,4 +32,21 @@ export class AllInitiativeComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
   }
+  openModal(){
+    console.log("open modal!");
+    //all this function needs to do is route to the newinitiativeComponent
+    this.router.navigate(['new-initiative']);
+    //add in route guard... 
+    //...canDeativate to prevent leaving without changing?
+  }
+//   ngOnInit():void{
+// //need to set initiatives
+//   this.initiativeService.getInitiatives()
+//   .subscribe(res => {
+//     console.log(res);
+
+//   }); 
+  // console.log(this.initiatives);
+
+  // }
 }

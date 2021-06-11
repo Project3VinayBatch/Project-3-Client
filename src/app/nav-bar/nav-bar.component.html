@@ -1,15 +1,17 @@
-<p>
-  <mat-toolbar class="navbar" color="primary">
-    <mat-toolbar-row>
-      <span>Strategic Initatives Board</span>
-      <span class="example-spacer"></span>
-      <div class="navbar-nav">
-        <button mat-button routerLink="/sign-in">Login</button>
-        <button mat-button routerLink="/all-initiative">List of Initiatives</button>
-        <button mat-button routerLink="/new-initiative">Logout</button>
-      </div>
-      <img src="../../assets/img/rev-logo.png" class="rev" />
-    </mat-toolbar-row>
-  </mat-toolbar>
-</p>
-<router-outlet></router-outlet>
+<mat-toolbar class="navbar flex-container">
+  <mat-toolbar-row class="flex-container">
+    <img src="../../assets/img/rev-logo.png" class="rev" />
+    
+    <span class="example-spacer"></span>
+    <div class="navbar-nav">
+      <button id="login-btn" mat-button routerLink="/sign-in">Login</button>
+      <button mat-button routerLink="/all-initiative">List of Initiatives</button>
+      <button mat-button routerLink="/sign-in">Logout</button>
+      <!-- needs to delete the JWT or something -->
+    </div>
+    <span routerLink="/all-initiative">Strategic Initatives Board</span>
+  
+
+  </mat-toolbar-row>
+</mat-toolbar>
+

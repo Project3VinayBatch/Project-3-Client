@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+import { User } from '../model/user';
+import { AuthService } from '../services/auth.service';
+
 
 @Component({
   selector: 'app-sign-in',
@@ -8,19 +11,33 @@ import { FormBuilder } from '@angular/forms';
 })
 export class SignInComponent implements OnInit {
 
-  email: string;
-  password: string;
+  user: User;
   loginForm = this.fb.group({
+      email: [null, 
+        Validators.required,
+        // Validators.email
+      ],
+      password: [null, 
+        Validators.required, 
+        // Validators.minLength(8),
+      ]
+            
   })
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private authService:AuthService) {
+    // this.user.username="";
+    // this.user.password=""; 
+  }
 
   ngOnInit(): void {
+
   }
 
-  onSubmit(): void{
+
+
+  login(): void{
+    this.authService.login();
+    
   }
-  verify(): void{
-    alert(this.email+" "+this.password);
-  }
+
 }

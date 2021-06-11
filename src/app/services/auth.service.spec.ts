@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
 import { AuthService } from './auth.service';
@@ -7,7 +8,15 @@ describe('AuthService', () => {
   let service: AuthService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [ 
+        HttpClientModule
+      ],
+      providers: [ 
+        HttpClientModule
+      ]
+
+    });
     service = TestBed.inject(AuthService);
   });
 
@@ -17,7 +26,7 @@ describe('AuthService', () => {
 
   it('should check login',()=>{
     const checkLogin=service.isLoggedIn();
-    expect(checkLogin).toBeTruthy();
+    expect(checkLogin).toBeFalsy();
   });
 
   it('should remove token',()=>{

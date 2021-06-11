@@ -11,7 +11,11 @@ describe('UserGuardGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        HttpClientModule
+      ],
+      providers: [ 
+        HttpClientModule
       ]
     });
     guard = TestBed.inject(UserGuardGuard);

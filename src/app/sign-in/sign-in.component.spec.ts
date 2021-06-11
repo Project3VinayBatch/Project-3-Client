@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -12,6 +13,10 @@ describe('SignInComponent', () => {
       imports: [ 
         FormsModule,
         ReactiveFormsModule,
+        HttpClientModule
+    ],
+    providers: [ 
+      HttpClientModule
     ],
       declarations: [ SignInComponent ]
     })

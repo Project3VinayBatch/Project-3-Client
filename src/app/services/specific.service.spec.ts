@@ -19,4 +19,23 @@ describe('SpecificService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('get files',()=>{
+
+  });
+  it('post files',()=>{
+
+  });
+  it('get members',()=>{
+
+  });
+  it('post members',()=>{
+
+  });
+  it('add members',()=>{
+
+  });
+  it('',()=>{
+
+  });
 });

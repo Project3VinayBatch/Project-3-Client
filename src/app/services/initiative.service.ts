@@ -22,7 +22,7 @@ export class InitiativeService {
   }
 
   getInitiatives(): Observable<Initiative[]> {
-    return this.http.get<Initiative[]>(this.initiativesGetUrl);
+    // return this.http.get<Initiative[]>(this.initiativesGetUrl);
   }
 
   //File Requests

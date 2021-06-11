@@ -1,7 +1,7 @@
 import { User } from "./user";
 
 export class Initiative {
-    id:number;
+    initiativeId:number;
     createdBy: number;
     title: string;
     description: string;

@@ -6,6 +6,7 @@ import { MatTableModule } from '@angular/material/table';
 import { RouterTestingModule } from "@angular/router/testing";
 
 import { AllInitiativeComponent } from './all-initiative.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('AllInitiativeComponent', () => {
   let component: AllInitiativeComponent;
@@ -19,8 +20,12 @@ describe('AllInitiativeComponent', () => {
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
-        RouterTestingModule
+        RouterTestingModule,
+        HttpClientModule
         
+      ],
+      providers: [ 
+        HttpClientModule
       ]
     }).compileComponents();
   }));

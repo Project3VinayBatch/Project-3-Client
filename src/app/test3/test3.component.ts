@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Files } from '../model/files';
+import { Initiative } from '../model/initiative';
+import { User } from '../model/user';
 import { InitiativeService } from '../services/initiative.service';
+import { SpecificService } from '../services/specific.service';
 
 @Component({
   selector: 'app-test3',
@@ -11,7 +14,16 @@ export class Test3Component implements OnInit {
   @ViewChild('takeInput', { static: false }) //this is for the file upload
   inputClear: ElementRef;
   selectedFile: File;
-  constructor(private initiativeService: InitiativeService) {}
+  public user:User;
+  public initiative:Initiative;
+  //public initiative1:InitiativeDTO;
+  userinfo:String = "/5/17";
+  initId:String = "5";
+  public isButtonVisible:boolean = true;
+  constructor(private initiativeService: InitiativeService, private service: SpecificService) {
+    this.user = new User();
+    this.initiative = new Initiative;
+  }
   documentList: Files[];
   iconList = [
     // array of icon class list based on type
@@ -40,6 +52,12 @@ export class Test3Component implements OnInit {
   ngOnInit(): void {
     this.selectedFile = null;
     this.displayFileNames();
+    this.getMembers() ;{
+      this.service.getMembers(this.initId).subscribe(res1 => {
+        this.initiative = res1;
+        console.log(res1);
+      })  
+    }
   }
 
   clickEvent() {
@@ -71,4 +89,15 @@ export class Test3Component implements OnInit {
   //     console.log(res);
   //   })
   // }
+
+  addMembers():void {
+    this.service.addMembers(this.userinfo).subscribe(res => {
+      this.user = res;
+      console.log(res);
+      if(res==null){console.log("what the! it worked!");
+    this.isButtonVisible=false;}
+      else{console.log("this wont work");
+    this.isButtonVisible=true;}
+    })
+}
 }

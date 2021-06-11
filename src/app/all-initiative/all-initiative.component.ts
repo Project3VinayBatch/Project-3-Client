@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { DataSource } from '@angular/cdk/collections';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
@@ -13,7 +14,8 @@ import { AllInitiativeDataSource } from './all-initiative-list';
   templateUrl: './all-initiative.component.html',
   styleUrls: ['./all-initiative.component.css'],
 })
-export class AllInitiativeComponent implements AfterViewInit {
+export class AllInitiativeComponent implements AfterViewInit, OnInit {
+
   initiatives: Initiative[];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -23,44 +25,43 @@ export class AllInitiativeComponent implements AfterViewInit {
 
   displayedColumns = ['title', 'description'];
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    public router: Router,
-    private initiativeService: InitiativeService
-  ) {
-    this.dataSource = new AllInitiativeDataSource(initiativeService);
-    initiativeService.getInitiatives().subscribe((res) => {
-      console.log(res);
-      this.fill(res);
-    });
-  }
+  constructor(private activatedRoute: ActivatedRoute, public router: Router, private initiativeService: InitiativeService) {
 
+    this.dataSource = new AllInitiativeDataSource(initiativeService);
+  }
+  ngOnInit() {
+    this.dataSource = new AllInitiativeDataSource(this.initiativeService);
+    console.log(this.dataSource.data);
+    this.initiativeService.getInitiatives().subscribe(
+      data => {
+        this.dataSource.data = data;
+      }
+    );
+    console.log(this.dataSource.data);
+    this.dataSource.getSortedData(this.dataSource.data);
+  }
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
+    
   }
   fill(list: Initiative[]) {
     console.log(this.dataSource);
     this.dataSource.initiativeList = list;
-    console.log(this.dataSource.initiativeList);
+    console.log(this.dataSource);
   }
   openModal() {
-    console.log('open modal!');
+    console.log("open modal!");
     //all this function needs to do is route to the newinitiativeComponent
     this.router.navigate(['new-initiative']);
     //add in route guard...
     //...canDeativate to prevent leaving without changing?
   }
-  ngOnInit(): void {
-    //need to set initiatives
-    this.initiativeService.getInitiatives().subscribe((res) => {
-      this.initiatives = res;
-      console.log(res);
-      console.log(this.initiatives);
-    });
-  }
 
+  script(){
+    console.log("load");
+  }
   getRecord(row: number) {
     console.log(row);
   }
@@ -70,7 +71,7 @@ export class AllInitiativeComponent implements AfterViewInit {
   //   .subscribe(res => {
   //     console.log(res);
 
-  //   });
+  //   }); 
   // console.log(this.initiatives);
 
   // }

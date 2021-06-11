@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
 import { AuthService } from './auth.service';
@@ -7,7 +8,15 @@ describe('AuthService', () => {
   let service: AuthService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [ 
+        HttpClientModule
+      ],
+      providers: [ 
+        HttpClientModule
+      ]
+
+    });
     service = TestBed.inject(AuthService);
   });
 
@@ -15,22 +24,20 @@ describe('AuthService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should login',()=>{
-    const login=service.isLoggedIn();
-    expect(login).toBeTrue();
-
+  it('should check login',()=>{
+    const checkLogin=service.isLoggedIn();
+    expect(checkLogin).toBeFalsy();
   });
 
-  it('should save user id',()=>{
-
-    const saveUser= service.saveUserIdToStorage();
-    expect(saveUser).toBeNull;
+  it('should remove token',()=>{
+    service.removeToken();
+    expect(sessionStorage.getItem('token')).toBeFalsy;
   });
 
-  it('should get user id',()=>{
-
-    const getUser= service.getUserIdFromStorage();
-    expect(getUser).toBeNull;
+  it('should logout at least delete session storage',()=>{
+    service.logout();
+    expect(sessionStorage.length).toBe(0);
   });
+
 
 });

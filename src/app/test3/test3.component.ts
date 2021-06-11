@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Initiative } from '../model/initiative';
 import { InitiativeService } from '../services/initiative.service';
 
 @Component({
@@ -10,6 +11,10 @@ export class Test3Component implements OnInit {
   @ViewChild('takeInput', { static: false }) //this is for the file upload
   inputClear: ElementRef;
   selectedFile: File;
+  //
+  initiative: Initiative = new Initiative();
+  isButtonVisible: boolean = false; 
+  //
   constructor(private initiativeService: InitiativeService) {}
 
   ngOnInit(): void {

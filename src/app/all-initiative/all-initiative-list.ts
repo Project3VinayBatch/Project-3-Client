@@ -7,16 +7,7 @@ import { InitiativeService } from "../services/initiative.service";
 import { Initiative } from "../model/Initiative";
 
 export class AllInitiativeDataSource extends DataSource<Initiative> {
-    initiativeList: Initiative[] =[{
-        "id": 1,
-        "createdBy": 1,
-"description": "He who shail go",
-"members": null,
-"pointOfContactId": 1,
-"state": 0,
-"title": "new"
-    }
-    ];
+    initiativeList: Initiative[] = [];
     connect(): Observable<Initiative[]> {
         if (this.paginator && this.sort) {
             // Combine everything that affects the rendered data into one update
@@ -57,7 +48,7 @@ export class AllInitiativeDataSource extends DataSource<Initiative> {
     this.data = list;
     console.log(this.data); 
     }
-    private getSortedData(data: Initiative[]): Initiative[] {
+    public getSortedData(data: Initiative[]): Initiative[] {
         if (!this.sort || !this.sort.active || this.sort.direction === '') {
             return data;
         }

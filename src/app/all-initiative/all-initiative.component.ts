@@ -1,3 +1,4 @@
+import { DataSource } from '@angular/cdk/collections';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -25,7 +26,7 @@ export class AllInitiativeComponent implements AfterViewInit, OnInit {
   displayedColumns = ['title', 'description'];
 
   constructor(private activatedRoute: ActivatedRoute, public router: Router, private initiativeService: InitiativeService) {
-    
+
     this.dataSource = new AllInitiativeDataSource(initiativeService);
   }
   ngOnInit() {
@@ -37,11 +38,13 @@ export class AllInitiativeComponent implements AfterViewInit, OnInit {
       }
     );
     console.log(this.dataSource.data);
+    this.dataSource.getSortedData(this.dataSource.data);
   }
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
+    
   }
   fill(list: Initiative[]) {
     console.log(this.dataSource);
@@ -56,6 +59,9 @@ export class AllInitiativeComponent implements AfterViewInit, OnInit {
     //...canDeativate to prevent leaving without changing?
   }
 
+  script(){
+    console.log("load");
+  }
   getRecord(row: number) {
     console.log(row);
   }

@@ -12,7 +12,7 @@ import { AllInitiativeDataSource } from './all-initiative-list';
 @Component({
   selector: 'app-all-initiative',
   templateUrl: './all-initiative.component.html',
-  styleUrls: ['./all-initiative.component.css']
+  styleUrls: ['./all-initiative.component.css'],
 })
 export class AllInitiativeComponent implements AfterViewInit, OnInit {
 
@@ -55,7 +55,7 @@ export class AllInitiativeComponent implements AfterViewInit, OnInit {
     console.log("open modal!");
     //all this function needs to do is route to the newinitiativeComponent
     this.router.navigate(['new-initiative']);
-    //add in route guard... 
+    //add in route guard...
     //...canDeativate to prevent leaving without changing?
   }
 
@@ -74,5 +74,5 @@ export class AllInitiativeComponent implements AfterViewInit, OnInit {
   //   }); 
   // console.log(this.initiatives);
 
-//   }
+  // }
 }

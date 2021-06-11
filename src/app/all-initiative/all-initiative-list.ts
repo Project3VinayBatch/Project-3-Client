@@ -1,8 +1,8 @@
-import { CollectionViewer, DataSource } from "@angular/cdk/collections";
+import { DataSource } from "@angular/cdk/collections";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { map } from 'rxjs/operators';
-import { Observable, of as observableOf, merge, BehaviorSubject } from 'rxjs';
+import { Observable, of as observableOf, merge } from 'rxjs';
 import { InitiativeService } from "../services/initiative.service";
 import { Initiative } from "../model/Initiative";
 
@@ -21,7 +21,7 @@ export class AllInitiativeDataSource extends DataSource<Initiative> {
         }
     }
     disconnect(): void { }
-    data: Initiative[] = this.initiativeList; //thi needs to be a subscription...
+    data: Initiative[] = this.initiativeList;
     paginator: MatPaginator | undefined;
     sort: MatSort | undefined;
     

@@ -8,6 +8,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 
 import { NewInitiativeFormComponent } from './new-initiative-form.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('NewInitiativeFormComponent', () => {
   let component: NewInitiativeFormComponent;
@@ -24,6 +25,10 @@ describe('NewInitiativeFormComponent', () => {
         MatInputModule,
         MatRadioModule,
         MatSelectModule,
+        HttpClientModule
+      ],
+      providers: [ 
+        HttpClientModule
       ]
     }).compileComponents();
   }));

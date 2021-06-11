@@ -5,9 +5,8 @@
     <span class="example-spacer"></span>
     <div class="navbar-nav">
       <button id="login-btn" mat-button routerLink="/sign-in">Login</button>
-      <button mat-button routerLink="/all-initiative">List of Initiatives</button>
-      <button mat-button routerLink="/sign-in" (click)="logout()">Logout</button>
-      <!--  -->
+      <button id ="all-initiatives" mat-button routerLink="/all-initiative">List of Initiatives</button>
+      <button id="logout-btn" mat-button routerLink="/sign-in"(click)="logout()" >Logout</button>
       <!-- needs to delete the JWT or something -->
     </div>
     <span routerLink="/all-initiative">Strategic Initatives Board</span>

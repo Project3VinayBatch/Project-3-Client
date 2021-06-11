@@ -7,7 +7,7 @@ import { InitiativeService } from "../services/initiative.service";
 import { Initiative } from "../model/Initiative";
 
 export class AllInitiativeDataSource extends DataSource<Initiative> {
-    initiativeList: Initiative[] = [];
+    initiativeList: Initiative[] =[];
     connect(): Observable<Initiative[]> {
         if (this.paginator && this.sort) {
             // Combine everything that affects the rendered data into one update

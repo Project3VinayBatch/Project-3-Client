@@ -18,8 +18,7 @@ export class LoginService {
     //then check authService to make sure JWT is correct...
       //...or should I check jwt before getting user... nope, cant
 
-
-
+      
     if (this.authService.isLoggedIn()) {
 
     }

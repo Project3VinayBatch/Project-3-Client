@@ -42,8 +42,8 @@ export class NewInitiativeFormComponent {
   }
   clickSubmit() {
     //make this route to the new initiative...
-    let myId:number = 59780279;    //replace with xxx.getUserId();
-    const newInitiative = new InitiativeDTO(myId, this.initiativeForm.controls.title.value, this.initiativeForm.controls.description.value, null); //myid, title, descr, PoC id
+    //test
+    const newInitiative = new InitiativeDTO(parseInt(sessionStorage.getItem("userId")), this.initiativeForm.controls.title.value, this.initiativeForm.controls.description.value, null); //myid, title, descr, PoC id
     console.log(newInitiative);
     this.initiativeService.postInitiative(newInitiative).subscribe((res) => {
       console.log(res);

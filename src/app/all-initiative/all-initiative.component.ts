@@ -1,11 +1,9 @@
-import { DataSource } from '@angular/cdk/collections';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Initiative } from '../model/initiative';
-import { InitiativeDTO } from '../model/initiativeDTO';
 import { InitiativeService } from '../services/initiative.service';
 import { AllInitiativeDataSource } from './all-initiative-list';
 
@@ -15,6 +13,7 @@ import { AllInitiativeDataSource } from './all-initiative-list';
   styleUrls: ['./all-initiative.component.css'],
 })
 export class AllInitiativeComponent implements AfterViewInit, OnInit {
+
 
   initiatives: Initiative[];
 
@@ -26,20 +25,24 @@ export class AllInitiativeComponent implements AfterViewInit, OnInit {
   displayedColumns = ['title', 'description'];
 
   constructor(private activatedRoute: ActivatedRoute, public router: Router, private initiativeService: InitiativeService) {
-
     this.dataSource = new AllInitiativeDataSource(initiativeService);
+
   }
   ngOnInit() {
     this.dataSource = new AllInitiativeDataSource(this.initiativeService);
     console.log(this.dataSource.data);
     this.initiativeService.getInitiatives().subscribe(
       data => {
-        console.log("location1.1");
+        console.log(data);
         this.dataSource.data = data;
-        console.log("location1.2");
       }
     );
-    console.log("location4");
+    this.initiativeService.getUser().subscribe(
+      res => {
+        console.log(res);
+        sessionStorage.setItem("userid",res.id.toString());
+        sessionStorage.setItem("username",res.username.toString());
+    });
     console.log(this.dataSource.data);
     this.dataSource.getSortedData(this.dataSource.data);
   }
@@ -65,7 +68,9 @@ export class AllInitiativeComponent implements AfterViewInit, OnInit {
   script(){
     console.log("load");
   }
-  getRecord(row: number) {
+  getRecord(row: Initiative) {
+    sessionStorage.setItem("id", row.id.toString());
+    this.router.navigate(['view-initiative']);
     console.log(row);
   }
   //   ngOnInit():void{

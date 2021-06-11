@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Files } from '../model/files';
 import { Initiative } from '../model/initiative';
 import { InitiativeDTO } from '../model/initiativeDTO';
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,7 @@ export class InitiativeService {
   private initiativesGetUrl = 'http://localhost:8080/initiatives';
   private fileUploadPostUrl = 'http://localhost:8080/uploadFile/';
   private fileDownloadGetUrl = 'http://localhost:8080/files/by-initiative-id/';
+  private UserGetUrl = 'http://localhost:8080/user';
   constructor(private http: HttpClient) {}
 
   postInitiative(initiativeDTO: InitiativeDTO): Observable<InitiativeDTO> {
@@ -48,5 +50,8 @@ export class InitiativeService {
 
   getFile(initiativeId: number): Observable<Files[]> {
     return this.http.get<Files[]>(this.fileDownloadGetUrl + initiativeId);
+  }
+  getUser(): Observable<User>{
+    return this.http.get<User>(this.UserGetUrl);
   }
 }

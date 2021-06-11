@@ -19,7 +19,7 @@ export class Test3Component implements OnInit {
   public initiative:Initiative;
   //public initiative1:InitiativeDTO;
   userinfo:String = "/5/17";
-  initId:String = "5";
+  initId:String = "4";
   public isButtonVisible:boolean = true;
   constructor(private initiativeService: InitiativeService, private service: SpecificService) {
     this.user = new User();
@@ -68,7 +68,7 @@ export class Test3Component implements OnInit {
   upload() {
     console.log(this.selectedFile);
     this.initiativeService
-      .postFile(this.selectedFile, 'ale', 4)
+      .postFile(this.selectedFile, sessionStorage.getItem("username"), 4) //switch 1 for current initiative
       .subscribe((res) => {
         console.log(res);
         this.inputClear.nativeElement.value = '';

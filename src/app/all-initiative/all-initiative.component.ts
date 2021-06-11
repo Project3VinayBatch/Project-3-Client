@@ -68,5 +68,5 @@ export class AllInitiativeComponent implements AfterViewInit, OnInit {
   //   }); 
   // console.log(this.initiatives);
 
-  // }
+//   }
 }

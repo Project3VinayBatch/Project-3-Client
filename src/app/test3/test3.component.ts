@@ -16,8 +16,10 @@ export class Test3Component implements OnInit {
     this.selectedFile = null;
   }
 
+
+
   clickEvent() {
-    alert('Button clicked');
+    alert("Button clicked")
   }
   upload() {
     console.log(this.selectedFile);
@@ -34,4 +36,10 @@ export class Test3Component implements OnInit {
   }
 
   displayFileNames() {}
+  getMembers(): void { }
+  //   this.service.getMembers(this.initId).subscribe(res => {
+  //     this.user = res;
+  //     console.log(res);
+  //   })  
+  // }
 }

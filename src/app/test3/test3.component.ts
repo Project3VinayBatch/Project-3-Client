@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+// import { String } from 'aws-sdk/clients/appstream';
 import { Files } from '../model/files';
 import { Initiative } from '../model/initiative';
 import { User } from '../model/user';

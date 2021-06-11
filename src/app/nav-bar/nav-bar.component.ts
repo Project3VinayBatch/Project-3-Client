@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -17,8 +18,14 @@ export class NavBarComponent {
       shareReplay()
     );
 
+    logout(){
+      console.log("testing log out");
+     //call authservice!
+      this.authservice.logout();
+    }
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private router: Router
+    private router: Router,
+    private authservice:AuthService,
   ) {}
 }

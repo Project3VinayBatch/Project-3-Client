@@ -21,7 +21,7 @@ export class AuthService {
   }
 
   updateToken(token: string) {
-    localStorage.setItem(this.tokenKey, token);
+    sessionStorage.setItem(this.tokenKey, token);
   }
 
   fetchToken(code: string, state: string): Observable<any> {
@@ -35,7 +35,7 @@ export class AuthService {
   }
 
   getToken() {
-    return localStorage.getItem(this.tokenKey);
+    return sessionStorage.getItem(this.tokenKey);
   }
 
   isLoggedIn(): boolean {
@@ -44,10 +44,15 @@ export class AuthService {
   }
 
   removeToken() {
-    localStorage.removeItem(this.tokenKey);
+    sessionStorage.removeItem(this.tokenKey);
   }
 
-  logout(): Observable<any> {
-    return this.http.post(this.baseUrl + '/logout', this.getToken());
+  // logout(): Observable<any> {
+  //   return this.http.post(this.baseUrl + '/logout', this.getToken());
+  //   sessionStorage.clear();
+  // }
+  logout(): void{
+    // this.http.post(this.baseUrl + '/logout', this.getToken()); //currently inactive
+    sessionStorage.clear();
   }
 }

@@ -14,6 +14,7 @@ export class InitiativeDTO {
     this.state = InitiativeState.ACTIVE;
     this.members = null;
   }
+
   private createdBy: number;
   private title: string;
   private description: string;

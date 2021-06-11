@@ -1,6 +1,7 @@
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Files } from '../model/files';
 import { Initiative } from '../model/initiative';
 import { InitiativeDTO } from '../model/initiativeDTO';
 
@@ -11,6 +12,7 @@ export class InitiativeService {
   private initiativePostUrl = 'http://localhost:8080/initiative';
   private initiativesGetUrl = 'http://localhost:8080/initiatives';
   private fileUploadPostUrl = 'http://localhost:8080/uploadFile/';
+  private fileDownloadGetUrl = 'http://localhost:8080/files/by-initiative-id/';
   constructor(private http: HttpClient) {}
 
   postInitiative(initiativeDTO: InitiativeDTO): Observable<InitiativeDTO> {
@@ -44,5 +46,7 @@ export class InitiativeService {
     return this.http.request(request);
   }
 
-  getFilesByInitiative() {}
+  getFile(initiativeId: number): Observable<Files[]> {
+    return this.http.get<Files[]>(this.fileDownloadGetUrl + initiativeId);
+  }
 }

@@ -42,6 +42,7 @@ export class AllInitiativeComponent implements AfterViewInit, OnInit {
         console.log(res);
         sessionStorage.setItem("userid",res.id.toString());
         sessionStorage.setItem("username",res.username.toString());
+        sessionStorage.setItem("role",res.role.toString());
     });
     console.log(this.dataSource.data);
     this.dataSource.getSortedData(this.dataSource.data);
@@ -69,7 +70,7 @@ export class AllInitiativeComponent implements AfterViewInit, OnInit {
     console.log("load");
   }
   getRecord(row: Initiative) {
-    sessionStorage.setItem("id", row.id.toString());
+    sessionStorage.setItem("id", String(row.initiativeId));
     this.router.navigate(['view-initiative']);
     console.log(row);
   }

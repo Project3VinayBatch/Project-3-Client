@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { String } from 'aws-sdk/clients/appstream';
+import { Files } from '../model/files';
 import { InitiativeService } from '../services/initiative.service';
 
 @Component({
@@ -11,7 +13,7 @@ export class Test3Component implements OnInit {
   inputClear: ElementRef;
   selectedFile: File;
   constructor(private initiativeService: InitiativeService) {}
-
+  documentList: Files[];
   iconList = [
     // array of icon class list based on type
     { type: 'xlsx', icon: 'fa fa-file-excel-o' },
@@ -20,7 +22,7 @@ export class Test3Component implements OnInit {
     { type: 'jpg', icon: 'fa fa-file-image-o' },
   ];
 
-  getFileExtension(filename) {
+  getFileExtension(filename: String) {
     // this will give you icon class name
     let ext = filename.split('.').pop();
     let obj = this.iconList.filter((row) => {
@@ -59,5 +61,15 @@ export class Test3Component implements OnInit {
     console.log(this.selectedFile);
   }
 
-  displayFileNames() {}
+  displayFileNames() {
+    this.initiativeService.getFile(4).subscribe((res) => {
+      this.documentList = res;
+    });
+  }
+  getMembers(): void {}
+  //   this.service.getMembers(this.initId).subscribe(res => {
+  //     this.user = res;
+  //     console.log(res);
+  //   })
+  // }
 }

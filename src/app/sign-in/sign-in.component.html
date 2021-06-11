@@ -1,34 +1,15 @@
 <div class="form-div">
-    <form [formGroup]="loginForm" novalidate >
+    <form [formGroup]="loginForm" novalidate>
         <div class="header alignment">
             <mat-card-title>Login to account</mat-card-title>
         </div>
-        <div class="alignment">
-            <mat-form-field appearance="Email">
-                <h3>Email</h3>
-                <input matInput id="email" type="email" placeholder="someone@revature.com" formControlName="email">
-                <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
-                    Email is <strong>required</strong>
-                  </mat-error>
-                  <mat-error *ngIf="loginForm.controls['email'].hasError('email')">
-                    Email must be in email format: ei: me@you.net
-                    <!-- not working! -->
-                  </mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="password">
-                <h3>Password</h3>
-                <input matInput id="password" placeholder="Password" type="password" formControlName="password">
-                <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
-                    Password is <strong>required</strong>
-                  </mat-error>
-                  <mat-error *ngIf="loginForm.controls['password'].hasError('minLength')">
-                    Password must be <strong>8 digits</strong> long
-                  </mat-error>
-            </mat-form-field>
+        <div class="buffer">
+            <!-- <img src="../../assets/img/rev-logo.png" alt="revature Logo"> -->
+            <p>Please login through Github to access the Strategic Initiative Board</p>
         </div>
-
         <div class="flex-container">
-            <button mat-raised-button (click)= "login()">Login Through Github</button>
+            <button mat-raised-button (click)="login()">Login Through Github <img
+                    src="../../assets/img/GitHub-Mark-32px.png" alt="Github Mark Logo"></button>
         </div>
     </form>
 </div>

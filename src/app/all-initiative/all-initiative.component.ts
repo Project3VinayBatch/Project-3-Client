@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Initiative } from '../model/initiative';
+import { InitiativeDTO } from '../model/initiativeDTO';
 import { InitiativeService } from '../services/initiative.service';
 import { AllInitiativeDataSource } from './all-initiative-list';
 
@@ -28,12 +29,21 @@ export class AllInitiativeComponent implements AfterViewInit {
     private initiativeService: InitiativeService
   ) {
     this.dataSource = new AllInitiativeDataSource(initiativeService);
+    initiativeService.getInitiatives().subscribe((res) => {
+      console.log(res);
+      this.fill(res);
+    });
   }
 
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
+  }
+  fill(list: Initiative[]) {
+    console.log(this.dataSource);
+    this.dataSource.initiativeList = list;
+    console.log(this.dataSource.initiativeList);
   }
   openModal() {
     console.log('open modal!');
@@ -50,4 +60,18 @@ export class AllInitiativeComponent implements AfterViewInit {
       console.log(this.initiatives);
     });
   }
+
+  getRecord(row: number) {
+    console.log(row);
+  }
+  //   ngOnInit():void{
+  // //need to set initiatives
+  //   this.initiativeService.getInitiatives()
+  //   .subscribe(res => {
+  //     console.log(res);
+
+  //   });
+  // console.log(this.initiatives);
+
+  // }
 }

@@ -42,6 +42,7 @@ export class AllInitiativeComponent implements AfterViewInit, OnInit {
         console.log(res);
         sessionStorage.setItem("userid",res.id.toString());
         sessionStorage.setItem("username",res.username.toString());
+        sessionStorage.setItem("role",res.role.toString());
     });
     console.log(this.dataSource.data);
     this.dataSource.getSortedData(this.dataSource.data);
@@ -50,7 +51,7 @@ export class AllInitiativeComponent implements AfterViewInit, OnInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
-    
+    console.log("location5");
   }
   fill(list: Initiative[]) {
     console.log(this.dataSource);

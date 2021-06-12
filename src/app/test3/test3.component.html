@@ -1,77 +1,67 @@
-<mat-card-title class="title">Specific Initiatives View</mat-card-title>
-    <div class="flex-container" fxLayout="row" fxLayoutAlign= "none" fxLayoutGap="30px">
-        <div class="child-1" fxFlex="80">
-            <mat-card-title>Initiative Title: {{initiative.title}}</mat-card-title>
-            <mat-divider></mat-divider>
-            <mat-card>Initiative Description:{{initiative.description}}</mat-card>
-             <mat-divider></mat-divider>
-             <div class="flex-container1" fxLayout="row" fxLayoutAlign= "none" fxLayoutGap="20px">
-                <div class="child-3" fxFlex=50%>
-                    <app-links></app-links>
-                    <app-links></app-links>
-                    <app-links></app-links>
-                </div>
-             </div>
-
-            <button mat-raised-button class="button">Click Me</button>
-            
+<div class=main-div>
+  <mat-card-title class="main-title">Specific Initiatives View</mat-card-title>
+  <div class="flex-container minor-div" fxLayout="row" fxLayoutAlign="none" fxLayoutGap="3px">
+    <div class="child-1" fxFlex="80">
+      <mat-card-title>Initiative Title: {{initiative.title}}</mat-card-title>
+      <mat-divider></mat-divider>
+      <mat-card>Initiative Description:{{initiative.description}}</mat-card>
+      <mat-divider></mat-divider>
+      <div class="flex-container1" fxLayout="row" fxLayoutAlign="none" fxLayoutGap="20px">
+        <div class="child-3" fxFlex=50%>
+          <app-links></app-links>
+          <app-links></app-links>
+          <app-links></app-links>
         </div>
-        <div class="child-2" fxFlex="20">
-            <div>
-                <mat-card-title >Point of Contact</mat-card-title>
-            <mat-card>Contact:{{initiative.pointOfContactId}}</mat-card>
-            </div>
-            <br>
-            <div>
-                <mat-card-title >Members</mat-card-title>
-            <mat-card><mat-list>
-            </mat-list><mat-card-subtitle>List of Members</mat-card-subtitle>
-                <mat-list-item> Created By: {{initiative.createdBy}} </mat-list-item>
-                <mat-list-item> Salt </mat-list-item>
-                <mat-list-item> Paprika </mat-list-item>
-            </mat-card>
+      </div>
+
+      <button mat-raised-button class="button">upload file...working</button>
+
     </div>
-    <br />
-    <br />
-    <!--
- <button
-      *ngIf="this.isButtonVisible"
-      (click)="addMembers()"
-      mat-raised-button
-      class="button2"
-    >
-      Click Me
-    </button>
-    -->
+    <div class="child-2" fxFlex="20">
+      <div>
+        <mat-card-title>Point of Contact</mat-card-title>
+        <mat-card>Contact:{{initiative.pointOfContactId}}</mat-card>
+      </div>
+      <br>
+      <div>
+        <mat-card-title>Members</mat-card-title>
+        <mat-card>
+          <mat-list>
+          </mat-list>
+          <mat-card-subtitle>List of Members</mat-card-subtitle>
+          <mat-list-item> Created By: {{initiative.createdBy}} </mat-list-item>
+          <mat-list-item> Salt </mat-list-item>
+          <mat-list-item> Paprika </mat-list-item>
+        </mat-card>
+
+      </div>
+      <br>
+      <br>
+      <button *ngIf="this.isButtonVisible" (click)="addMembers()" mat-raised-button class="button2">Click Me</button>
+    </div>
+
+
   </div>
-</div>
-<br />
-<br />
-<button (click)="clickEvent()" mat-raised-button class="button2">
-  Click Me
-</button>
-<div>
-  <label>Upload a file</label>
-  <input
-    type="file"
-    id="customFile"
-    (change)="getFile($event)"
-    placeholder="File To Upload"
-  />
-  <button type="button" (click)="upload()">Upload</button>
-</div>
-<a
-  href="https://s3.cloudLocation.amazonaws.com/revature-project-three/DockerGuide.txt"
-  >link</a
->
-<div>
-  <h3>Files:</h3>
-  <div *ngFor="let filename of documentList">
-    <i
-      class="{{ getFileExtension(filename.fileName) }}"
-      style="color: orange"
-      aria-hidden="true"
-    ></i>
-    {{ filename.fileName }}
+  <br />
+  <br />
+  <button (click)="clickEvent()" mat-raised-button class="button2">
+    Click Me
+  </button>
+  <div class="minor-div">
+    <label>Upload a file</label>
+    <input type="file" id="customFile" (change)="getFile($event)" placeholder="File To Upload" />
+    <button type="button" (click)="upload()">Upload</button>
+  </div>
+
+  <div>
+    <h3>Files:</h3>
+    <div *ngFor="let filename of documentList">
+      <i
+        class="{{ getFileExtension(filename.fileName) }}"
+        style="color: orange"
+        aria-hidden="true"
+      ></i>
+      {{ filename.fileName }}
+    </div>
   </div>
 </div>

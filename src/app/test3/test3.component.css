@@ -66,13 +66,17 @@
 }
 .minor-div{
     padding: .5em;
+    border-radius: 15px 15px;
+    border: .5px solid #474C55;
+}
+.major-div{
+    padding: .5em;
 }
 .grey{
     background-color: #B9B9BA;
 }
  .child-1, .child-2{
-    border-radius: 15px 15px;
-    border: .5px solid #474C55;
+
 }
 
 

@@ -15,8 +15,10 @@ export class CallbackComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((p) => {
+      console.log(p);
       this.authService.fetchToken(p.code, p.state).subscribe((data) => {
         this.authService.updateToken(data.accessToken);
+        console.log(data);
         this.router.navigate(['all-initiative']);
       });
     });

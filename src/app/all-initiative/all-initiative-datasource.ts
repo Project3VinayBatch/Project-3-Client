@@ -1,31 +1,22 @@
 import { DataSource } from '@angular/cdk/collections';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { map } from 'rxjs/operators';
-import { Observable, of as observableOf, merge } from 'rxjs';
-
-// TODO: Replace this with your own data model type
-export interface AllInitiativeItem {
-  title: string;
-  description: string;
-}
-
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: AllInitiativeItem[] = [
-  
-];
+import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
+import { Observable, of as observableOf, merge, BehaviorSubject } from 'rxjs';
+import { Initiative } from '../model/initiative';
+import { InitiativeDTO } from '../model/initiativeDTO';
+import { InitiativeService } from '../services/initiative.service';
 
 /**
  * Data source for the AllInitiative view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class AllInitiativeDataSource extends DataSource<AllInitiativeItem> {
-  data: AllInitiativeItem[] = EXAMPLE_DATA;
-  paginator: MatPaginator | undefined;
-  sort: MatSort | undefined;
+export class AllInitiativeDataSource extends DataSource<Initiative> {
+  // data: AllInitiativeItem[] = EXAMPLE_DATA;
+  // paginator: MatPaginator | undefined;
+  // sort: MatSort | undefined;
+  private initiativesSubject = new BehaviorSubject<Initiative[]>([]);
 
-  constructor() {
+  constructor(private initiativeService: InitiativeService) {
     super();
   }
 
@@ -34,59 +25,76 @@ export class AllInitiativeDataSource extends DataSource<AllInitiativeItem> {
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<AllInitiativeItem[]> {
-    if (this.paginator && this.sort) {
-      // Combine everything that affects the rendered data into one update
-      // stream for the data-table to consume.
-      return merge(observableOf(this.data), this.paginator.page, this.sort.sortChange)
-        .pipe(map(() => {
-          return this.getPagedData(this.getSortedData([...this.data ]));
-        }));
-    } else {
-      throw Error('Please set the paginator and sort on the data source before connecting.');
-    }
+  connect(): Observable<Initiative[]> {
+    return this.initiativesSubject.asObservable();
+    // if (this.paginator && this.sort) {
+    //   // Combine everything that affects the rendered data into one update
+    //   // stream for the data-table to consume.
+    //   return merge(observableOf(this.data), this.paginator.page, this.sort.sortChange)
+    //     .pipe(map(() => {
+    //       return this.getPagedData(this.getSortedData([...this.data ]));
+    //     }));
+    // } else {
+    //   throw Error('Please set the paginator and sort on the data source before connecting.');
+    // }
   }
 
   /**
    *  Called when the table is being destroyed. Use this function, to clean up
    * any open connections or free any held resources that were set up during connect.
    */
-  disconnect(): void {}
+  disconnect(): void {
+    this.initiativesSubject.complete();
+  }
 
+  loadInitiatives() {
+    this.initiativeService
+      .getInitiatives()
+      .subscribe((initiatives) => this.initiativesSubject.next(initiatives));
+  }
+
+  public getState(iList: Initiative[]): Initiative[]{
+    var list: Initiative[] = [];
+    for(var i=iList.length;i>0; i--){
+      ;
+    }
+
+    return list;
+  }
   /**
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: AllInitiativeItem[]): AllInitiativeItem[] {
-    if (this.paginator) {
-      const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
-      return data.splice(startIndex, this.paginator.pageSize);
-    } else {
-      return data;
-    }
-  }
+  // private getPagedData(data: AllInitiativeItem[]): AllInitiativeItem[] {
+  //   if (this.paginator) {
+  //     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
+  //     return data.splice(startIndex, this.paginator.pageSize);
+  //   } else {
+  //     return data;
+  //   }
+  // }
 
   /**
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: AllInitiativeItem[]): AllInitiativeItem[] {
-    if (!this.sort || !this.sort.active || this.sort.direction === '') {
-      return data;
-    }
+  // private getSortedData(data: AllInitiativeItem[]): AllInitiativeItem[] {
+  //   if (!this.sort || !this.sort.active || this.sort.direction === '') {
+  //     return data;
+  //   }
 
-    return data.sort((a, b) => {
-      const isAsc = this.sort?.direction === 'asc';
-      switch (this.sort?.active) {
-        case 'title': return compare(a.title, b.title, isAsc);
-        case 'description': return compare(+a.description, +b.description, isAsc);
-        default: return 0;
-      }
-    });
-  }
+  //   return data.sort((a, b) => {
+  //     const isAsc = this.sort?.direction === 'asc';
+  //     switch (this.sort?.active) {
+  //       case 'title': return compare(a.title, b.title, isAsc);
+  //       case 'description': return compare(+a.description, +b.description, isAsc);
+  //       default: return 0;
+  //     }
+  //   });
+  // }
 }
 
 /** Simple sort comparator for example ID/Name columns (for client-side sorting). */
-function compare(a: string | number, b: string | number, isAsc: boolean): number {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-}
+// function compare(a: string | number, b: string | number, isAsc: boolean): number {
+//   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+// }

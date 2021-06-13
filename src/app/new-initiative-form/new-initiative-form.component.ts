@@ -7,6 +7,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { InitiativeService } from '../services/initiative.service';
 import { InitiativeDTO } from '../model/initiativeDTO';
 import { Router } from '@angular/router';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-new-initiative-form',
@@ -16,13 +17,13 @@ import { Router } from '@angular/router';
 export class NewInitiativeFormComponent {
   public title: string;
   public description: string;
-
+  public user: User;
   //constructor
 
   constructor(
     private fb: FormBuilder,
     private initiativeService: InitiativeService,
-    private router:Router,
+    private router: Router
   ) {}
 
   initiativeForm = this.fb.group({
@@ -34,21 +35,22 @@ export class NewInitiativeFormComponent {
   //variables
 
   //functions
-  
+
   clickCancel() {
     //make this route to all inititatives!
     console.log(this.initiativeForm.controls.title.value);
-    this.router.navigate(["all-initiative"]);
+    this.router.navigate(['all-initiative']);
   }
   clickSubmit() {
     //make this route to the new initiative...
     //test
-    const newInitiative = new InitiativeDTO(1, this.initiativeForm.controls.title.value, this.initiativeForm.controls.description.value, 1);
+
+    const newInitiative = new InitiativeDTO(parseInt(sessionStorage.getItem("userId")), this.initiativeForm.controls.title.value, this.initiativeForm.controls.description.value, null); //myid, title, descr, PoC id
     console.log(newInitiative);
     this.initiativeService.postInitiative(newInitiative).subscribe((res) => {
       console.log(res);
       //need an if success
-      this.router.navigate(["success-initiative"]);
+      this.router.navigate(['success-initiative']);
       //this should probably go to a specific initiative
     });
   }

@@ -1,27 +1,27 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Initiative } from '../model/initiative';
-import { InitiativeDTO } from '../model/initiativeDTO';
 import { InitiativeService } from '../services/initiative.service';
-import { AllInitiativeDataSource } from './all-initiative-list';
+import { AllInitiativeDataSource } from './all-initiative-datasource';
 
 @Component({
   selector: 'app-all-initiative',
   templateUrl: './all-initiative.component.html',
   styleUrls: ['./all-initiative.component.css'],
 })
-export class AllInitiativeComponent implements AfterViewInit {
+export class AllInitiativeComponent implements OnInit {
   initiatives: Initiative[];
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<Initiative>;
+  stateController: FormControl;
+  // @ViewChild(MatPaginator) paginator!: MatPaginator;
+  // @ViewChild(MatSort) sort!: MatSort;
+  // @ViewChild(MatTable) table!: MatTable<Initiative>;
   dataSource: AllInitiativeDataSource;
 
-  displayedColumns = ['title', 'description'];
+  displayedColumns: string[] = ['title', 'description', 'state'];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -29,49 +29,53 @@ export class AllInitiativeComponent implements AfterViewInit {
     private initiativeService: InitiativeService
   ) {
     this.dataSource = new AllInitiativeDataSource(initiativeService);
-    initiativeService.getInitiatives().subscribe((res) => {
-      console.log(res);
-      this.fill(res);
-    });
   }
-
-  ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+  ngOnInit() {
+    this.dataSource = new AllInitiativeDataSource(this.initiativeService);
+    this.dataSource.loadInitiatives();
+    // console.log(this.dataSource.data);
+    // this.initiativeService.getInitiatives().subscribe(
+    //   data => {
+    //     console.log(data);
+    //     this.dataSource.data = data;
+    //   }
+    // );
+    // this.initiativeService.getUser().subscribe(
+    //   res => {
+    //     console.log(res);
+    //     sessionStorage.setItem("userid",res.id.toString());
+    //     sessionStorage.setItem("username",res.username.toString());
+    //     sessionStorage.setItem("role",res.role.toString());
+    // });
+    // console.log(this.dataSource.data);
+    // this.dataSource.getSortedData(this.dataSource.data);
   }
-  fill(list: Initiative[]) {
-    console.log(this.dataSource);
-    this.dataSource.initiativeList = list;
-    console.log(this.dataSource.initiativeList);
-  }
+  // ngAfterViewInit(): void {
+  //   this.dataSource.sort = this.sort;
+  //   this.dataSource.paginator = this.paginator;
+  //   this.table.dataSource = this.dataSource;
+  //   console.log("location5");
+  // }
+  // fill(list: Initiative[]) {
+  //   console.log(this.dataSource);
+  //   this.dataSource.initiativeList = list;
+  //   console.log(this.dataSource);
+  // }
   openModal() {
     console.log('open modal!');
-    //all this function needs to do is route to the newinitiativeComponent
     this.router.navigate(['new-initiative']);
     //add in route guard...
     //...canDeativate to prevent leaving without changing?
   }
-  ngOnInit(): void {
-    //need to set initiatives
-    this.initiativeService.getInitiatives().subscribe((res) => {
-      this.initiatives = res;
-      console.log(res);
-      console.log(this.initiatives);
-    });
-  }
 
-  getRecord(row: number) {
+  button() {
+    console.log('hit');
+  }
+  getRecord(row: Initiative) {
+    //save current initiative into initiativeService
+    this.initiativeService.saveCurrentInitiative(row);
+    this.router.navigate(['view-initiative']);
+    // , { state: {id: row.initiativeId, }});
     console.log(row);
   }
-  //   ngOnInit():void{
-  // //need to set initiatives
-  //   this.initiativeService.getInitiatives()
-  //   .subscribe(res => {
-  //     console.log(res);
-
-  //   });
-  // console.log(this.initiatives);
-
-  // }
 }

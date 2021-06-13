@@ -68,8 +68,8 @@ export class AllInitiativeComponent implements OnInit {
     //...canDeativate to prevent leaving without changing?
   }
 
-  button(){
-    console.log("hit");
+  button() {
+    console.log('hit');
   }
   getRecord(row: Initiative) {
     //save current initiative into initiativeService

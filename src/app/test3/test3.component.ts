@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  OnDestroy,
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 // import { String } from 'aws-sdk/clients/appstream';
 import { Files } from '../model/files';
@@ -73,13 +79,20 @@ export class Test3Component implements OnInit, OnDestroy {
     this.selectedFile = null;
     this.displayFileNames();
     this.getMembers();
-
+    {
+      this.service
+        .getMembers(String(this.currentInitiative.initiativeId))
+        .subscribe((res1) => {
+          this.currentInitiative = res1;
+          console.log(res1);
+          console.log(this.initiative.members);
+        });
+    }
     this.initiativeService.getUser()
     .subscribe(res => {
       this.currentUser=res;
      //no error handling...
     });
-
   }
 
   clickEvent() {
@@ -121,23 +134,30 @@ export class Test3Component implements OnInit, OnDestroy {
   // }
 
   addMembers(): void {
-    this.service.addMembers(String(this.user.id)+"/"+this.currentInitiative.initiativeId).subscribe((res) => {
-      this.user = res;
-      console.log(res);
-      if (res == null) {
-        console.log('what the! it worked!');
-        this.isButtonVisible = false;
-      } else {
-        console.log('this wont work');
-        this.isButtonVisible = true;
-      }
-    });
-    this.initiativeService.currentInitiative.subscribe(res => {
+    this.service
+      .addMembers(this.currentUser.id + '/' + this.currentInitiative.initiativeId)
+      .subscribe((res) => {
+        this.user = res;
+        console.log(res);
+        if (res == null) {
+          console.log('what the! it worked!');
+          this.isButtonVisible = false;
+        } else {
+          console.log('this wont work');
+          this.isButtonVisible = true;
+        }
+      });
+    this.initiativeService.currentInitiative.subscribe((res) => {
       this.currentInitiative = res;
     });
     console.log(this.currentInitiative);
   }
-  ngOnDestroy():void{
+
+  // setActive():void{
+  //   this.service.
+  // }
+
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 }

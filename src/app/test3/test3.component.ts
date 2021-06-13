@@ -15,15 +15,18 @@ export class Test3Component implements OnInit {
   @ViewChild('takeInput', { static: false }) //this is for the file upload
   inputClear: ElementRef;
   selectedFile: File;
-  public user:User;
-  public initiative:Initiative;
+  public user: User;
+  public initiative: Initiative;
   //public initiative1:InitiativeDTO;
-  userinfo:String = "/5/17";
-  initId:String = "4";
-  public isButtonVisible:boolean = true;
-  constructor(private initiativeService: InitiativeService, private service: SpecificService) {
+  userinfo: String = '/5/17';
+  initId: String = '4';
+  public isButtonVisible: boolean = true;
+  constructor(
+    private initiativeService: InitiativeService,
+    private service: SpecificService
+  ) {
     this.user = new User();
-    this.initiative = new Initiative;
+    this.initiative = new Initiative();
   }
   documentList: Files[];
   iconList = [
@@ -53,11 +56,12 @@ export class Test3Component implements OnInit {
   ngOnInit(): void {
     this.selectedFile = null;
     this.displayFileNames();
-    this.getMembers() ;{
-      this.service.getMembers(this.initId).subscribe(res1 => {
+    this.getMembers();
+    {
+      this.service.getMembers(this.initId).subscribe((res1) => {
         this.initiative = res1;
         console.log(res1);
-      })  
+      });
     }
   }
 
@@ -67,11 +71,12 @@ export class Test3Component implements OnInit {
 
   upload() {
     console.log(this.selectedFile);
+    console.log(sessionStorage.getItem('username'));
     this.initiativeService
-      .postFile(this.selectedFile, sessionStorage.getItem("username"), 4) //switch 1 for current initiative
+      .postFile(this.selectedFile, sessionStorage.getItem('username'), 4) //switch 1 for current initiative
       .subscribe((res) => {
         console.log(res);
-        this.inputClear.nativeElement.value = '';
+        //this.inputClear.nativeElement.value = '';
       });
   }
   getFile(event) {
@@ -91,14 +96,17 @@ export class Test3Component implements OnInit {
   //   })
   // }
 
-  addMembers():void {
-    this.service.addMembers(this.userinfo).subscribe(res => {
+  addMembers(): void {
+    this.service.addMembers(this.userinfo).subscribe((res) => {
       this.user = res;
       console.log(res);
-      if(res==null){console.log("what the! it worked!");
-    this.isButtonVisible=false;}
-      else{console.log("this wont work");
-    this.isButtonVisible=true;}
-    })
-}
+      if (res == null) {
+        console.log('what the! it worked!');
+        this.isButtonVisible = false;
+      } else {
+        console.log('this wont work');
+        this.isButtonVisible = true;
+      }
+    });
+  }
 }

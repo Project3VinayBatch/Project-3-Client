@@ -51,7 +51,7 @@ export class InitiativeService {
   getFile(initiativeId: number): Observable<Files[]> {
     return this.http.get<Files[]>(this.fileDownloadGetUrl + initiativeId);
   }
-  getUser(): Observable<User>{
+  getUser(): Observable<User> {
     return this.http.get<User>(this.UserGetUrl);
   }
 }

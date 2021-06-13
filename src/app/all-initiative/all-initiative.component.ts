@@ -39,29 +39,23 @@ export class AllInitiativeComponent implements OnInit {
       .subscribe(res => {
         if (res.role == Role.ADMIN) {// do not delete this, will not catch admin without
           this.isAdmin = true;
-          console.log("admin!")
         }
         else if (res.role == Role.USER) {
           this.isAdmin =false;
-          console.log("user!")
         }
         else if (res.role == 0) {
           this.isAdmin = true;
-          console.log("0!")
         }
         else if (res.role == 1) {
           this.isAdmin = false;
-          console.log("1!")
         }
         else if (res.role == "ADMIN") { // do not delete this, will not catch admin without
           this.isAdmin = true;
-          console.log("ADMIN!")
         }
         else if (res.role == "USER") {
           this.isAdmin = false;
-          console.log("User!")
         }
-            this.currentUser = res;
+            this.currentUser = res; //not sure if this is needed...yet
 
         //no error handling...
       });

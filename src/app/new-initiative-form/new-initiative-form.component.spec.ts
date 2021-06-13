@@ -15,6 +15,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 describe('NewInitiativeFormComponent', () => {
   let component: NewInitiativeFormComponent;
   let fixture: ComponentFixture<NewInitiativeFormComponent>;
+  let routerSpy = {navigate: jasmine.createSpy('navigate')};
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -32,7 +33,8 @@ describe('NewInitiativeFormComponent', () => {
       ],
       providers: [ 
         HttpClientModule,
-        RouterTestingModule
+        RouterTestingModule,
+        { provide: Router, useValue: routerSpy }
       ]
     }).compileComponents();
   }));
@@ -41,9 +43,28 @@ describe('NewInitiativeFormComponent', () => {
     fixture = TestBed.createComponent(NewInitiativeFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    
   });
 
   it('should compile', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should cancel',()=>{
+    component.clickCancel();
+
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['all-initiative']);
+  });
+
+  it('should submit',()=>{
+    component.clickSubmit();
+    if(!component.initiativeForm.controls.title.value){ //if null
+      expect(routerSpy.navigate).not.toHaveBeenCalledWith();
+    }
+    else{
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['success-initiative']);
+    }
+
+  });
+
 });

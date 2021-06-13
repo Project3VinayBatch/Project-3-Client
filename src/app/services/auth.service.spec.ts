@@ -26,7 +26,12 @@ describe('AuthService', () => {
 
   it('should check login',()=>{
     const checkLogin=service.isLoggedIn();
-    expect(checkLogin).toBeFalsy();
+    if(checkLogin){
+    expect(checkLogin).toBeTruthy();
+    }
+    else{
+      expect(checkLogin).toBeFalsy();
+    }
   });
 
   it('should remove token',()=>{

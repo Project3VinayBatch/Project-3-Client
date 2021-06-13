@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  OnDestroy,
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 // import { String } from 'aws-sdk/clients/appstream';
 import { Files } from '../model/files';
@@ -19,12 +25,13 @@ export class Test3Component implements OnInit, OnDestroy {
   public user: User;
   public initiative: Initiative;
   //public initiative1:InitiativeDTO;
-  userinfo: String = '/5/17';
+  userinfo: String = '/18173376/';
   initId: String = '4';
   public isButtonVisible: boolean = true;
 
-  currentInitiative:Initiative;
-  subscription:Subscription;
+  currentInitiative: Initiative;
+  subscription: Subscription;
+
 
   //CONSTRUCTOR
   constructor(
@@ -59,14 +66,14 @@ export class Test3Component implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log("test");
-    this.subscription = this.initiativeService.currentInitiative
-    .subscribe(currentInitiative => {
-      this.currentInitiative = currentInitiative
-      console.log(currentInitiative);
-    });
-
-
+    console.log('test');
+    this.subscription = this.initiativeService.currentInitiative.subscribe(
+      (currentInitiative) => {
+        this.currentInitiative = currentInitiative;
+        console.log(currentInitiative);
+      }
+    );
+    this.userinfo += String(this.currentInitiative.initiativeId);
 
     // this.selectedFile = null;
     // this.displayFileNames();
@@ -122,7 +129,12 @@ export class Test3Component implements OnInit, OnDestroy {
       }
     });
   }
-  ngOnDestroy():void{
+
+
+  setActive():void{
+    this.service.
+  }
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 }

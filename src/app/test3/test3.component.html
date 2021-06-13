@@ -19,6 +19,19 @@
       <div>
         <mat-card-title>Point of Contact</mat-card-title>
         <mat-card>Contact:{{currentInitiative.pointOfContactId}}</mat-card>
+        <div>
+          <h4>mat-select</h4>
+          <mat-form-field appearance="fill">
+            <mat-label>Favorite food</mat-label>
+            <mat-select [(ngModel)]="selectedValue" name="food">
+              <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{food.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button *ngIf="user.role==ADMIN" (click)="Click" mat-raised-button class="button3">Change State</button>
+        </div>
+
       </div>
       <br>
       <div>
@@ -28,7 +41,8 @@
           </mat-list>
           <mat-card-subtitle>List of Members</mat-card-subtitle>
           <mat-list-item> Created By: {{currentInitiative.createdBy}} </mat-list-item>
-          <mat-list-item> Salt </mat-list-item>
+          <!-- Should display list of current members -->
+          <mat-list-item *ngFor="member of members"> Salt </mat-list-item>
           <mat-list-item> Paprika </mat-list-item>
         </mat-card>
 

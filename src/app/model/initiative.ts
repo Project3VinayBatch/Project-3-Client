@@ -1,3 +1,4 @@
+import { Files } from "./files";
 import { User } from "./user";
 
 export class Initiative {
@@ -8,6 +9,7 @@ export class Initiative {
     pointOfContactId: number;
     state: InitiativeState;
     members: User[];
+    files: Files[]
 }
 
 enum InitiativeState {

@@ -15,6 +15,7 @@ export class SpecificService {
   private postmembersUrl: string;
   private addmemberurl: String;
   private getInitiativeUrl: string;
+  private setPoCUrl: string;
 
   constructor(private http: HttpClient) {
     this.getfilesUrl = '';
@@ -23,13 +24,8 @@ export class SpecificService {
     this.postmembersUrl='';
     this.addmemberurl='http://localhost:8080/initiative/signup';
     this.getInitiativeUrl="http://localhost:8080/initiatives/id/";
-   }
-
-    
-            
-    
-  
-  
+    this.setPoCUrl='http://localhost:8080/updatepoc';
+  }
   
     public getFiles(): Observable<Files[]>{
       return this.http.get<Files[]>(this.getfilesUrl);
@@ -48,7 +44,6 @@ export class SpecificService {
       return this.http.get<Initiative>(this.getInitiativeUrl+id);
     }
     
-
     public addMembers(userinfo:string): Observable<User>{
       return this.http.post<User>(this.addmemberurl+userinfo, User);
     }
@@ -57,6 +52,9 @@ export class SpecificService {
       return this.http.get<Initiative>(this.getmembersUrl+initId);
     }
   
+    public setPoC(initiative: Initiative):Observable<Initiative>{
+      return this.http.patch<Initiative>(this.setPoCUrl, initiative);
+    }
    
   }
 

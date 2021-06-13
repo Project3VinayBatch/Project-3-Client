@@ -19,7 +19,7 @@ export class Test3Component implements OnInit, OnDestroy {
   public user: User;
   public initiative: Initiative;
   //public initiative1:InitiativeDTO;
-  userinfo: String = '/5/17';
+  userinfo: String = '';
   initId: String = sessionStorage.getItem("id");
   public isButtonVisible: boolean = true;
 
@@ -64,14 +64,13 @@ export class Test3Component implements OnInit, OnDestroy {
     .subscribe(currentInitiative => {
       console.log("initiative from api");
       console.log(currentInitiative);
-      // currentInitiative.members[4]= {
-      //       id: 1,
-      //       username: "billy",
-      //       password: null,
-      //       role: "User",
-      //       initiatives: null,
-      //       files: null
-      // }
+      currentInitiative.members[0]= {
+            id: 2,
+            username: "testboi",
+            role: "ADMIN",
+            initiatives: null,
+            files: null
+      }
       this.currentInitiative = currentInitiative
       console.log(currentInitiative);
     });
@@ -93,6 +92,13 @@ export class Test3Component implements OnInit, OnDestroy {
     alert('Button clicked');
   }
 
+  makeAdmin(user:User){
+    console.log("clicked");
+    this.currentInitiative.pointOfContactId = user.id;
+    this.service.setPoC(this.initiative).subscribe(res => {
+      console.log(res);
+    });
+  }
   upload() {
     console.log(this.selectedFile);
     this.initiativeService

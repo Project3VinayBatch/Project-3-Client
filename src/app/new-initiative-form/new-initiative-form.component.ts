@@ -7,6 +7,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { InitiativeService } from '../services/initiative.service';
 import { InitiativeDTO } from '../model/initiativeDTO';
 import { Router } from '@angular/router';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-new-initiative-form',
@@ -16,7 +17,7 @@ import { Router } from '@angular/router';
 export class NewInitiativeFormComponent {
   public title: string;
   public description: string;
-
+  public user: User;
   //constructor
 
   constructor(

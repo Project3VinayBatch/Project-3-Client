@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 // import { String } from 'aws-sdk/clients/appstream';
 import { Files } from '../model/files';
 import { Initiative } from '../model/initiative';
+import { InitiativeDTO } from '../model/initiativeDTO';
 import { User } from '../model/user';
 import { InitiativeService } from '../services/initiative.service';
 import { SpecificService } from '../services/specific.service';
@@ -25,8 +26,6 @@ export class Test3Component implements OnInit, OnDestroy {
   public user: User;
   public initiative: Initiative;
   //public initiative1:InitiativeDTO;
-  userinfo: string = '18173376';
-  initId: string;
   public isButtonVisible: boolean = true;
 
   currentInitiative:Initiative;
@@ -106,21 +105,18 @@ export class Test3Component implements OnInit, OnDestroy {
     alert('Button clicked');
   }
 
-  makeAdmin(user: User) {
-    console.log('clicked');
-    this.currentInitiative.pointOfContactId = user.id;
-    this.service.setPoC(this.initiative).subscribe((res) => {
+  makePoC(user:User){
+    let intiiDTO = new InitiativeDTO(this.currentInitiative.createdBy,this.currentInitiative.title,this.currentInitiative.description,user.id);
+    // this.currentInitiative.members = new Set<User>();
+    console.log(intiiDTO);  
+    this.service.setPoC(intiiDTO).subscribe(res => {
       console.log(res);
     });
   }
   upload() {
     console.log(this.selectedFile);
     this.initiativeService
-      .postFile(
-        this.selectedFile,
-        sessionStorage.getItem('username'),
-        this.currentInitiative.initiativeId
-      ) //switch 1 for current initiative
+      .postFile(this.selectedFile, this.currentUser.username, this.currentInitiative.initiativeId) //switch 1 for current initiative
       .subscribe((res) => {
         console.log(res);
         this.inputClear.nativeElement.value = '';

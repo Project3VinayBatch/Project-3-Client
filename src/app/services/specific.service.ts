@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Files } from '../model/files';
 import { Initiative } from '../model/initiative';
+import { InitiativeDTO } from '../model/initiativeDTO';
 import { User } from '../model/user';
 
 @Injectable({
@@ -50,8 +51,8 @@ export class SpecificService {
   public getMembers(initId): Observable<Initiative> {
     return this.http.get<Initiative>(this.getmembersUrl + initId);
   }
-
-  public setPoC(initiative: Initiative): Observable<Initiative> {
-    return this.http.patch<Initiative>(this.setPoCUrl, initiative);
-  }
+  
+public setPoC(initiative: InitiativeDTO):Observable<InitiativeDTO>{
+      return this.http.patch<InitiativeDTO>(this.setPoCUrl, initiative);
+    }
 }

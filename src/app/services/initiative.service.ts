@@ -16,9 +16,12 @@ export class InitiativeService{
   private fileDownloadGetUrl = 'http://localhost:8080/files/by-initiative-id/';
   private UserGetUrl = 'http://localhost:8080/user';
 
-  
+  //curent initiative info
   private initiativeSource = new BehaviorSubject<Initiative>(new Initiative);
   currentInitiative = this.initiativeSource.asObservable();
+
+  private userSource = new BehaviorSubject<User>(new User); //Im worried this wil lcover user with a new user object
+  currentUser = this.userSource.asObservable();
 
   //Constructor
   constructor(private http: HttpClient) {}

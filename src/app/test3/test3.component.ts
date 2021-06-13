@@ -25,8 +25,8 @@ export class Test3Component implements OnInit, OnDestroy {
   public user: User;
   public initiative: Initiative;
   //public initiative1:InitiativeDTO;
-  userinfo: string = '82408367';
-  initId: string = sessionStorage.getItem('id');
+  userinfo: string = '18173376';
+  initId: string;
   public isButtonVisible: boolean = true;
 
   currentInitiative: Initiative;
@@ -82,15 +82,18 @@ export class Test3Component implements OnInit, OnDestroy {
       }
     );
 
-    // this.selectedFile = null;
-    // this.displayFileNames();
-    // this.getMembers();
-    // {
-    //   this.service.getMembers(this.initId).subscribe((res1) => {
-    //     this.initiative = res1;
-    //     console.log(res1);
-    //   });
-    // }
+    this.selectedFile = null;
+    this.displayFileNames();
+    this.getMembers();
+    {
+      this.service
+        .getMembers(String(this.currentInitiative.initiativeId))
+        .subscribe((res1) => {
+          this.currentInitiative = res1;
+          console.log(res1);
+          console.log(this.initiative.members);
+        });
+    }
   }
 
   clickEvent() {

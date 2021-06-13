@@ -1,13 +1,13 @@
-<div class=main-div *ngIf="currentInitiative">
+<div class="main-div" *ngIf="currentInitiative">
   <mat-card-title class="main-title">Specific Initiatives View</mat-card-title>
   <div class="flex-container major-div" fxLayout="row" fxLayoutAlign="none" fxLayoutGap="3px">
     <div class="child-1 minor-div" fxFlex="80">
-      <mat-card-title>Initiative Title: {{currentInitiative.title}}</mat-card-title>
+      <mat-card-title>Initiative Title: {{ currentInitiative.title }}</mat-card-title>
       <mat-divider></mat-divider>
-      <mat-card>Initiative Description:{{currentInitiative.description}}</mat-card>
+      <mat-card>Initiative Description: {{ currentInitiative.description }}</mat-card>
       <mat-divider></mat-divider>
       <div class="flex-container1" fxLayout="row" fxLayoutAlign="none" fxLayoutGap="20px">
-        <div class="child-3" fxFlex=50%>
+        <div class="child-3" fxFlex="50%">
           <app-links></app-links>
           <app-links></app-links>
           <app-links></app-links>
@@ -18,45 +18,38 @@
     <div class="child-2 minor-div" fxFlex="20">
       <div>
         <mat-card-title>Point of Contact</mat-card-title>
-        <mat-card>Contact:{{currentInitiative.pointOfContactId}}</mat-card>
-        <div>
-
-        </div>
-        <br>
-        <div>
-          <mat-card-title>Members</mat-card-title>
-          <mat-card>
-            <mat-list>
-            </mat-list>
-            <mat-card-subtitle>List of Members</mat-card-subtitle>
-            <mat-list-item> Created By: {{currentInitiative.createdBy}} </mat-list-item>
-            <!-- Should display list of current members -->
-            <mat-list-item *ngFor="member of members"> Salt </mat-list-item>
-            <mat-list-item> Paprika </mat-list-item>
-          </mat-card>
-
-        </div>
-        <br>
-        <br>
-        <button *ngIf="this.isButtonVisible" (click)="addMembers()" mat-raised-button class="button2">Click Me</button>
+        <mat-card>Contact: {{ currentInitiative.pointOfContactId }}</mat-card>
       </div>
-
-
-    </div>
-    <br />
-    <br />
-
-    <div class="minor-div">
-      <label>Upload a file</label>
-      <input type="file" id="customFile" (change)="getFile($event)" placeholder="File To Upload" />
-      <button type="button" (click)="upload()">Upload</button>
-    </div>
-
-    <div class="minor-div">
-      <h3>Files:</h3>
-      <div *ngFor="let filename of documentList">
-        <i class="{{ getFileExtension(filename.fileName) }}" style="color: orange" aria-hidden="true"></i>
-        {{ filename.fileName }}
+      <br />
+      <div>
+        <mat-card-title>Members</mat-card-title>
+        <p *ngFor="let member of currentInitiative.members">
+          {{ member.username }}
+          <!-- <button (click)="makePoC(member)">Make PoC</button> -->
+        </p>
+        <!-- need ngIf=role -->
       </div>
+      <br />
+      <br />
+      <button *ngIf="this.isButtonVisible" (click)="addMembers()" mat-raised-button class="button2">
+        Click Me
+      </button>
     </div>
   </div>
+  <br />
+  <br />
+
+  <div class="minor-div">
+    <label>Upload a file</label>
+    <input type="file" id="customFile" (change)="getFile($event)" placeholder="File To Upload" />
+    <button type="button" (click)="upload()">Upload</button>
+  </div>
+
+  <div class="minor-div">
+    <h3>Files:</h3>
+    <div *ngFor="let filename of documentList">
+      <i class="{{ getFileExtension(filename.fileName) }}" style="color: orange" aria-hidden="true"></i>
+      {{ filename.fileName }}
+    </div>
+  </div>
+</div>

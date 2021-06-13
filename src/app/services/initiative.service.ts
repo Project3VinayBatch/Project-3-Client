@@ -39,8 +39,14 @@ export class InitiativeService{
   getCurrentInitiative(): Initiative { //gets initiative info from
     // return this.http.get<Initiative[]>(this.initiativesGetUrl);
     return this.initiativeSource.getValue()
+    //this is not returning files and members. We need to call backend for that.
+    
   }
-  saveCurrentInitiative(initiative:Initiative):void{
+  getUpdatedCurrentInitiative(){ //does nothing yet
+    //this should call api and update initiative info
+    //because currentinitiative does not include file and member info
+  }
+  saveCurrentInitiative(initiative:Initiative):void{ //called in all-initiative component before routing to specific initiative
     this.initiativeSource.next(initiative); //adds new info into the behaviorsubject, basically saving it
   }
   //end WIP

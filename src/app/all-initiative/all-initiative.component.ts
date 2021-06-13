@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
@@ -14,13 +15,13 @@ import { AllInitiativeDataSource } from './all-initiative-datasource';
 })
 export class AllInitiativeComponent implements OnInit {
   initiatives: Initiative[];
-
+  stateController: FormControl;
   // @ViewChild(MatPaginator) paginator!: MatPaginator;
   // @ViewChild(MatSort) sort!: MatSort;
   // @ViewChild(MatTable) table!: MatTable<Initiative>;
   dataSource: AllInitiativeDataSource;
 
-  displayedColumns: string[] = ['title', 'description'];
+  displayedColumns: string[] = ['title', 'description', 'state'];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -62,12 +63,14 @@ export class AllInitiativeComponent implements OnInit {
   // }
   openModal() {
     console.log('open modal!');
-    //all this function needs to do is route to the newinitiativeComponent
     this.router.navigate(['new-initiative']);
     //add in route guard...
     //...canDeativate to prevent leaving without changing?
   }
 
+  button(){
+    console.log("hit");
+  }
   // script(){
   //   console.log("load");
   // }

@@ -37,8 +37,7 @@ export class AllInitiativeComponent implements OnInit {
   ngOnInit() {
     this.initiativeService.getUser()
       .subscribe(res => {
-        console.log(res.role);
-        if (res.role == Role.ADMIN) {
+        if (res.role == Role.ADMIN) {// do not delete this, will not catch admin without
           this.isAdmin = true;
           console.log("admin!")
         }
@@ -54,7 +53,7 @@ export class AllInitiativeComponent implements OnInit {
           this.isAdmin = false;
           console.log("1!")
         }
-        else if (res.role == "ADMIN") {
+        else if (res.role == "ADMIN") { // do not delete this, will not catch admin without
           this.isAdmin = true;
           console.log("ADMIN!")
         }
@@ -62,10 +61,7 @@ export class AllInitiativeComponent implements OnInit {
           this.isAdmin = false;
           console.log("User!")
         }
-        else {
-          console.log(res.role);
-        }
-        this.currentUser = res;
+            this.currentUser = res;
 
         //no error handling...
       });
@@ -109,28 +105,11 @@ export class AllInitiativeComponent implements OnInit {
   button() {
     console.log("hit");
   }
-  // script(){
-  //   console.log("load");
-  // }
   getRecord(row: Initiative) {
     //save current initiative into initiativeService
     this.initiativeService.saveCurrentInitiative(row);
-    // alert(row.description);
-    //test this
-
-    sessionStorage.setItem('id', String(row.initiativeId)); //remove this
     this.router.navigate(['view-initiative']);
     // , { state: {id: row.initiativeId, }});
     console.log(row);
   }
-  //   ngOnInit():void{
-  // //need to set initiatives
-  //   this.initiativeService.getInitiatives()
-  //   .subscribe(res => {
-  //     console.log(res);
-
-  //   });
-  // console.log(this.initiatives);
-
-  // }
 }

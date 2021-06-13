@@ -1,8 +1,15 @@
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  OnDestroy,
+} from '@angular/core';
 import { Subscription } from 'rxjs';
 // import { String } from 'aws-sdk/clients/appstream';
 import { Files } from '../model/files';
 import { Initiative } from '../model/initiative';
+import { InitiativeDTO } from '../model/initiativeDTO';
 import { User } from '../model/user';
 import { InitiativeService } from '../services/initiative.service';
 import { SpecificService } from '../services/specific.service';
@@ -19,8 +26,6 @@ export class Test3Component implements OnInit, OnDestroy {
   public user: User;
   public initiative: Initiative;
   //public initiative1:InitiativeDTO;
-  userinfo: string = "82408367";
-  initId: string = sessionStorage.getItem("id");
   public isButtonVisible: boolean = true;
 
   currentInitiative:Initiative;
@@ -65,52 +70,47 @@ export class Test3Component implements OnInit, OnDestroy {
     .subscribe(currentInitiative => {
       console.log("initiative from api");
       console.log(currentInitiative);
-      // currentInitiative.members[0]= {
-      //       id: 2,
-      //       username: "testboi",
-      //       role: "ADMIN",
-      //       initiatives: [],
-      //       files: []
-      // }
       this.currentInitiative = currentInitiative
       console.log(currentInitiative);
     });
 
 
 
-    // this.selectedFile = null;
-    // this.displayFileNames();
-    // this.getMembers();
-    // {
-    //   this.service.getMembers(this.initId).subscribe((res1) => {
-    //     this.initiative = res1;
-    //     console.log(res1);
-    //   });
-    // }
-
+    this.selectedFile = null;
+    this.displayFileNames();
+    this.getMembers();
+    {
+      this.service
+        .getMembers(String(this.currentInitiative.initiativeId))
+        .subscribe((res1) => {
+          this.currentInitiative = res1;
+          console.log(res1);
+          console.log(this.initiative.members);
+        });
+    }
     this.initiativeService.getUser()
     .subscribe(res => {
       this.currentUser=res;
      //no error handling...
     });
-
   }
 
   clickEvent() {
     alert('Button clicked');
   }
 
-  makeAdmin(user:User){
-    console.log("clicked");
-    this.currentInitiative.pointOfContactId = user.id;
-    this.service.setPoC(this.initiative).subscribe(res => {
+  makePoC(user:User){
+    let intiiDTO = new InitiativeDTO(this.currentInitiative.createdBy,this.currentInitiative.title,this.currentInitiative.description,user.id);
+    // this.currentInitiative.members = new Set<User>();
+    console.log(intiiDTO);  
+    this.service.setPoC(intiiDTO).subscribe(res => {
       console.log(res);
     });
   }
   upload() {
     console.log(this.selectedFile);
     this.initiativeService
-      .postFile(this.selectedFile, sessionStorage.getItem('username'), this.currentInitiative.initiativeId) //switch 1 for current initiative
+      .postFile(this.selectedFile, this.currentUser.username, this.currentInitiative.initiativeId) //switch 1 for current initiative
       .subscribe((res) => {
         console.log(res);
         this.inputClear.nativeElement.value = '';
@@ -134,23 +134,30 @@ export class Test3Component implements OnInit, OnDestroy {
   // }
 
   addMembers(): void {
-    this.service.addMembers(this.userinfo+"/"+this.currentInitiative.initiativeId).subscribe((res) => {
-      this.user = res;
-      console.log(res);
-      if (res == null) {
-        console.log('what the! it worked!');
-        this.isButtonVisible = false;
-      } else {
-        console.log('this wont work');
-        this.isButtonVisible = true;
-      }
-    });
-    this.initiativeService.currentInitiative.subscribe(res => {
+    this.service
+      .addMembers(this.currentUser.id + '/' + this.currentInitiative.initiativeId)
+      .subscribe((res) => {
+        this.user = res;
+        console.log(res);
+        if (res == null) {
+          console.log('what the! it worked!');
+          this.isButtonVisible = false;
+        } else {
+          console.log('this wont work');
+          this.isButtonVisible = true;
+        }
+      });
+    this.initiativeService.currentInitiative.subscribe((res) => {
       this.currentInitiative = res;
     });
     console.log(this.currentInitiative);
   }
-  ngOnDestroy():void{
+
+  // setActive():void{
+  //   this.service.
+  // }
+
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 }

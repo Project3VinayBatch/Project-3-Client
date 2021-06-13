@@ -23,6 +23,7 @@ export class Test3Component implements OnInit, OnDestroy {
 
   currentInitiative:Initiative;
   subscription:Subscription;
+  currentUser:User;
 
   //CONSTRUCTOR
   constructor(
@@ -78,12 +79,13 @@ export class Test3Component implements OnInit, OnDestroy {
     this.selectedFile = null;
     this.displayFileNames();
     this.getMembers();
-    {
-      this.service.getMembers(String(this.currentInitiative.initiativeId)).subscribe((res1) => {
-        this.initiative = res1;
-        console.log(res1);
-      });
-    }
+
+    this.initiativeService.getUser()
+    .subscribe(res => {
+      this.currentUser=res;
+     //no error handling...
+    });
+
   }
 
   clickEvent() {
@@ -102,7 +104,7 @@ export class Test3Component implements OnInit, OnDestroy {
   upload() {
     console.log(this.selectedFile);
     this.initiativeService
-      .postFile(this.selectedFile, sessionStorage.getItem('username'), this.currentInitiative.initiativeId) //switch 1 for current initiative
+      .postFile(this.selectedFile, this.currentUser.username, this.currentInitiative.initiativeId) //switch 1 for current initiative
       .subscribe((res) => {
         console.log(res);
         this.inputClear.nativeElement.value = '';

@@ -19,7 +19,7 @@ export class Test3Component implements OnInit {
   public initiative: Initiative;
   //public initiative1:InitiativeDTO;
   userinfo: String = '/5/17';
-  initId: String = '4';
+  initId: String = sessionStorage.getItem("id");
   public isButtonVisible: boolean = true;
   constructor(
     private initiativeService: InitiativeService,
@@ -56,12 +56,10 @@ export class Test3Component implements OnInit {
     this.selectedFile = null;
     this.displayFileNames();
     this.getMembers();
-    {
-      this.service.getMembers(this.initId).subscribe((res1) => {
+      this.service.getInitiative(String(this.initId)).subscribe((res1) => {
         this.initiative = res1;
         console.log(res1);
       });
-    }
   }
 
   clickEvent() {
@@ -95,7 +93,7 @@ export class Test3Component implements OnInit {
   // }
 
   addMembers(): void {
-    this.service.addMembers(this.userinfo).subscribe((res) => {
+    this.service.addMembers(String(this.userinfo)).subscribe((res) => {
       this.user = res;
       console.log(res);
       if (res == null) {

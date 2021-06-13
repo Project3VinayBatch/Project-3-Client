@@ -65,22 +65,16 @@ export class Test3Component implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log('test');
-    this.subscription = this.initiativeService.currentInitiative.subscribe(
-      (currentInitiative) => {
-        console.log('initiative from api');
-        console.log(currentInitiative);
-        // currentInitiative.members[0]= {
-        //       id: 2,
-        //       username: "testboi",
-        //       role: "ADMIN",
-        //       initiatives: [],
-        //       files: []
-        // }
-        this.currentInitiative = currentInitiative;
-        console.log(currentInitiative);
-      }
-    );
+    console.log("test");
+    this.subscription = this.initiativeService.currentInitiative
+    .subscribe(currentInitiative => {
+      console.log("initiative from api");
+      console.log(currentInitiative);
+      this.currentInitiative = currentInitiative
+      console.log(currentInitiative);
+    });
+
+
 
     this.selectedFile = null;
     this.displayFileNames();
@@ -141,7 +135,7 @@ export class Test3Component implements OnInit, OnDestroy {
 
   addMembers(): void {
     this.service
-      .addMembers(this.userinfo + '/' + this.currentInitiative.initiativeId)
+      .addMembers(this.currentUser.id + '/' + this.currentInitiative.initiativeId)
       .subscribe((res) => {
         this.user = res;
         console.log(res);

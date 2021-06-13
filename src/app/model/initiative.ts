@@ -8,8 +8,8 @@ export class Initiative {
     description: string;
     pointOfContact: number;
     state: InitiativeState;
-    members: Set<User>;
-    files: Set<Files>
+    members: User[];
+    files: Files[];
 }
 
 enum InitiativeState {

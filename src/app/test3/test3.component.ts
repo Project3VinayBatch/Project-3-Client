@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 // import { String } from 'aws-sdk/clients/appstream';
 import { Files } from '../model/files';
 import { Initiative } from '../model/initiative';
+import { InitiativeDTO } from '../model/initiativeDTO';
 import { User } from '../model/user';
 import { InitiativeService } from '../services/initiative.service';
 import { SpecificService } from '../services/specific.service';
@@ -66,7 +67,7 @@ export class Test3Component implements OnInit, OnDestroy {
       currentInitiative.members[0]= {
             id: 2,
             username: "testboi",
-            role: "ADMIN",
+            role: 1,
             initiatives: [],
             files: []
       }
@@ -93,11 +94,10 @@ export class Test3Component implements OnInit, OnDestroy {
   }
 
   makePoC(user:User){
-    console.log("clicked");
-    this.currentInitiative.pointOfContact = user.id;
-    this.currentInitiative.members = new Set<User>();
-    console.log(this.currentInitiative);  
-    this.service.setPoC(this.initiative).subscribe(res => {
+    let intiiDTO = new InitiativeDTO(this.currentInitiative.createdBy,this.currentInitiative.title,this.currentInitiative.description,user.id);
+    // this.currentInitiative.members = new Set<User>();
+    console.log(intiiDTO);  
+    this.service.setPoC(intiiDTO).subscribe(res => {
       console.log(res);
     });
   }

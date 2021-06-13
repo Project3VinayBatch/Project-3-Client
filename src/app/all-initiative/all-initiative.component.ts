@@ -71,28 +71,11 @@ export class AllInitiativeComponent implements OnInit {
   button(){
     console.log("hit");
   }
-  // script(){
-  //   console.log("load");
-  // }
   getRecord(row: Initiative) {
     //save current initiative into initiativeService
     this.initiativeService.saveCurrentInitiative(row);
-    // alert(row.description);
-    //test this
-
-    sessionStorage.setItem('id', String(row.initiativeId)); //remove this
     this.router.navigate(['view-initiative']);
     // , { state: {id: row.initiativeId, }});
     console.log(row);
   }
-  //   ngOnInit():void{
-  // //need to set initiatives
-  //   this.initiativeService.getInitiatives()
-  //   .subscribe(res => {
-  //     console.log(res);
-
-  //   });
-  // console.log(this.initiatives);
-
-  // }
 }

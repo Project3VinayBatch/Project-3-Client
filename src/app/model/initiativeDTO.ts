@@ -19,7 +19,7 @@ export class InitiativeDTO {
   private title: string;
   private description: string;
   private pointOfContact: number;
-  private members: Set<User>;
+  private members: User[];
   private state: InitiativeState;
 }
 

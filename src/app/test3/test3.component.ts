@@ -19,8 +19,8 @@ export class Test3Component implements OnInit, OnDestroy {
   public user: User;
   public initiative: Initiative;
   //public initiative1:InitiativeDTO;
-  userinfo: String = '';
-  initId: String = sessionStorage.getItem("id");
+  userinfo: string = "82408367";
+  initId: string = sessionStorage.getItem("id");
   public isButtonVisible: boolean = true;
 
   currentInitiative:Initiative;
@@ -64,13 +64,13 @@ export class Test3Component implements OnInit, OnDestroy {
     .subscribe(currentInitiative => {
       console.log("initiative from api");
       console.log(currentInitiative);
-      currentInitiative.members[0]= {
-            id: 2,
-            username: "testboi",
-            role: "ADMIN",
-            initiatives: null,
-            files: null
-      }
+      // currentInitiative.members[0]= {
+      //       id: 2,
+      //       username: "testboi",
+      //       role: "ADMIN",
+      //       initiatives: [],
+      //       files: []
+      // }
       this.currentInitiative = currentInitiative
       console.log(currentInitiative);
     });
@@ -102,7 +102,7 @@ export class Test3Component implements OnInit, OnDestroy {
   upload() {
     console.log(this.selectedFile);
     this.initiativeService
-      .postFile(this.selectedFile, sessionStorage.getItem('username'), 4) //switch 1 for current initiative
+      .postFile(this.selectedFile, sessionStorage.getItem('username'), this.currentInitiative.initiativeId) //switch 1 for current initiative
       .subscribe((res) => {
         console.log(res);
         this.inputClear.nativeElement.value = '';
@@ -126,7 +126,7 @@ export class Test3Component implements OnInit, OnDestroy {
   // }
 
   addMembers(): void {
-    this.service.addMembers(String(this.userinfo)).subscribe((res) => {
+    this.service.addMembers(this.userinfo+"/"+this.currentInitiative.initiativeId).subscribe((res) => {
       this.user = res;
       console.log(res);
       if (res == null) {
@@ -137,6 +137,10 @@ export class Test3Component implements OnInit, OnDestroy {
         this.isButtonVisible = true;
       }
     });
+    this.initiativeService.currentInitiative.subscribe(res => {
+      this.currentInitiative = res;
+    });
+    console.log(this.currentInitiative);
   }
   ngOnDestroy():void{
     this.subscription.unsubscribe();

@@ -68,8 +68,8 @@ export class AllInitiativeComponent implements OnInit {
     //...canDeativate to prevent leaving without changing?
   }
 
-  button(){
-    console.log("hit");
+  button() {
+    console.log('hit');
   }
   // script(){
   //   console.log("load");

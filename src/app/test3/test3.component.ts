@@ -25,6 +25,7 @@ export class Test3Component implements OnInit, OnDestroy {
 
   currentInitiative:Initiative;
   subscription:Subscription;
+  currentUser:User;
 
   //CONSTRUCTOR
   constructor(
@@ -86,6 +87,13 @@ export class Test3Component implements OnInit, OnDestroy {
     //     console.log(res1);
     //   });
     // }
+
+    this.initiativeService.getUser()
+    .subscribe(res => {
+      this.currentUser=res;
+     //no error handling...
+    });
+
   }
 
   clickEvent() {

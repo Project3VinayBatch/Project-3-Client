@@ -29,8 +29,9 @@ export class Test3Component implements OnInit, OnDestroy {
   initId: string;
   public isButtonVisible: boolean = true;
 
-  currentInitiative: Initiative;
-  subscription: Subscription;
+  currentInitiative:Initiative;
+  subscription:Subscription;
+  currentUser:User;
 
   //CONSTRUCTOR
   constructor(
@@ -94,6 +95,11 @@ export class Test3Component implements OnInit, OnDestroy {
           console.log(this.initiative.members);
         });
     }
+    this.initiativeService.getUser()
+    .subscribe(res => {
+      this.currentUser=res;
+     //no error handling...
+    });
   }
 
   clickEvent() {

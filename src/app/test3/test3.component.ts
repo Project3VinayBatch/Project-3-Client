@@ -19,8 +19,6 @@ export class Test3Component implements OnInit, OnDestroy {
   public user: User;
   public initiative: Initiative;
   //public initiative1:InitiativeDTO;
-  userinfo: string = "82408367";
-  initId: string = sessionStorage.getItem("id");
   public isButtonVisible: boolean = true;
 
   currentInitiative:Initiative;
@@ -64,37 +62,39 @@ export class Test3Component implements OnInit, OnDestroy {
     .subscribe(currentInitiative => {
       console.log("initiative from api");
       console.log(currentInitiative);
-      // currentInitiative.members[0]= {
-      //       id: 2,
-      //       username: "testboi",
-      //       role: "ADMIN",
-      //       initiatives: [],
-      //       files: []
-      // }
+      currentInitiative.members[0]= {
+            id: 2,
+            username: "testboi",
+            role: "ADMIN",
+            initiatives: [],
+            files: []
+      }
       this.currentInitiative = currentInitiative
       console.log(currentInitiative);
     });
 
 
 
-    // this.selectedFile = null;
-    // this.displayFileNames();
-    // this.getMembers();
-    // {
-    //   this.service.getMembers(this.initId).subscribe((res1) => {
-    //     this.initiative = res1;
-    //     console.log(res1);
-    //   });
-    // }
+    this.selectedFile = null;
+    this.displayFileNames();
+    this.getMembers();
+    {
+      this.service.getMembers(String(this.currentInitiative.initiativeId)).subscribe((res1) => {
+        this.initiative = res1;
+        console.log(res1);
+      });
+    }
   }
 
   clickEvent() {
     alert('Button clicked');
   }
 
-  makeAdmin(user:User){
+  makePoC(user:User){
     console.log("clicked");
-    this.currentInitiative.pointOfContactId = user.id;
+    this.currentInitiative.pointOfContact = user.id;
+    this.currentInitiative.members = new Set<User>();
+    console.log(this.currentInitiative);  
     this.service.setPoC(this.initiative).subscribe(res => {
       console.log(res);
     });
@@ -126,7 +126,7 @@ export class Test3Component implements OnInit, OnDestroy {
   // }
 
   addMembers(): void {
-    this.service.addMembers(this.userinfo+"/"+this.currentInitiative.initiativeId).subscribe((res) => {
+    this.service.addMembers(String(this.user.id)+"/"+this.currentInitiative.initiativeId).subscribe((res) => {
       this.user = res;
       console.log(res);
       if (res == null) {

@@ -6,7 +6,7 @@ export class Initiative {
     createdBy: number;
     title: string;
     description: string;
-    pointOfContactId: number;
+    pointOfContact: number;
     state: InitiativeState;
     members: Set<User>;
     files: Set<Files>

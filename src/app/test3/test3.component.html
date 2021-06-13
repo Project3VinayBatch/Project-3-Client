@@ -39,7 +39,7 @@
         <mat-card-title>Members</mat-card-title>
         <p *ngFor="let member of currentInitiative.members">
           {{ member.username }}
-          <button (click)="makeAdmin(member)">Make PoC</button>
+          <button (click)="makePoC(member)">Make PoC</button>
         </p>
         <!-- need ngIf=role -->
       </div>

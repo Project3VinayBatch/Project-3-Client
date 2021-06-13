@@ -25,13 +25,12 @@ export class Test3Component implements OnInit, OnDestroy {
   public user: User;
   public initiative: Initiative;
   //public initiative1:InitiativeDTO;
-  userinfo: String = '/18173376/';
-  initId: String = '4';
+  userinfo: string = '82408367';
+  initId: string = sessionStorage.getItem('id');
   public isButtonVisible: boolean = true;
 
   currentInitiative: Initiative;
   subscription: Subscription;
-
 
   //CONSTRUCTOR
   constructor(
@@ -69,11 +68,19 @@ export class Test3Component implements OnInit, OnDestroy {
     console.log('test');
     this.subscription = this.initiativeService.currentInitiative.subscribe(
       (currentInitiative) => {
+        console.log('initiative from api');
+        console.log(currentInitiative);
+        // currentInitiative.members[0]= {
+        //       id: 2,
+        //       username: "testboi",
+        //       role: "ADMIN",
+        //       initiatives: [],
+        //       files: []
+        // }
         this.currentInitiative = currentInitiative;
         console.log(currentInitiative);
       }
     );
-    this.userinfo += String(this.currentInitiative.initiativeId);
 
     // this.selectedFile = null;
     // this.displayFileNames();
@@ -90,10 +97,21 @@ export class Test3Component implements OnInit, OnDestroy {
     alert('Button clicked');
   }
 
+  makeAdmin(user: User) {
+    console.log('clicked');
+    this.currentInitiative.pointOfContactId = user.id;
+    this.service.setPoC(this.initiative).subscribe((res) => {
+      console.log(res);
+    });
+  }
   upload() {
     console.log(this.selectedFile);
     this.initiativeService
-      .postFile(this.selectedFile, sessionStorage.getItem('username'), 4) //switch 1 for current initiative
+      .postFile(
+        this.selectedFile,
+        sessionStorage.getItem('username'),
+        this.currentInitiative.initiativeId
+      ) //switch 1 for current initiative
       .subscribe((res) => {
         console.log(res);
         this.inputClear.nativeElement.value = '';
@@ -117,23 +135,29 @@ export class Test3Component implements OnInit, OnDestroy {
   // }
 
   addMembers(): void {
-    this.service.addMembers(this.userinfo).subscribe((res) => {
-      this.user = res;
-      console.log(res);
-      if (res == null) {
-        console.log('what the! it worked!');
-        this.isButtonVisible = false;
-      } else {
-        console.log('this wont work');
-        this.isButtonVisible = true;
-      }
+    this.service
+      .addMembers(this.userinfo + '/' + this.currentInitiative.initiativeId)
+      .subscribe((res) => {
+        this.user = res;
+        console.log(res);
+        if (res == null) {
+          console.log('what the! it worked!');
+          this.isButtonVisible = false;
+        } else {
+          console.log('this wont work');
+          this.isButtonVisible = true;
+        }
+      });
+    this.initiativeService.currentInitiative.subscribe((res) => {
+      this.currentInitiative = res;
     });
+    console.log(this.currentInitiative);
   }
 
+  // setActive():void{
+  //   this.service.
+  // }
 
-  setActive():void{
-    this.service.
-  }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }

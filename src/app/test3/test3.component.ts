@@ -62,6 +62,16 @@ export class Test3Component implements OnInit, OnDestroy {
     console.log("test");
     this.subscription = this.initiativeService.currentInitiative
     .subscribe(currentInitiative => {
+      console.log("initiative from api");
+      console.log(currentInitiative);
+      // currentInitiative.members[4]= {
+      //       id: 1,
+      //       username: "billy",
+      //       password: null,
+      //       role: "User",
+      //       initiatives: null,
+      //       files: null
+      // }
       this.currentInitiative = currentInitiative
       console.log(currentInitiative);
     });

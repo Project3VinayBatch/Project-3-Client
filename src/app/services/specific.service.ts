@@ -22,7 +22,7 @@ export class SpecificService {
     this.postfilesUrl = '';
     this.getmembersUrl='http://localhost:8080/initiatives/id/';
     this.postmembersUrl='';
-    this.addmemberurl='http://localhost:8080/initiative/signup';
+    this.addmemberurl='http://localhost:8080/initiative/signup/';
     this.getInitiativeUrl="http://localhost:8080/initiatives/id/";
     this.setPoCUrl='http://localhost:8080/updatepoc';
   }

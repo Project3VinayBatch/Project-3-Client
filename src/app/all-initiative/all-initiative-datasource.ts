@@ -1,19 +1,9 @@
 import { DataSource } from '@angular/cdk/collections';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { map } from 'rxjs/operators';
+import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 import { Observable, of as observableOf, merge, BehaviorSubject } from 'rxjs';
 import { Initiative } from '../model/initiative';
+import { InitiativeDTO } from '../model/initiativeDTO';
 import { InitiativeService } from '../services/initiative.service';
-
-// TODO: Replace this with your own data model type
-export interface AllInitiativeItem {
-  title: string;
-  description: string;
-}
-
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: AllInitiativeItem[] = [];
 
 /**
  * Data source for the AllInitiative view. This class should
@@ -63,6 +53,14 @@ export class AllInitiativeDataSource extends DataSource<Initiative> {
       .subscribe((initiatives) => this.initiativesSubject.next(initiatives));
   }
 
+  public getState(iList: Initiative[]): Initiative[]{
+    var list: Initiative[] = [];
+    for(var i=iList.length;i>0; i--){
+      ;
+    }
+
+    return list;
+  }
   /**
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.

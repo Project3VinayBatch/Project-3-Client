@@ -1,7 +1,15 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  OnDestroy,
+} from '@angular/core';
+import { Subscription } from 'rxjs';
 // import { String } from 'aws-sdk/clients/appstream';
 import { Files } from '../model/files';
 import { Initiative } from '../model/initiative';
+import { InitiativeDTO } from '../model/initiativeDTO';
 import { User } from '../model/user';
 import { InitiativeService } from '../services/initiative.service';
 import { SpecificService } from '../services/specific.service';
@@ -11,16 +19,20 @@ import { SpecificService } from '../services/specific.service';
   templateUrl: './test3.component.html',
   styleUrls: ['./test3.component.css'],
 })
-export class Test3Component implements OnInit {
+export class Test3Component implements OnInit, OnDestroy {
   @ViewChild('takeInput', { static: false }) //this is for the file upload
   inputClear: ElementRef;
   selectedFile: File;
   public user: User;
   public initiative: Initiative;
   //public initiative1:InitiativeDTO;
-  userinfo: String = '/5/17';
-  initId: String = '4';
   public isButtonVisible: boolean = true;
+
+  currentInitiative:Initiative;
+  subscription:Subscription;
+  currentUser:User;
+
+  //CONSTRUCTOR
   constructor(
     private initiativeService: InitiativeService,
     private service: SpecificService
@@ -53,25 +65,52 @@ export class Test3Component implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("test");
+    this.subscription = this.initiativeService.currentInitiative
+    .subscribe(currentInitiative => {
+      console.log("initiative from api");
+      console.log(currentInitiative);
+      this.currentInitiative = currentInitiative
+      console.log(currentInitiative);
+    });
+
+
+
     this.selectedFile = null;
     this.displayFileNames();
     this.getMembers();
     {
-      this.service.getMembers(this.initId).subscribe((res1) => {
-        this.initiative = res1;
-        console.log(res1);
-      });
+      this.service
+        .getMembers(String(this.currentInitiative.initiativeId))
+        .subscribe((res1) => {
+          this.currentInitiative = res1;
+          console.log(res1);
+          console.log(this.initiative.members);
+        });
     }
+    this.initiativeService.getUser()
+    .subscribe(res => {
+      this.currentUser=res;
+     //no error handling...
+    });
   }
 
   clickEvent() {
     alert('Button clicked');
   }
 
+  makePoC(user:User){
+    let intiiDTO = new InitiativeDTO(this.currentInitiative.createdBy,this.currentInitiative.title,this.currentInitiative.description,user.id);
+    // this.currentInitiative.members = new Set<User>();
+    console.log(intiiDTO);  
+    this.service.setPoC(intiiDTO).subscribe(res => {
+      console.log(res);
+    });
+  }
   upload() {
     console.log(this.selectedFile);
     this.initiativeService
-      .postFile(this.selectedFile, sessionStorage.getItem('username'), 4) //switch 1 for current initiative
+      .postFile(this.selectedFile, this.currentUser.username, this.currentInitiative.initiativeId) //switch 1 for current initiative
       .subscribe((res) => {
         console.log(res);
         this.inputClear.nativeElement.value = '';
@@ -95,16 +134,30 @@ export class Test3Component implements OnInit {
   // }
 
   addMembers(): void {
-    this.service.addMembers(this.userinfo).subscribe((res) => {
-      this.user = res;
-      console.log(res);
-      if (res == null) {
-        console.log('what the! it worked!');
-        this.isButtonVisible = false;
-      } else {
-        console.log('this wont work');
-        this.isButtonVisible = true;
-      }
+    this.service
+      .addMembers(this.currentUser.id + '/' + this.currentInitiative.initiativeId)
+      .subscribe((res) => {
+        this.user = res;
+        console.log(res);
+        if (res == null) {
+          console.log('what the! it worked!');
+          this.isButtonVisible = false;
+        } else {
+          console.log('this wont work');
+          this.isButtonVisible = true;
+        }
+      });
+    this.initiativeService.currentInitiative.subscribe((res) => {
+      this.currentInitiative = res;
     });
+    console.log(this.currentInitiative);
+  }
+
+  // setActive():void{
+  //   this.service.
+  // }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

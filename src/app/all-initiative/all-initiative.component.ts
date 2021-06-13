@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
@@ -14,13 +15,13 @@ import { AllInitiativeDataSource } from './all-initiative-datasource';
 })
 export class AllInitiativeComponent implements OnInit {
   initiatives: Initiative[];
-
+  stateController: FormControl;
   // @ViewChild(MatPaginator) paginator!: MatPaginator;
   // @ViewChild(MatSort) sort!: MatSort;
   // @ViewChild(MatTable) table!: MatTable<Initiative>;
   dataSource: AllInitiativeDataSource;
 
-  displayedColumns: string[] = ['title', 'description'];
+  displayedColumns: string[] = ['title', 'description', 'state'];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -62,28 +63,19 @@ export class AllInitiativeComponent implements OnInit {
   // }
   openModal() {
     console.log('open modal!');
-    //all this function needs to do is route to the newinitiativeComponent
     this.router.navigate(['new-initiative']);
     //add in route guard...
     //...canDeativate to prevent leaving without changing?
   }
 
-  // script(){
-  //   console.log("load");
-  // }
+  button() {
+    console.log('hit');
+  }
   getRecord(row: Initiative) {
-    sessionStorage.setItem('id', String(row.initiativeId));
+    //save current initiative into initiativeService
+    this.initiativeService.saveCurrentInitiative(row);
     this.router.navigate(['view-initiative']);
+    // , { state: {id: row.initiativeId, }});
     console.log(row);
   }
-  //   ngOnInit():void{
-  // //need to set initiatives
-  //   this.initiativeService.getInitiatives()
-  //   .subscribe(res => {
-  //     console.log(res);
-
-  //   });
-  // console.log(this.initiatives);
-
-  // }
 }

@@ -1,13 +1,15 @@
+import { Files } from "./files";
 import { User } from "./user";
 
-export interface Initiative {
+export class Initiative {
     initiativeId:number;
     createdBy: number;
     title: string;
     description: string;
-    pointOfContactId: number;
+    pointOfContact: number;
     state: InitiativeState;
     members: User[];
+    files: Files[];
 }
 
 enum InitiativeState {

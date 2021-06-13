@@ -1,6 +1,6 @@
 import { User } from "./user";
 
-export interface Initiative {
+export class Initiative {
     initiativeId:number;
     createdBy: number;
     title: string;

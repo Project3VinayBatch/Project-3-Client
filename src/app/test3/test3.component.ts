@@ -20,7 +20,7 @@ export class Test3Component implements OnInit, OnDestroy {
   public initiative: Initiative;
   //public initiative1:InitiativeDTO;
   userinfo: String = '/5/17';
-  initId: String = '4';
+  initId: String = sessionStorage.getItem("id");
   public isButtonVisible: boolean = true;
 
   currentInitiative:Initiative;
@@ -110,7 +110,7 @@ export class Test3Component implements OnInit, OnDestroy {
   // }
 
   addMembers(): void {
-    this.service.addMembers(this.userinfo).subscribe((res) => {
+    this.service.addMembers(String(this.userinfo)).subscribe((res) => {
       this.user = res;
       console.log(res);
       if (res == null) {

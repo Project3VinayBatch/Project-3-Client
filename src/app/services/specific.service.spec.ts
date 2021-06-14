@@ -21,21 +21,27 @@ describe('SpecificService', () => {
   });
 
   it('get files',()=>{
+    const check=service.getFiles();
+    expect(check).toBeTruthy();
 
   });
   it('post files',()=>{
+    const check=service.postFiles();
+    expect(check).toBeTruthy();    
 
   });
   it('get members',()=>{
-
+    const check=service.getMembers;
+    expect(check).toBeTruthy();
   });
   it('post members',()=>{
-
+    const check=service.postMembers();
+    expect(check).toBeTruthy();
   });
   it('add members',()=>{
+    const check=service.addMembers;
+    expect(check).toBeTruthy();
 
   });
-  it('',()=>{
-
-  });
+  
 });

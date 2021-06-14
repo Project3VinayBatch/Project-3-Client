@@ -4,6 +4,7 @@ import { InitiativeService } from '../services/initiative.service';
 import { InitiativeDTO } from '../model/initiativeDTO';
 import { Router } from '@angular/router';
 import { MatDialogRef } from '@angular/material/dialog';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-new-initiative-form',
@@ -13,7 +14,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class NewInitiativeFormComponent {
   public title: string;
   public description: string;
-
+  user: User;
   initiativeForm = this.fb.group({
     title: ['', Validators.required],
     description: ['', Validators.required],
@@ -23,13 +24,20 @@ export class NewInitiativeFormComponent {
     private fb: FormBuilder,
     private initiativeService: InitiativeService,
     public dialogRef: MatDialogRef<NewInitiativeFormComponent>
-  ) {}
+  ) {
+    this.initiativeService.getUser().subscribe((res) => {
+      this.user = res;
+    });
+  }
 
   onCancel() {
     this.dialogRef.close();
   }
   onSubmit() {
-    this.initiativeService.postInitiative(this.initiativeForm.value);
+    this.initiativeService.postInitiative(
+      this.initiativeForm.value,
+      this.user.id
+    );
     this.dialogRef.close('Saved!');
   }
 }

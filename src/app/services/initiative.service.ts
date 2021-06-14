@@ -36,10 +36,10 @@ export class InitiativeService {
     createdBy: number;
     title: string;
     description: string;
-  }) {
+  }, userId: number) {
     this.http
       .post(this.initiativePostUrl, {
-        createdBy: 56387421,
+        createdBy: userId,
         title: initiative.title,
         description: initiative.description,
       })

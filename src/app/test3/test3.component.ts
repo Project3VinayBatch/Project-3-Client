@@ -28,10 +28,10 @@ export class Test3Component implements OnInit, OnDestroy {
   //public initiative1:InitiativeDTO;
   public isButtonVisible: boolean = true;
 
-  currentInitiative:Initiative;
-  subscription:Subscription;
-  currentUser:User;
-
+  currentInitiative: Initiative;
+  subscription: Subscription;
+  currentUser: User;
+  poC: string;
   //CONSTRUCTOR
   constructor(
     private initiativeService: InitiativeService,
@@ -65,55 +65,89 @@ export class Test3Component implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log("test");
-    this.subscription = this.initiativeService.currentInitiative
-    .subscribe(currentInitiative => {
-      console.log("initiative from api");
-      console.log(currentInitiative);
-      this.currentInitiative = currentInitiative
-      console.log(currentInitiative);
-    });
-
-
-
+    console.log('test');
+    this.subscription = this.initiativeService.currentInitiative.subscribe(
+      (currentInitiative) => {
+        console.log('initiative from api');
+        console.log(currentInitiative);
+        this.currentInitiative = currentInitiative;
+        console.log(this.currentInitiative);
+      }
+    );
     this.selectedFile = null;
     this.displayFileNames();
     this.getMembers();
-    {
-      this.service
-        .getMembers(String(this.currentInitiative.initiativeId))
-        .subscribe((res1) => {
-          this.currentInitiative = res1;
-          console.log(res1);
-          console.log(this.initiative.members);
-        });
-    }
-    this.initiativeService.getUser()
-    .subscribe(res => {
-      this.currentUser=res;
-     //no error handling...
+    this.service
+      .getMembers(String(this.currentInitiative.initiativeId))
+      .subscribe((res1) => {
+        this.currentInitiative = res1;
+        console.log(this.currentInitiative.members);
+        if (
+          this.currentInitiative.members.length == 0 ||
+          this.currentInitiative.members == null
+        ) {
+          this.poC = 'No Point of Contact';
+          console.log(this.currentInitiative.members);
+        } else {
+          for (var i = 0; i < this.currentInitiative.members.length; i++) {
+            if (
+              this.currentInitiative.members[i].id ==
+              this.currentInitiative.pointOfContact
+            ) {
+              this.poC = this.currentInitiative.members[i].username;
+              break;
+            }
+            this.poC = 'No Point of Contact';
+          }
+        }
+      });
+    this.initiativeService.getUser().subscribe((res) => {
+      this.currentUser = res;
+      //no error handling...
     });
   }
 
+  showPoC() {
+    console.log(this.currentInitiative.members);
+  }
   clickEvent() {
     alert('Button clicked');
   }
 
-  makePoC(user:User){
-    let intiiDTO = new InitiativeDTO(this.currentInitiative.createdBy,this.currentInitiative.title,this.currentInitiative.description,user.id);
+  makePoC(user: User) {
+    let intiiDTO = new InitiativeDTO(
+      this.currentInitiative.createdBy,
+      this.currentInitiative.title,
+      this.currentInitiative.description,
+      user.id
+    );
     // this.currentInitiative.members = new Set<User>();
-    console.log(intiiDTO);  
-    this.service.setPoC(intiiDTO).subscribe(res => {
+    console.log(intiiDTO);
+    this.service.setPoC(intiiDTO).subscribe((res) => {
+      this.currentInitiative = res;
       console.log(res);
+      for (var i = 0; i < this.currentInitiative.members.length; i++) {
+        if (
+          this.currentInitiative.members[i].id ==
+          this.currentInitiative.pointOfContact
+        ) {
+          this.poC = this.currentInitiative.members[i].username;
+          break;
+        }
+        this.poC = 'No Point of Contact';
+      }
     });
   }
   upload() {
-    console.log(this.selectedFile);
     this.initiativeService
-      .postFile(this.selectedFile, this.currentUser.username, this.currentInitiative.initiativeId) //switch 1 for current initiative
+      .postFile(
+        this.selectedFile,
+        this.currentUser.username,
+        this.currentInitiative.initiativeId
+      ) //switch 1 for current initiative
       .subscribe((res) => {
         console.log(res);
-        this.inputClear.nativeElement.value = '';
+        //this.inputClear.nativeElement.value = '';
       });
   }
   getFile(event) {
@@ -122,9 +156,11 @@ export class Test3Component implements OnInit, OnDestroy {
   }
 
   displayFileNames() {
-    this.initiativeService.getFile(4).subscribe((res) => {
-      this.documentList = res;
-    });
+    this.initiativeService
+      .getFile(this.currentInitiative.initiativeId)
+      .subscribe((res) => {
+        this.documentList = res;
+      });
   }
   getMembers(): void {}
   //   this.service.getMembers(this.initId).subscribe(res => {
@@ -135,7 +171,9 @@ export class Test3Component implements OnInit, OnDestroy {
 
   addMembers(): void {
     this.service
-      .addMembers(this.currentUser.id + '/' + this.currentInitiative.initiativeId)
+      .addMembers(
+        this.currentUser.id + '/' + this.currentInitiative.initiativeId
+      )
       .subscribe((res) => {
         this.user = res;
         console.log(res);

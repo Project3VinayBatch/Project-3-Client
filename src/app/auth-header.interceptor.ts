@@ -8,7 +8,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from './services/auth.service';
 
-
 @Injectable()
 export class AuthHeaderInterceptor implements HttpInterceptor {
   constructor(private securityService: AuthService) {}
@@ -19,7 +18,7 @@ export class AuthHeaderInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     const req = request.clone({
       setHeaders: {
-        'Content-Type': 'application/json',
+        //'Content-Type': 'application/json',
         Accept: 'application/json',
         Authorization: 'Bearer ' + this.securityService.getToken(),
       },

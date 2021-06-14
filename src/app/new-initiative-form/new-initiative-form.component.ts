@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { InitiativeService } from '../services/initiative.service';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -9,10 +9,11 @@ import { User } from '../model/user';
   templateUrl: './new-initiative-form.component.html',
   styleUrls: ['./new-initiative-form.component.css'],
 })
-export class NewInitiativeFormComponent {
+export class NewInitiativeFormComponent{
   public title: string;
   public description: string;
   user: User;
+
   initiativeForm = this.fb.group({
     title: ['', Validators.required],
     description: ['', Validators.required],
@@ -22,9 +23,11 @@ export class NewInitiativeFormComponent {
     private fb: FormBuilder,
     private initiativeService: InitiativeService,
     public dialogRef: MatDialogRef<NewInitiativeFormComponent>
+
   ) {
     this.initiativeService.getUser().subscribe((res) => {
       this.user = res;
+
     });
   }
 
@@ -32,9 +35,11 @@ export class NewInitiativeFormComponent {
     this.dialogRef.close();
   }
   onSubmit() {
+
     this.initiativeService.postInitiative(
       this.initiativeForm.value,
       this.user.id
+
     );
     this.dialogRef.close('Saved!');
   }

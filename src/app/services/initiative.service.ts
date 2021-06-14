@@ -17,7 +17,7 @@ import { User } from '../model/user';
 export class InitiativeService {
   private initiativePostUrl = 'http://localhost:8080/initiative';
   private initiativesGetUrl = 'http://localhost:8080/initiatives';
-  private fileUploadPostUrl = 'http://localhost:8080/uploadfile/';
+  private fileUploadPostUrl = 'http://localhost:8080/uploadFile/';
   private fileDownloadGetUrl = 'http://localhost:8080/files/by-initiative-id/';
   private UserGetUrl = 'http://localhost:8080/user';
 

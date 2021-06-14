@@ -71,7 +71,7 @@ export class Test3Component implements OnInit, OnDestroy {
         console.log('initiative from api');
         console.log(currentInitiative);
         this.currentInitiative = currentInitiative;
-        console.log(currentInitiative);
+        console.log(this.currentInitiative);
       }
     );
     this.selectedFile = null;
@@ -163,11 +163,6 @@ export class Test3Component implements OnInit, OnDestroy {
       });
   }
   getMembers(): void {}
-  //   this.service.getMembers(this.initId).subscribe(res => {
-  //     this.user = res;
-  //     console.log(res);
-  //   })
-  // }
 
   addMembers(): void {
     this.service

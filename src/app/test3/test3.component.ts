@@ -77,6 +77,31 @@ export class Test3Component implements OnInit {
     this.selectedFile = null;
     this.displayFileNames();
     this.getMembers();
+    this.service
+      .getMembers(String(this.currentInitiative.initiativeId))
+      .subscribe((res1) => {
+        this.currentInitiative = res1;
+        console.log(this.currentInitiative.members);
+        if (
+          this.currentInitiative.members.length == 0 ||
+          this.currentInitiative.members == null
+        ) {
+          this.poC = 'No Point of Contact';
+          console.log(this.currentInitiative.members);
+        } else {
+          for (var i = 0; i < this.currentInitiative.members.length; i++) {
+            if (
+              this.currentInitiative.members[i].id ==
+              this.currentInitiative.pointOfContact
+            ) {
+              console.log("break");
+              this.poC = this.currentInitiative.members[i].username;
+              break;
+            }
+            this.poC = 'No Point of Contact';
+          }
+        }
+      });
 
     this.initiativeService.getUser().subscribe((res) => {
       this.currentUser = res;
@@ -184,7 +209,8 @@ export class Test3Component implements OnInit {
         }
       });
     this.initiativeService.currentInitiative.subscribe((res) => {
-      this.currentInitiative = res;
+      console.log(res);
+      this.currentInitiative.members = res.members;
     });
     console.log(this.currentInitiative);
   }

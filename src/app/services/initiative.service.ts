@@ -31,14 +31,12 @@ export class InitiativeService {
   //Constructor
   constructor(private http: HttpClient) {}
 
-  postInitiative(
-    initiative: {
-      createdBy: number;
-      title: string;
-      description: string;
-    },
-    userId
-  ) {
+  postInitiative(initiative: {
+    createdBy: number;
+    title: string;
+    description: string;
+  }, userId: number) {
+
     this.http
       .post(this.initiativePostUrl, {
         createdBy: userId,

@@ -18,6 +18,7 @@ export class AuthService {
   login() {
     console.log('login from security service');
     window.open(this.baseUrl + this.authorizeEndpoint, '_self');
+    //goes to github and then callback component
   }
 
   updateToken(token: string) {
@@ -55,4 +56,6 @@ export class AuthService {
     // this.http.post(this.baseUrl + '/logout', this.getToken()); //currently inactive
     sessionStorage.clear();
   }
+  
+
 }

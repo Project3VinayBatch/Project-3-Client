@@ -11,6 +11,7 @@ import { NavBarComponent } from './nav-bar.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router, RouterLink } from '@angular/router';
 import { By } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('NavBarComponent', () => {
   let component: NavBarComponent;
@@ -28,7 +29,11 @@ describe('NavBarComponent', () => {
         MatSidenavModule,
         MatToolbarModule,
         RouterTestingModule,
+        HttpClientModule
 
+      ],
+      providers: [ 
+        HttpClientModule
       ]
     }).compileComponents();
   }));
@@ -37,18 +42,25 @@ describe('NavBarComponent', () => {
     fixture = TestBed.createComponent(NavBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    
   });
 
   it('should compile', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should route to logout', () => {
+  it('should route to elsewhere after logout', () => {
     const fixture = TestBed.createComponent(NavBarComponent);
 
     const btn = fixture.debugElement.nativeElement.querySelector('#logout-btn').getAttribute('routerlink');
-    expect(btn).toEqual('/logout')
+    expect(btn).toEqual('/sign-in')
     //change to whatever the logout route will be
+  });
+
+  it('should logout',()=>{
+    
+    component.logout();
+    expect(sessionStorage.getItem('token')).toBeFalsy;
   });
 
 
@@ -65,5 +77,7 @@ describe('NavBarComponent', () => {
     const btn = fixture.debugElement.nativeElement.querySelector('#all-initiatives').getAttribute('routerlink');
     expect(btn).toEqual('/all-initiative')
   });
+
+  
 
 });

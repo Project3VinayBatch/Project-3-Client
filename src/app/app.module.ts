@@ -33,6 +33,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CallbackComponent } from './callback/callback.component';
 import { AuthHeaderInterceptor } from './auth-header.interceptor';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { AuthHeaderInterceptor } from './auth-header.interceptor';
     MatIconModule,
     MatListModule,
     FlexLayoutModule,
+    MatDialogModule,
   ],
   providers: [
     {

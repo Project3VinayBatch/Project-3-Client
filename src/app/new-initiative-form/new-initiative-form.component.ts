@@ -1,55 +1,48 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-//formGroup
-
-import { MatButtonModule } from '@angular/material/button';
-import { MatGridListModule } from '@angular/material/grid-list';
 import { InitiativeService } from '../services/initiative.service';
 import { InitiativeDTO } from '../model/initiativeDTO';
 import { Router } from '@angular/router';
+import { MatDialogRef } from '@angular/material/dialog';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-new-initiative-form',
   templateUrl: './new-initiative-form.component.html',
   styleUrls: ['./new-initiative-form.component.css'],
 })
-export class NewInitiativeFormComponent {
+export class NewInitiativeFormComponent implements OnInit {
   public title: string;
   public description: string;
+  user: User;
 
-  //constructor
+  initiativeForm = this.fb.group({
+    title: ['', Validators.required],
+    description: ['', Validators.required],
+  });
 
   constructor(
     private fb: FormBuilder,
     private initiativeService: InitiativeService,
-    private router:Router,
-  ) {}
+    public dialogRef: MatDialogRef<NewInitiativeFormComponent>
 
-  initiativeForm = this.fb.group({
-    title: [null, Validators.required],
-    description: [null, Validators.required],
-    //look up other validators
-  });
+  ) {
+    this.initiativeService.getUser().subscribe((res) => {
+      this.user = res;
 
-  //variables
-
-  //functions
-  
-  clickCancel() {
-    //make this route to all inititatives!
-    console.log(this.initiativeForm.controls.title.value);
-    this.router.navigate(["all-initiative"]);
-  }
-  clickSubmit() {
-    //make this route to the new initiative...
-    //test
-    const newInitiative = new InitiativeDTO(1, this.initiativeForm.controls.title.value, this.initiativeForm.controls.description.value, 1);
-    console.log(newInitiative);
-    this.initiativeService.postInitiative(newInitiative).subscribe((res) => {
-      console.log(res);
-      //need an if success
-      this.router.navigate(["success-initiative"]);
-      //this should probably go to a specific initiative
     });
+  }
+
+  onCancel() {
+    this.dialogRef.close();
+  }
+  onSubmit() {
+
+    this.initiativeService.postInitiative(
+      this.initiativeForm.value,
+      this.user.id
+
+    );
+    this.dialogRef.close('Saved!');
   }
 }

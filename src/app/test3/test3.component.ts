@@ -19,7 +19,7 @@ import { SpecificService } from '../services/specific.service';
   templateUrl: './test3.component.html',
   styleUrls: ['./test3.component.css'],
 })
-export class Test3Component implements OnInit, OnDestroy {
+export class Test3Component implements OnInit {
   @ViewChild('takeInput', { static: false }) //this is for the file upload
   inputClear: ElementRef;
   selectedFile: File;
@@ -77,30 +77,7 @@ export class Test3Component implements OnInit, OnDestroy {
     this.selectedFile = null;
     this.displayFileNames();
     this.getMembers();
-    this.service
-      .getMembers(String(this.currentInitiative.initiativeId))
-      .subscribe((res1) => {
-        this.currentInitiative = res1;
-        console.log(this.currentInitiative.members);
-        if (
-          this.currentInitiative.members.length == 0 ||
-          this.currentInitiative.members == null
-        ) {
-          this.poC = 'No Point of Contact';
-          console.log(this.currentInitiative.members);
-        } else {
-          for (var i = 0; i < this.currentInitiative.members.length; i++) {
-            if (
-              this.currentInitiative.members[i].id ==
-              this.currentInitiative.pointOfContact
-            ) {
-              this.poC = this.currentInitiative.members[i].username;
-              break;
-            }
-            this.poC = 'No Point of Contact';
-          }
-        }
-      });
+
     this.initiativeService.getUser().subscribe((res) => {
       this.currentUser = res;
       //no error handling...
@@ -162,7 +139,32 @@ export class Test3Component implements OnInit, OnDestroy {
         this.documentList = res;
       });
   }
-  getMembers(): void {}
+  getMembers(): void {
+    this.service
+      .getMembers(String(this.currentInitiative.initiativeId))
+      .subscribe((res1) => {
+        this.currentInitiative = res1;
+        console.log(this.currentInitiative.members);
+        if (
+          this.currentInitiative.members.length == 0 ||
+          this.currentInitiative.members == null
+        ) {
+          this.poC = 'No Point of Contact';
+          console.log(this.currentInitiative.members);
+        } else {
+          for (var i = 0; i < this.currentInitiative.members.length; i++) {
+            if (
+              this.currentInitiative.members[i].id ==
+              this.currentInitiative.pointOfContact
+            ) {
+              this.poC = this.currentInitiative.members[i].username;
+              break;
+            }
+            this.poC = 'No Point of Contact';
+          }
+        }
+      });
+  }
 
   addMembers(): void {
     this.service
@@ -174,6 +176,7 @@ export class Test3Component implements OnInit, OnDestroy {
         console.log(res);
         if (res == null) {
           console.log('what the! it worked!');
+          this.getMembers();
           this.isButtonVisible = false;
         } else {
           console.log('this wont work');
@@ -189,8 +192,4 @@ export class Test3Component implements OnInit, OnDestroy {
   // setActive():void{
   //   this.service.
   // }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
 }

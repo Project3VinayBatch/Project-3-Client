@@ -30,12 +30,15 @@
         <button
           mat-raised-button
           color="primary"
-          type="submit"
+          type="button"
+          (click)="onSubmit()"
           [disabled]="!initiativeForm.valid"
         >
           Submit
         </button>
-        <button mat-raised-button (click)="onCancel()">Cancel</button>
+        <button mat-raised-button type="button" (click)="onCancel()">
+          Cancel
+        </button>
       </div>
     </div>
   </form>

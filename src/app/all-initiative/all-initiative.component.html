@@ -1,7 +1,7 @@
 <div class="main-div round">
   <div class="mat-elevation-z8 round">
     <mat-table class="full-width-table" [dataSource]="dataSource">
-      <!-- Id Column -->
+      <!-- Title Column -->
       <ng-container matColumnDef="title">
         <mat-header-cell *matHeaderCellDef class="round-left">
           Title
@@ -9,14 +9,22 @@
         <mat-cell *matCellDef="let initiative">{{ initiative.title }}</mat-cell>
       </ng-container>
 
-      <!-- Name Column -->
+      <!-- Description Column -->
       <ng-container matColumnDef="description">
-        <mat-header-cell *matHeaderCellDef class="round-right">
+        <mat-header-cell *matHeaderCellDef>
           Description
         </mat-header-cell>
         <mat-cell *matCellDef="let initiative">{{
           initiative.description
         }}</mat-cell>
+      </ng-container>
+
+      <!-- State Column -->
+      <ng-container matColumnDef="state">
+        <mat-header-cell *matHeaderCellDef class="round-right">
+          State
+        </mat-header-cell>
+        <mat-cell *matCellDef="let initiative">{{ initiative.state }}</mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

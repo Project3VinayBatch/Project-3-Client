@@ -9,14 +9,11 @@ import { AuthService } from './services/auth.service';
 import { UserGuardGuard } from './guard/user-guard.guard';
 import { InitiativeGuard } from './guard/initiative.guard';
 import { CallbackComponent } from './callback/callback.component';
+import { AdminGuard } from './guard/admin.guard';
 
 
 const routes: Routes = [
-  { 
-    path: '', component: SignInComponent ,
-    // redirectTo: '/sign-in', pathMatch: 'full',
-    // canActivate: [UserGuardGuard],
-  },
+ 
   { 
     path: 'all-initiative', 
     component: AllInitiativeComponent ,
@@ -26,7 +23,7 @@ const routes: Routes = [
     path: 'new-initiative',
     component: NewInitiativeFormComponent,
     canDeactivate: [InitiativeGuard],
-    canActivate: [UserGuardGuard],
+    canActivate: [AdminGuard],
   },
   { 
     path: 'sign-in', component: SignInComponent },
@@ -43,7 +40,16 @@ const routes: Routes = [
     path: 'callback',
     component: CallbackComponent,
   },
-  // redirect after it works...
+  { 
+    path: '', component: SignInComponent ,
+    // redirectTo: '/sign-in', pathMatch: 'full',
+    canActivate: [UserGuardGuard],
+  },
+  {
+  path: '**', component:  AllInitiativeComponent ,
+  canActivate: [UserGuardGuard],
+  
+  }
 ];
 
 @NgModule({

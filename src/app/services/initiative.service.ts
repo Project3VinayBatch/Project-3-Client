@@ -22,6 +22,7 @@ export class InitiativeService{
 
   private userSource = new BehaviorSubject<User>(new User); //Im worried this wil lcover user with a new user object
   currentUser = this.userSource.asObservable();
+//move userSource into userService
 
   //Constructor
   constructor(private http: HttpClient) {}

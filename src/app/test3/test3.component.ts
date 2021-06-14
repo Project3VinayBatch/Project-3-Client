@@ -81,7 +81,6 @@ export class Test3Component implements OnInit, OnDestroy {
       .getMembers(String(this.currentInitiative.initiativeId))
       .subscribe((res1) => {
         this.currentInitiative = res1;
-        console.log(res1);
         console.log(this.currentInitiative.members);
         if (
           this.currentInitiative.members.length == 0 ||
@@ -96,7 +95,6 @@ export class Test3Component implements OnInit, OnDestroy {
               this.currentInitiative.pointOfContact
             ) {
               this.poC = this.currentInitiative.members[i].username;
-              console.log(this.poC);
               break;
             }
             this.poC = 'No Point of Contact';
@@ -128,6 +126,16 @@ export class Test3Component implements OnInit, OnDestroy {
     this.service.setPoC(intiiDTO).subscribe((res) => {
       this.currentInitiative = res;
       console.log(res);
+      for (var i = 0; i < this.currentInitiative.members.length; i++) {
+        if (
+          this.currentInitiative.members[i].id ==
+          this.currentInitiative.pointOfContact
+        ) {
+          this.poC = this.currentInitiative.members[i].username;
+          break;
+        }
+        this.poC = 'No Point of Contact';
+      }
     });
   }
   upload() {

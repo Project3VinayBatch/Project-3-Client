@@ -3,8 +3,9 @@ import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Initiative } from '../model/initiative';
+import { User, Role } from '../model/user';
 import { InitiativeService } from '../services/initiative.service';
 import { AllInitiativeDataSource } from './all-initiative-datasource';
 
@@ -23,6 +24,9 @@ export class AllInitiativeComponent implements OnInit {
 
   displayedColumns: string[] = ['title', 'description', 'state'];
 
+  isAdmin: boolean = false;
+  currentUser: User; //contains user info, specifically role, which we need
+
   constructor(
     private activatedRoute: ActivatedRoute,
     public router: Router,
@@ -31,6 +35,30 @@ export class AllInitiativeComponent implements OnInit {
     this.dataSource = new AllInitiativeDataSource(initiativeService);
   }
   ngOnInit() {
+    this.initiativeService.getUser()
+      .subscribe(res => {
+        if (res.role == Role.ADMIN) {// do not delete this, will not catch admin without
+          this.isAdmin = true;
+        }
+        else if (res.role == Role.USER) {
+          this.isAdmin =false;
+        }
+        else if (res.role == 0) {
+          this.isAdmin = true;
+        }
+        else if (res.role == 1) {
+          this.isAdmin = false;
+        }
+        else if (res.role == "ADMIN") { // do not delete this, will not catch admin without
+          this.isAdmin = true;
+        }
+        else if (res.role == "USER") {
+          this.isAdmin = false;
+        }
+            this.currentUser = res; //not sure if this is needed...yet
+
+        //no error handling...
+      });
     this.dataSource = new AllInitiativeDataSource(this.initiativeService);
     this.dataSource.loadInitiatives();
     // console.log(this.dataSource.data);
@@ -69,7 +97,7 @@ export class AllInitiativeComponent implements OnInit {
   }
 
   button() {
-    console.log('hit');
+    console.log("hit");
   }
   getRecord(row: Initiative) {
     //save current initiative into initiativeService

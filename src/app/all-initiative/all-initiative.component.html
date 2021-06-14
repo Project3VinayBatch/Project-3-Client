@@ -30,7 +30,8 @@
     </mat-table>
 
     <div class="plus-btn-div">
-      <i class="fas fa-plus-circle" (click)="openModal()"></i>
+      
+      <i class="fas fa-plus-circle" (click)="openModal()" *ngIf="isAdmin"></i>
       <!-- <i class="fas fa-plus"></i> -->
       <!-- above is no circle plus icon -->
     </div>

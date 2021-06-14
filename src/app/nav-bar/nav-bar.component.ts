@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
@@ -13,8 +13,11 @@ import { UserService } from '../services/user.service';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css'],
 })
-export class NavBarComponent implements OnInit{
-  isLoggedIn: boolean = false;
+export class NavBarComponent implements OnInit, OnChanges{
+  //need to subscribe
+  isLoggedIn: boolean; //i think if I change this - then it will update automatically
+
+
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(
@@ -24,6 +27,7 @@ export class NavBarComponent implements OnInit{
 
     logout(){
       console.log("testing log out");
+      this.isLoggedIn = false;
      //call authservice!
       this.authService.logout();
     }
@@ -34,8 +38,16 @@ export class NavBarComponent implements OnInit{
     
   ) {}
   ngOnInit() {
-    this.isLoggedIn = this.authService.isLoggedIn()
+    this.isLoggedIn = this.authService.isLoggedIn();
       
     }
     //need to call isLoggedIn again and set isLoggedIn=true when user logs in...
-}
+    ngOnChanges(){
+      this.isLoggedIn = this.authService.isLoggedIn();
+     
+    }
+
+  }
+
+
+//need to make the signin / signout a signle

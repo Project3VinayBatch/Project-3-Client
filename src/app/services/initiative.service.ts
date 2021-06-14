@@ -31,10 +31,28 @@ export class InitiativeService {
   //Constructor
   constructor(private http: HttpClient) {}
 
-  postInitiative(initiativeDTO: InitiativeDTO): Observable<InitiativeDTO> {
-    return this.http.post<InitiativeDTO>(this.initiativePostUrl, initiativeDTO);
-    //checkauthsercive to get the JWT??
-    //or in component?
+  postInitiative(initiative: {
+    createdBy: number;
+    title: string;
+    description: string;
+  }) {
+    this.http
+      .post(this.initiativePostUrl, {
+        createdBy: 56387421,
+        title: initiative.title,
+        description: initiative.description,
+      })
+      .subscribe(
+        (val) => {
+          console.log('POST call successful value returned in body', val);
+        },
+        (response) => {
+          console.log('POST call in error', response);
+        },
+        () => {
+          console.log('The POST observable is now completed');
+        }
+      );
   }
 
   getInitiatives(): Observable<Initiative[]> {

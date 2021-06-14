@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import {
   Component,
   OnInit,
@@ -68,10 +69,7 @@ export class Test3Component implements OnInit {
     console.log('test');
     this.subscription = this.initiativeService.currentInitiative.subscribe(
       (currentInitiative) => {
-        console.log('initiative from api');
-        console.log(currentInitiative);
         this.currentInitiative = currentInitiative;
-        console.log(this.currentInitiative);
       }
     );
     this.selectedFile = null;
@@ -81,24 +79,30 @@ export class Test3Component implements OnInit {
       .getMembers(String(this.currentInitiative.initiativeId))
       .subscribe((res1) => {
         this.currentInitiative = res1;
-        console.log(this.currentInitiative.members);
         if (
           this.currentInitiative.members.length == 0 ||
           this.currentInitiative.members == null
         ) {
           this.poC = 'No Point of Contact';
-          console.log(this.currentInitiative.members);
         } else {
           for (var i = 0; i < this.currentInitiative.members.length; i++) {
             if (
               this.currentInitiative.members[i].id ==
               this.currentInitiative.pointOfContact
             ) {
-              console.log("break");
               this.poC = this.currentInitiative.members[i].username;
               break;
             }
             this.poC = 'No Point of Contact';
+          }
+        }
+        for(var i = 0; i < this.currentInitiative.members.length; i++){
+          if (
+            this.currentInitiative.members[i].id ==
+            this.currentInitiative.pointOfContact
+          ) {
+            this.isButtonVisible = false;
+            break;
           }
         }
       });
@@ -107,13 +111,6 @@ export class Test3Component implements OnInit {
       this.currentUser = res;
       //no error handling...
     });
-  }
-
-  showPoC() {
-    console.log(this.currentInitiative.members);
-  }
-  clickEvent() {
-    alert('Button clicked');
   }
 
   makePoC(user: User) {
@@ -201,18 +198,13 @@ export class Test3Component implements OnInit {
         console.log(res);
         if (res == null) {
           console.log('what the! it worked!');
-          this.getMembers();
+          this.currentInitiative.members[this.currentInitiative.members.length]=this.currentUser;
           this.isButtonVisible = false;
         } else {
           console.log('this wont work');
           this.isButtonVisible = true;
         }
       });
-    this.initiativeService.currentInitiative.subscribe((res) => {
-      console.log(res);
-      this.currentInitiative.members = res.members;
-    });
-    console.log(this.currentInitiative);
   }
 
   // setActive():void{

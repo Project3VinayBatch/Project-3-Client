@@ -9,8 +9,9 @@ export class User {
   initiatives: Initiative[];
   files: Files[];
 }
-
+export 
 enum Role {
-  ADMIN,
-  USER,
+  ADMIN, //0
+  USER, //1
 }
+  

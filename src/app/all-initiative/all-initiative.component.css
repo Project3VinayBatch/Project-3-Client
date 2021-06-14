@@ -31,13 +31,14 @@
 .plus-btn-div{
   display: flex;
   flex-direction: row-reverse;
+  min-height: 1em;
 }
 .fa-plus-circle{
 color: #474C55;
 background-color: #F26925;
 /* color: #F26925;
 background-color: #474C55; */
-margin: 1em 1em 0;
+margin: 1em 1em ;
 padding: 0px;
 border-radius: 100%;
 /* padding: -10px; */

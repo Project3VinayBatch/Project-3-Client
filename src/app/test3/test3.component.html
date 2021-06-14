@@ -9,8 +9,6 @@
       <div class="flex-container1" fxLayout="row" fxLayoutAlign="none" fxLayoutGap="20px">
         <div class="child-3" fxFlex="50%">
           <app-links></app-links>
-          <app-links></app-links>
-          <app-links></app-links>
         </div>
       </div>
       <button mat-raised-button class="button">upload file...working</button>
@@ -18,16 +16,16 @@
     <div class="child-2 minor-div" fxFlex="20">
       <div>
         <mat-card-title>Point of Contact</mat-card-title>
-        <mat-card>Contact: {{ currentInitiative.pointOfContactId }}</mat-card>
+        <mat-card>Contact: {{ poC }}</mat-card>
       </div>
       <br />
       <div>
         <mat-card-title>Members</mat-card-title>
-        <p *ngFor="let member of currentInitiative.members">
-          {{ member.username }}
+        <mat-list *ngFor="let member of currentInitiative.members">
+          <mat-list-item> {{ member.username }} </mat-list-item>
           <button (click)="makePoC(member)">Make PoC</button>
-        </p>
-        <!-- need ngIf=role -->
+        </mat-list>
+
       </div>
       <br />
       <br />

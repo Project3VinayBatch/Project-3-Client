@@ -53,7 +53,7 @@ export class AllInitiativeComponent implements OnInit {
   }
 
   getRecord(row: Initiative) {
-    sessionStorage.setItem('id', String(row.initiativeId));
+    this.initiativeService.saveCurrentInitiative(row);
     this.router.navigate(['view-initiative']);
     console.log(row);
   }

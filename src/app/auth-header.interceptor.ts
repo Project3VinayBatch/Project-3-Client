@@ -19,7 +19,7 @@ export class AuthHeaderInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     const req = request.clone({
       setHeaders: {
-        'Content-Type': 'application/json',
+        //'Content-Type': 'application/json',
         Accept: 'application/json',
         Authorization: 'Bearer ' + this.securityService.getToken(),
       },

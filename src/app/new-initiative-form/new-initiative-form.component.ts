@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { InitiativeService } from '../services/initiative.service';
-import { InitiativeDTO } from '../model/initiativeDTO';
-import { Router } from '@angular/router';
 import { MatDialogRef } from '@angular/material/dialog';
 import { User } from '../model/user';
 

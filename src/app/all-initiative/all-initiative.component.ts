@@ -52,7 +52,7 @@ export class AllInitiativeComponent implements OnInit {
     });
   }
 
-  getRecord(row: Initiative) {
+  getRecord(row: Initiative) { //sends data to the specific initiative component
     this.initiativeService.saveCurrentInitiative(row);
     this.router.navigate(['view-initiative']);
     console.log(row);

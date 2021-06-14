@@ -1,3 +1,5 @@
+
+import { User } from './user';
 import { Files } from "./files";
 import { User } from "./user";
 
@@ -13,8 +15,7 @@ export class Initiative {
 }
 
 enum InitiativeState {
-    COMPLETE,
-    ACTIVE,
-    INACTIVE,
-  }
-  
+  COMPLETE,
+  ACTIVE,
+  INACTIVE,
+}

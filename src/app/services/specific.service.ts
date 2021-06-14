@@ -52,7 +52,7 @@ export class SpecificService {
     return this.http.get<Initiative>(this.getmembersUrl + initId);
   }
   
-public setPoC(initiative: InitiativeDTO):Observable<InitiativeDTO>{
-      return this.http.patch<InitiativeDTO>(this.setPoCUrl, initiative);
+public setPoC(initiative: InitiativeDTO):Observable<Initiative>{
+      return this.http.patch<Initiative>(this.setPoCUrl, initiative);
     }
 }

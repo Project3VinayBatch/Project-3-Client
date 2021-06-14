@@ -1,6 +1,11 @@
-import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import {
+  HttpClient,
+  HttpEvent,
+  HttpHeaders,
+  HttpRequest,
+} from '@angular/common/http';
+import { Injectable, OnDestroy, OnInit } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Files } from '../model/files';
 import { Initiative } from '../model/initiative';
 import { InitiativeDTO } from '../model/initiativeDTO';
@@ -12,9 +17,18 @@ import { User } from '../model/user';
 export class InitiativeService {
   private initiativePostUrl = 'http://localhost:8080/initiative';
   private initiativesGetUrl = 'http://localhost:8080/initiatives';
-  private fileUploadPostUrl = 'http://localhost:8080/uploadFile/';
+  private fileUploadPostUrl = 'http://localhost:8080/uploadfile/';
   private fileDownloadGetUrl = 'http://localhost:8080/files/by-initiative-id/';
   private UserGetUrl = 'http://localhost:8080/user';
+
+  //curent initiative info
+  private initiativeSource = new BehaviorSubject<Initiative>(new Initiative());
+  currentInitiative = this.initiativeSource.asObservable();
+
+  private userSource = new BehaviorSubject<User>(new User()); //Im worried this wil lcover user with a new user object
+  currentUser = this.userSource.asObservable();
+
+  //Constructor
   constructor(private http: HttpClient) {}
 
   postInitiative(initiativeDTO: InitiativeDTO): Observable<InitiativeDTO> {
@@ -26,26 +40,31 @@ export class InitiativeService {
   getInitiatives(): Observable<Initiative[]> {
     return this.http.get<Initiative[]>(this.initiativesGetUrl);
   }
-
+  //WIP
+  getCurrentInitiative(): Initiative {
+    //gets initiative info from
+    // return this.http.get<Initiative[]>(this.initiativesGetUrl);
+    return this.initiativeSource.getValue();
+  }
+  saveCurrentInitiative(initiative: Initiative): void {
+    this.initiativeSource.next(initiative); //adds new info into the behaviorsubject, basically saving it
+  }
+  //end WIP
   //File Requests
   postFile(
     file: File,
     username: string,
     initiativeId: number
   ): Observable<HttpEvent<{}>> {
-    const data = new FormData();
+    const data: FormData = new FormData();
     data.append('file', file);
-    const request = new HttpRequest(
+    const newRequest = new HttpRequest(
       'POST',
       this.fileUploadPostUrl + username + '/' + initiativeId,
       data,
-      {
-        reportProgress: true,
-        responseType: 'text',
-      }
+      { reportProgress: true, responseType: 'text' }
     );
-
-    return this.http.request(request);
+    return this.http.request(newRequest);
   }
 
   getFile(initiativeId: number): Observable<Files[]> {

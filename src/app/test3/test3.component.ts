@@ -94,6 +94,7 @@ export class Test3Component implements OnInit, OnDestroy {
               this.currentInitiative.members[i].id ==
               this.currentInitiative.pointOfContact
             ) {
+              console.log("break");
               this.poC = this.currentInitiative.members[i].username;
               break;
             }
@@ -186,7 +187,8 @@ export class Test3Component implements OnInit, OnDestroy {
         }
       });
     this.initiativeService.currentInitiative.subscribe((res) => {
-      this.currentInitiative = res;
+      console.log(res);
+      this.currentInitiative.members = res.members;
     });
     console.log(this.currentInitiative);
   }

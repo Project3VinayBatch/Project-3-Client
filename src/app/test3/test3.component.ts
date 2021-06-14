@@ -71,7 +71,7 @@ export class Test3Component implements OnInit, OnDestroy {
         console.log('initiative from api');
         console.log(currentInitiative);
         this.currentInitiative = currentInitiative;
-        console.log(currentInitiative);
+        console.log(this.currentInitiative);
       }
     );
     this.selectedFile = null;

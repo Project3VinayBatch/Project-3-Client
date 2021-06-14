@@ -1,7 +1,5 @@
-
 import { User } from './user';
 import { Files } from "./files";
-import { User } from "./user";
 
 export class Initiative {
     initiativeId:number;

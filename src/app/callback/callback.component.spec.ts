@@ -48,6 +48,9 @@ describe('CallbackComponent', () => {
 describe('logged in',()=>{
   it('should redirect onInit',()=>{
     authSrvc.updateToken("Fake Login");
+    spyOn(component,"ngOnInit");
+    component.ngOnInit();
+    expect(component.ngOnInit).toHaveBeenCalled();
     //expect(routerSpy.navigate).toHaveBeenCalledWith(['all-initiative']);
   });
 });

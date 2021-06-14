@@ -14,15 +14,20 @@
         <mat-header-cell *matHeaderCellDef class="round-right">
           Description
         </mat-header-cell>
-        <mat-cell *matCellDef="let initiative">{{ initiative.description }}</mat-cell>
+        <mat-cell *matCellDef="let initiative">{{
+          initiative.description
+        }}</mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns" (click)="getRecord(row)"></mat-row>
+      <mat-row
+        *matRowDef="let initiative; columns: displayedColumns"
+        (click)="getRecord(initiative)"
+      ></mat-row>
     </mat-table>
 
     <div class="plus-btn-div">
-      <i class="fas fa-plus-circle" (click)="openModal()"></i>
+      <i class="fas fa-plus-circle" (click)="openAddInitiativeDialog()"></i>
       <!-- <i class="fas fa-plus"></i> -->
       <!-- above is no circle plus icon -->
     </div>

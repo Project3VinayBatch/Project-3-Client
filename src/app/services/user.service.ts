@@ -20,9 +20,12 @@ export class UserService {
   setUserFromApi():void{//needs to be async...
     // this.userSource.next();
     // nextUser:User = this.http.get<User>(this.UserGetUrl);
-
+    this.currentUser = this.http.get<User>(this.UserGetUrl);
 
   }
+  getUserFromApi(): Observable<User>{ //this now sets user from api call to
+    return this.http.get<User>(this.UserGetUrl);
+  } //just make something work... send this directly to component
 
   
   setUser(): Observable<User>{ //this now sets user from api call to

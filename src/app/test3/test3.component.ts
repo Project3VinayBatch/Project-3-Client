@@ -139,7 +139,6 @@ export class Test3Component implements OnInit, OnDestroy {
     });
   }
   upload() {
-    console.log(this.selectedFile);
     this.initiativeService
       .postFile(
         this.selectedFile,
@@ -148,7 +147,7 @@ export class Test3Component implements OnInit, OnDestroy {
       ) //switch 1 for current initiative
       .subscribe((res) => {
         console.log(res);
-        this.inputClear.nativeElement.value = '';
+        //this.inputClear.nativeElement.value = '';
       });
   }
   getFile(event) {
@@ -157,9 +156,11 @@ export class Test3Component implements OnInit, OnDestroy {
   }
 
   displayFileNames() {
-    this.initiativeService.getFile(4).subscribe((res) => {
-      this.documentList = res;
-    });
+    this.initiativeService
+      .getFile(this.currentInitiative.initiativeId)
+      .subscribe((res) => {
+        this.documentList = res;
+      });
   }
   getMembers(): void {}
   //   this.service.getMembers(this.initId).subscribe(res => {

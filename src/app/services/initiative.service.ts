@@ -1,4 +1,9 @@
-import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpEvent,
+  HttpHeaders,
+  HttpRequest,
+} from '@angular/common/http';
 import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Files } from '../model/files';
@@ -9,7 +14,7 @@ import { User } from '../model/user';
 @Injectable({
   providedIn: 'root',
 })
-export class InitiativeService{
+export class InitiativeService {
   private initiativePostUrl = 'http://localhost:8080/initiative';
   private initiativesGetUrl = 'http://localhost:8080/initiatives';
   private fileUploadPostUrl = 'http://localhost:8080/uploadFile/';
@@ -17,10 +22,10 @@ export class InitiativeService{
   private UserGetUrl = 'http://localhost:8080/user';
 
   //curent initiative info
-  private initiativeSource = new BehaviorSubject<Initiative>(new Initiative);
+  private initiativeSource = new BehaviorSubject<Initiative>(new Initiative());
   currentInitiative = this.initiativeSource.asObservable();
 
-  private userSource = new BehaviorSubject<User>(new User); //Im worried this wil lcover user with a new user object
+  private userSource = new BehaviorSubject<User>(new User()); //Im worried this wil lcover user with a new user object
   currentUser = this.userSource.asObservable();
 
   //Constructor
@@ -36,17 +41,19 @@ export class InitiativeService{
     return this.http.get<Initiative[]>(this.initiativesGetUrl);
   }
   //WIP
-  getCurrentInitiative(): Initiative { //gets initiative info from
+  getCurrentInitiative(): Initiative {
+    //gets initiative info from
     // return this.http.get<Initiative[]>(this.initiativesGetUrl);
-    return this.initiativeSource.getValue()
+    return this.initiativeSource.getValue();
     //this is not returning files and members. We need to call backend for that.
-    
   }
-  getUpdatedCurrentInitiative(){ //does nothing yet
+  getUpdatedCurrentInitiative() {
+    //does nothing yet
     //this should call api and update initiative info
     //because currentinitiative does not include file and member info
   }
-  saveCurrentInitiative(initiative:Initiative):void{ //called in all-initiative component before routing to specific initiative
+  saveCurrentInitiative(initiative: Initiative): void {
+    //called in all-initiative component before routing to specific initiative
     this.initiativeSource.next(initiative); //adds new info into the behaviorsubject, basically saving it
   }
   //end WIP
@@ -56,25 +63,21 @@ export class InitiativeService{
     username: string,
     initiativeId: number
   ): Observable<HttpEvent<{}>> {
-    const data = new FormData();
+    const data: FormData = new FormData();
     data.append('file', file);
-    const request = new HttpRequest(
+    const newRequest = new HttpRequest(
       'POST',
       this.fileUploadPostUrl + username + '/' + initiativeId,
       data,
-      {
-        reportProgress: true,
-        responseType: 'text',
-      }
+      { reportProgress: true, responseType: 'text' }
     );
-
-    return this.http.request(request);
+    return this.http.request(newRequest);
   }
 
   getFile(initiativeId: number): Observable<Files[]> {
     return this.http.get<Files[]>(this.fileDownloadGetUrl + initiativeId);
   }
-  getUser(): Observable<User>{
+  getUser(): Observable<User> {
     return this.http.get<User>(this.UserGetUrl);
   }
 }

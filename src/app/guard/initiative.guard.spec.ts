@@ -56,11 +56,14 @@ describe('logged in',()=>{
     authSrvc.updateToken("Fake Login");
     fakeNextState={url:'/success-initiative',root:fakeCurrentRoute};
     let c=guard.canDeactivate(fakeComponent,fakeCurrentRoute,fakeCurrentState,fakeNextState);
-
+    //fakeNextState={url:'/',root:fakeCurrentRoute};
+    let d=guard.canDeactivate(fakeComponent,fakeCurrentRoute,fakeCurrentState,fakeNextState);
     //routerSpy.navigate('all-initiatives')
 
     expect(c).toBeTrue();
   });
+
+  
 });
 
 });

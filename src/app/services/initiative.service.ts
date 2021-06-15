@@ -1,14 +1,12 @@
 import {
   HttpClient,
   HttpEvent,
-  HttpHeaders,
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Files } from '../model/files';
 import { Initiative } from '../model/initiative';
-import { InitiativeDTO } from '../model/initiativeDTO';
 import { User } from '../model/user';
 
 @Injectable({
@@ -45,15 +43,6 @@ export class InitiativeService {
         description: initiative.description,
       })
       .subscribe(
-        (val) => {
-          console.log('POST call successful value returned in body', val);
-        },
-        (response) => {
-          console.log('POST call in error', response);
-        },
-        () => {
-          console.log('The POST observable is now completed');
-        }
       );
   }
 
@@ -67,11 +56,7 @@ export class InitiativeService {
     return this.initiativeSource.getValue();
     //this is not returning files and members. We need to call backend for that.
   }
-  getUpdatedCurrentInitiative() {
-    //does nothing yet
-    //this should call api and update initiative info
-    //because currentinitiative does not include file and member info
-  }
+
   saveCurrentInitiative(initiative: Initiative): void {
     //called in all-initiative component before routing to specific initiative
     this.initiativeSource.next(initiative); //adds new info into the behaviorsubject, basically saving it

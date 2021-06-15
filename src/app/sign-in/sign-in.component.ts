@@ -9,7 +9,7 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.css']
 })
-export class SignInComponent implements OnInit {
+export class SignInComponent{
 
   user: User;
   loginForm = this.fb.group({
@@ -21,23 +21,12 @@ export class SignInComponent implements OnInit {
         Validators.required, 
         // Validators.minLength(8),
       ]
-            
   })
 
-  constructor(private fb: FormBuilder, private authService:AuthService) {
-    // this.user.username="";
-    // this.user.password=""; 
-  }
-
-  ngOnInit(): void {
-
-  }
-
-
+  constructor(private fb: FormBuilder, private authService:AuthService) {}
 
   login(): void{
-    this.authService.login();
-    
+    this.authService.login();  
   }
 
 }

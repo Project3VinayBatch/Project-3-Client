@@ -22,7 +22,7 @@ export class AllInitiativeComponent implements OnInit {
 
   dataSource: AllInitiativeDataSource;
 
-  displayedColumns: string[] = ['title', 'description'];
+  displayedColumns: string[] = ['title', 'description', 'state'];
 
     isAdmin:boolean;
   currentUser: User;

@@ -12,6 +12,7 @@ import { Initiative } from '../model/initiative';
 import { User } from '../model/user';
 import { AuthService } from '../services/auth.service';
 import { AllInitiativeDataSource } from './all-initiative-datasource';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 
 describe('AllInitiativeComponent', () => {
@@ -51,14 +52,16 @@ describe('AllInitiativeComponent', () => {
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
-        HttpClientModule
+        HttpClientModule,
         
       ],
       providers: [ 
         HttpClientModule,         
         
         { provide: Router, useValue: routerSpy },
-        {provide: ActivatedRoute, useValue: routerSpy}
+        {provide: ActivatedRoute, useValue: routerSpy},
+        {provide: MatDialog, useValue: {}}
+
 
       ]
     }).compileComponents();
@@ -79,8 +82,8 @@ describe('AllInitiativeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should openModal',()=>{
-    component.openModal();
+  it('should open add initiative dialogue',()=>{
+    component.openAddInitiativeDialog();
     expect(routerSpy.navigate).toHaveBeenCalledWith(['new-initiative']);
 
   });

@@ -10,9 +10,10 @@ import { Subscription } from 'rxjs';
 import { Files } from '../model/files';
 import { Initiative } from '../model/initiative';
 import { InitiativeDTO } from '../model/initiativeDTO';
-import { User } from '../model/user';
+import { Role, User } from '../model/user';
 import { InitiativeService } from '../services/initiative.service';
 import { SpecificService } from '../services/specific.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-test3',
@@ -27,6 +28,8 @@ export class Test3Component implements OnInit, OnDestroy {
   public initiative: Initiative;
   //public initiative1:InitiativeDTO;
   public isButtonVisible: boolean = true;
+  public isContact:boolean; //displays make PoC btn
+  public isAdmin:Boolean;
 
   currentInitiative: Initiative;
   subscription: Subscription;
@@ -35,7 +38,8 @@ export class Test3Component implements OnInit, OnDestroy {
   //CONSTRUCTOR
   constructor(
     private initiativeService: InitiativeService,
-    private service: SpecificService
+    private service: SpecificService,
+    private userService: UserService,
   ) {
     this.user = new User();
   }
@@ -71,8 +75,15 @@ export class Test3Component implements OnInit, OnDestroy {
         console.log('initiative from api');
         console.log(currentInitiative);
         this.currentInitiative = currentInitiative;
-        console.log(this.currentInitiative);
+        if (currentInitiative.pointOfContact != null){
+          this.isContact = true;
+        }
+        else{this.isContact = true;}
+        console.log("isContact: "+this.isContact);
+        console.log("isAdmin: "+this.isAdmin);
+        // console.log(this.currentInitiative);
       }
+      
     );
     this.selectedFile = null;
     this.displayFileNames();
@@ -106,6 +117,38 @@ export class Test3Component implements OnInit, OnDestroy {
       this.currentUser = res;
       //no error handling...
     });
+    this.userService.getUserFromApi().subscribe(
+      res =>
+      {
+        console.log(res);
+        this.currentUser = res;
+        console.log(this.currentUser);
+        if (res.role == Role.ADMIN) {// do not delete this, will not catch admin without
+          this.isAdmin = true;
+          console.log("option1");
+        }
+        else if (res.role == Role.USER) {// this needs to be here 
+          this.isAdmin =false;
+          console.log("option2");
+        }
+        else if (res.role == "ADMIN") { // do not delete this, will not catch admin without
+          this.isAdmin = true;
+          console.log("option5");
+        }
+        else if (res.role == "USER") {
+          this.isAdmin = false;
+          console.log("option6");
+        }
+        
+        if(this.isAdmin==true){
+          return true;
+       }
+        //if admin, set isAmin = true;
+      }
+      
+
+      //do not refresh in oninit...
+    );
   }
 
   showPoC() {

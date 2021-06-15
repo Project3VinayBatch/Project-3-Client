@@ -53,7 +53,7 @@ export class AllInitiativeComponent implements OnInit {
           this.isAdmin = true;
           console.log("option1");
         }
-        else if (res.role == Role.USER) {
+        else if (res.role == Role.USER) {// this needs to be here 
           this.isAdmin =false;
           console.log("option2");
         }

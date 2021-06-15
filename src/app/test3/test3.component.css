@@ -2,11 +2,13 @@
     /* background-color: #F26925; */
     border-radius: 10px;
     padding: 20px;
+    min-width: 250px;
     }
 .child-2{
     /* background-color: #F26925; */
     border-radius: 10px;
     padding: 20px;
+    min-width: 250px;
     }
     .container{
      margin: 15px;
@@ -23,7 +25,7 @@
 }
 button{
     /* width: 100%; */
-    background-color: #B9B9BA;
+    background-color: #F26925;
     /* background-color: #72A4C2; */
 }
 
@@ -40,10 +42,12 @@ button{
 
 }
 
-.flex-container1{flex-direction: row;
+.flex-container1{
+    flex-direction: column;
     box-sizing: border-box;
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
+    flex-wrap: wrap;
 
 }
 
@@ -56,6 +60,8 @@ button{
  background-color: #474C55;
  /* padding: .5em; */
  border-radius: 15px 15px 0 0 ;
+ font-family: "Futura-Std-Heavy";
+ color: #FFFFFF;
 }
 .title{
 /* background-color: #474C55; */
@@ -69,7 +75,7 @@ button{
     border: .5px solid #474C55;
     border-radius: 15px; 
     /* padding: 1%; */
-    background-color: #B9B9BA;
+    background-color: #FFFFFF;
 }
 .minor-div{ 
     padding: .5em;
@@ -83,7 +89,14 @@ button{
     background-color: #B9B9BA;
 }
  .child-1, .child-2{
-
+    flex-grow: 1;
+    min-width: 200px;
+}
+.child-1{
+    order:1;
+}
+.child-2{
+    order: 2;
 }
 
 

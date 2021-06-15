@@ -32,7 +32,7 @@ const routes: Routes = [
   { 
     path: '', component: SignInComponent ,
     // redirectTo: '/sign-in', pathMatch: 'full',
-    // canActivate: [UserGuardGuard],
+    canActivate: [UserGuardGuard],
   },
   {
   path: '**', component:  AllInitiativeComponent ,

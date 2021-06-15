@@ -65,6 +65,8 @@ button{
 }
 .title{
 /* background-color: #474C55; */
+font-family: "Futura-Std-Bold";
+font-size: 2em;
 
 }
 .main-div{
@@ -97,6 +99,20 @@ button{
 }
 .child-2{
     order: 2;
+}
+.description{
+    min-height: 4em;
+    margin-bottom: 1em;
+}
+
+.b-margin{
+    margin-bottom: 1em;
+}
+.t-margin{
+    margin-top: 1em;
+}
+mat-card-title{
+    color: #FFFFFF;
 }
 
 

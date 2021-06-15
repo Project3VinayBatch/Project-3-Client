@@ -11,6 +11,7 @@
 }
 .mat-cell{
   color: #72A4C2;
+  cursor: pointer;
 }
 .main-div{
   margin-left: 5%;

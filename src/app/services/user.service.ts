@@ -31,9 +31,5 @@ export class UserService {
   setUser(): Observable<User>{ //this now sets user from api call to
     return this.http.get<User>(this.UserGetUrl);
   }
-  // getCurrentUser(): User{
-  //   return this.userSource.getValue();
-  // }
-  //I dont need a getter because observable?
   
 }

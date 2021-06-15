@@ -34,6 +34,7 @@ export class Test3Component implements OnInit {
   subscription: Subscription;
   currentUser: User;
   poC: string;
+  canUpload: boolean;
   //CONSTRUCTOR
   constructor(
     private initiativeService: InitiativeService,
@@ -94,6 +95,7 @@ export class Test3Component implements OnInit {
           this.currentInitiative.members == null
         ) {
           this.poC = 'No Point of Contact';
+          this.canUpload = false;
         } else {
           for (var i = 0; i < this.currentInitiative.members.length; i++) {
             if (
@@ -101,8 +103,10 @@ export class Test3Component implements OnInit {
               this.currentInitiative.pointOfContact
             ) {
               this.poC = this.currentInitiative.members[i].username;
+              this.canUpload = true;
               break;
             }
+            this.canUpload = false;
             this.poC = 'No Point of Contact';
           }
         }
@@ -211,7 +215,7 @@ export class Test3Component implements OnInit {
           this.currentInitiative.members == null
         ) {
           this.poC = 'No Point of Contact';
-          console.log(this.currentInitiative.members);
+          this.canUpload = false;
         } else {
           for (var i = 0; i < this.currentInitiative.members.length; i++) {
             if (
@@ -219,9 +223,11 @@ export class Test3Component implements OnInit {
               this.currentInitiative.pointOfContact
             ) {
               this.poC = this.currentInitiative.members[i].username;
+              this.canUpload = true;
               break;
             }
             this.poC = 'No Point of Contact';
+            this.canUpload = false;
           }
         }
       });

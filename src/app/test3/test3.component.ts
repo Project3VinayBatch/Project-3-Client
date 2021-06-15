@@ -1,10 +1,8 @@
-import { ThisReceiver } from '@angular/compiler';
 import {
   Component,
   OnInit,
   ViewChild,
   ElementRef,
-  OnDestroy,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 // import { String } from 'aws-sdk/clients/appstream';
@@ -131,21 +129,16 @@ export class Test3Component implements OnInit {
         console.log(this.currentUser);
         if (res.role == Role.ADMIN) {// do not delete this, will not catch admin without
           this.isAdmin = true;
-          console.log("option1");
         }
         else if (res.role == Role.USER) {// this needs to be here 
           this.isAdmin =false;
-          console.log("option2");
         }
         else if (res.role == "ADMIN") { // do not delete this, will not catch admin without
           this.isAdmin = true;
-          console.log("option5");
         }
         else if (res.role == "USER") {
           this.isAdmin = false;
-          console.log("option6");
         }
-        
         if(this.isAdmin==true){
           return true;
        }
@@ -189,6 +182,7 @@ export class Test3Component implements OnInit {
         this.currentInitiative.initiativeId
       ) //switch 1 for current initiative
       .subscribe((res) => {
+        this.displayFileNames();
         console.log(res);
         //this.inputClear.nativeElement.value = '';
       });
@@ -204,6 +198,7 @@ export class Test3Component implements OnInit {
       .subscribe((res) => {
         this.documentList = res;
       });
+
   }
   getMembers(): void {
     this.service
@@ -241,17 +236,11 @@ export class Test3Component implements OnInit {
         this.user = res;
         console.log(res);
         if (res == null) {
-          console.log('what the! it worked!');
           this.currentInitiative.members[this.currentInitiative.members.length]=this.currentUser;
           this.isButtonVisible = false;
         } else {
-          console.log('this wont work');
           this.isButtonVisible = true;
         }
       });
   }
-
-  // setActive():void{
-  //   this.service.
-  // }
 }

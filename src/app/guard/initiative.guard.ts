@@ -26,13 +26,11 @@ export class InitiativeGuard implements CanDeactivate<NewInitiativeFormComponent
       }
 
       //if...something, return true, else return confirm
-      console.log(nextState.url); //maybe...
       if (nextState.url=='/success-initiative'){
         return true;
       }
       else{
         return confirm("Are you sure you want to leave this page. Your work will not be saved.");
-    
       }
       
   }

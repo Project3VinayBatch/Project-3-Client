@@ -37,6 +37,7 @@ export class InitiativeService {
     title: string;
     description: string;
   }, userId: number) {
+
     this.http
       .post(this.initiativePostUrl, {
         createdBy: userId,

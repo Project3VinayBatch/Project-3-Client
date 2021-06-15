@@ -1,3 +1,4 @@
+import { ThisReceiver } from '@angular/compiler';
 import {
   Component,
   OnInit,
@@ -20,7 +21,7 @@ import { UserService } from '../services/user.service';
   templateUrl: './test3.component.html',
   styleUrls: ['./test3.component.css'],
 })
-export class Test3Component implements OnInit, OnDestroy {
+export class Test3Component implements OnInit {
   @ViewChild('takeInput', { static: false }) //this is for the file upload
   inputClear: ElementRef;
   selectedFile: File;
@@ -72,8 +73,6 @@ export class Test3Component implements OnInit, OnDestroy {
     console.log('test');
     this.subscription = this.initiativeService.currentInitiative.subscribe(
       (currentInitiative) => {
-        console.log('initiative from api');
-        console.log(currentInitiative);
         this.currentInitiative = currentInitiative;
         if (currentInitiative.pointOfContact != null){
           this.isContact = true;
@@ -92,27 +91,34 @@ export class Test3Component implements OnInit, OnDestroy {
       .getMembers(String(this.currentInitiative.initiativeId))
       .subscribe((res1) => {
         this.currentInitiative = res1;
-        console.log(this.currentInitiative.members);
         if (
           this.currentInitiative.members.length == 0 ||
           this.currentInitiative.members == null
         ) {
           this.poC = 'No Point of Contact';
-          console.log(this.currentInitiative.members);
         } else {
           for (var i = 0; i < this.currentInitiative.members.length; i++) {
             if (
               this.currentInitiative.members[i].id ==
               this.currentInitiative.pointOfContact
             ) {
-              console.log("break");
               this.poC = this.currentInitiative.members[i].username;
               break;
             }
             this.poC = 'No Point of Contact';
           }
         }
+        for(var i = 0; i < this.currentInitiative.members.length; i++){
+          if (
+            this.currentInitiative.members[i].id ==
+            this.currentInitiative.pointOfContact
+          ) {
+            this.isButtonVisible = false;
+            break;
+          }
+        }
       });
+
     this.initiativeService.getUser().subscribe((res) => {
       this.currentUser = res;
       //no error handling...
@@ -149,13 +155,6 @@ export class Test3Component implements OnInit, OnDestroy {
 
       //do not refresh in oninit...
     );
-  }
-
-  showPoC() {
-    console.log(this.currentInitiative.members);
-  }
-  clickEvent() {
-    alert('Button clicked');
   }
 
   makePoC(user: User) {
@@ -206,12 +205,32 @@ export class Test3Component implements OnInit, OnDestroy {
         this.documentList = res;
       });
   }
-  getMembers(): void {}
-  //   this.service.getMembers(this.initId).subscribe(res => {
-  //     this.user = res;
-  //     console.log(res);
-  //   })
-  // }
+  getMembers(): void {
+    this.service
+      .getMembers(String(this.currentInitiative.initiativeId))
+      .subscribe((res1) => {
+        this.currentInitiative = res1;
+        console.log(this.currentInitiative.members);
+        if (
+          this.currentInitiative.members.length == 0 ||
+          this.currentInitiative.members == null
+        ) {
+          this.poC = 'No Point of Contact';
+          console.log(this.currentInitiative.members);
+        } else {
+          for (var i = 0; i < this.currentInitiative.members.length; i++) {
+            if (
+              this.currentInitiative.members[i].id ==
+              this.currentInitiative.pointOfContact
+            ) {
+              this.poC = this.currentInitiative.members[i].username;
+              break;
+            }
+            this.poC = 'No Point of Contact';
+          }
+        }
+      });
+  }
 
   addMembers(): void {
     this.service
@@ -223,24 +242,16 @@ export class Test3Component implements OnInit, OnDestroy {
         console.log(res);
         if (res == null) {
           console.log('what the! it worked!');
+          this.currentInitiative.members[this.currentInitiative.members.length]=this.currentUser;
           this.isButtonVisible = false;
         } else {
           console.log('this wont work');
           this.isButtonVisible = true;
         }
       });
-    this.initiativeService.currentInitiative.subscribe((res) => {
-      console.log(res);
-      this.currentInitiative.members = res.members;
-    });
-    console.log(this.currentInitiative);
   }
 
   // setActive():void{
   //   this.service.
   // }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
 }

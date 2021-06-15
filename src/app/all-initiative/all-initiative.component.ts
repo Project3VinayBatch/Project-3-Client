@@ -21,7 +21,7 @@ export class AllInitiativeComponent implements OnInit {
 
   displayedColumns: string[] = ['title', 'description', 'state'];
 
-    isAdmin:boolean;
+  isAdmin:boolean;
   currentUser: User;
   subscription: Subscription;
   

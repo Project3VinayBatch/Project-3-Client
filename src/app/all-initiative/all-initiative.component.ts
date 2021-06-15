@@ -15,16 +15,14 @@ import { AllInitiativeDataSource } from './all-initiative-datasource';
   styleUrls: ['./all-initiative.component.css'],
 })
 export class AllInitiativeComponent implements OnInit {
+  //variables
   initiatives: Initiative[];
-
   dataSource: AllInitiativeDataSource;
-
   displayedColumns: string[] = ['title', 'description', 'state'];
-
-    isAdmin:boolean;
+  isAdmin: boolean;
   currentUser: User;
   subscription: Subscription;
-  
+  //constructor
   constructor(
     public router: Router,
     private initiativeService: InitiativeService,
@@ -36,19 +34,14 @@ export class AllInitiativeComponent implements OnInit {
   ngOnInit() {
     this.dataSource = new AllInitiativeDataSource(this.initiativeService);
     this.dataSource.loadInitiatives();
-
-    //WIP
-    //seems to work
-    // this.currentUser = 
-    this.userService.getUserFromApi().subscribe(
-      res =>
-      {
+    this.userService.getUserFromApi().subscribe( //sets isAdmin true is user is an admin
+      res => {
         this.currentUser = res;
         if (res.role == Role.ADMIN) {// do not delete this, will not catch admin without
           this.isAdmin = true;
         }
         else if (res.role == Role.USER) {// this needs to be here 
-          this.isAdmin =false;
+          this.isAdmin = false;
         }
         else if (res.role == "ADMIN") { // do not delete this, will not catch admin without
           this.isAdmin = true;
@@ -56,30 +49,17 @@ export class AllInitiativeComponent implements OnInit {
         else if (res.role == "USER") {
           this.isAdmin = false;
         }
-        
-        if(this.isAdmin==true){
-          return true;
-       }
-        //if admin, set isAmin = true;
+        if (this.isAdmin == true) {
+          return true;  //sets isAdmin true is user is an admin
+        }
       }
-      
-
-      //do not refresh in oninit...
     );
-    
-    //...
-    //not working
-    // this.subscription = this.userService.currentUser //this is an observable
-    // .subscribe(user=> {this.currentUser = user;
-    //   console.log(user);
-    // })
   }
-
+//functions:
   openAddInitiativeDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.height = '90vh';
-    // dialogConfig.minHeight = '800px';
     dialogConfig.width = '60vw';
 
     const dialogRef = this.addInitiativeDialog.open(
@@ -92,7 +72,6 @@ export class AllInitiativeComponent implements OnInit {
       this.dataSource.loadInitiatives();
     });
   }
-
   getRecord(row: Initiative) { //sends data to the specific initiative component
     this.initiativeService.saveCurrentInitiative(row);
     this.router.navigate(['view-initiative']);

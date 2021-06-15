@@ -49,7 +49,7 @@ export class NavBarComponent implements OnInit, OnChanges{
       })
     }
     //need to call isLoggedIn again and set isLoggedIn=true when user logs in...
-    ngOnChanges(){
+    ngOnChanges(){ //no changes called
       this.isLoggedIn = this.authService.isLoggedIn();
       this.subscription = this.userService.currentUser //this is an observable
       .subscribe(user=> {this.currentUser = user;

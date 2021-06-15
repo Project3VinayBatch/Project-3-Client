@@ -78,9 +78,9 @@ export class AllInitiativeComponent implements OnInit {
   openAddInitiativeDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-    dialogConfig.height = '55vh';
-    dialogConfig.minHeight = '800px';
-    dialogConfig.width = '55vw';
+    dialogConfig.height = '90vh';
+    // dialogConfig.minHeight = '800px';
+    dialogConfig.width = '60vw';
 
     const dialogRef = this.addInitiativeDialog.open(
       NewInitiativeFormComponent,

@@ -9,6 +9,7 @@ import { User } from '../model/user';
   templateUrl: './new-initiative-form.component.html',
   styleUrls: ['./new-initiative-form.component.css'],
 })
+
 export class NewInitiativeFormComponent{
   public title: string;
   public description: string;

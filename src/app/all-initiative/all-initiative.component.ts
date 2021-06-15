@@ -18,16 +18,14 @@ import { AllInitiativeDataSource } from './all-initiative-datasource';
   styleUrls: ['./all-initiative.component.css'],
 })
 export class AllInitiativeComponent implements OnInit {
+  //variables
   initiatives: Initiative[];
-
   dataSource: AllInitiativeDataSource;
-
   displayedColumns: string[] = ['title', 'description', 'state'];
-
-    isAdmin:boolean;
+  isAdmin: boolean;
   currentUser: User;
   subscription: Subscription;
-  
+  //constructor
   constructor(
     public router: Router,
     private initiativeService: InitiativeService,
@@ -40,12 +38,8 @@ export class AllInitiativeComponent implements OnInit {
     this.dataSource = new AllInitiativeDataSource(this.initiativeService);
     this.dataSource.loadInitiatives();
 
-    //WIP
-    //seems to work
-    // this.currentUser = 
-    this.userService.getUserFromApi().subscribe(
-      res =>
-      {
+    this.userService.getUserFromApi().subscribe( //sets isAdmin to true if user is an admin
+      res => {
         console.log(res);
         this.currentUser = res;
         console.log(this.currentUser);
@@ -54,7 +48,7 @@ export class AllInitiativeComponent implements OnInit {
           console.log("option1");
         }
         else if (res.role == Role.USER) {// this needs to be here 
-          this.isAdmin =false;
+          this.isAdmin = false;
           console.log("option2");
         }
         else if (res.role == "ADMIN") { // do not delete this, will not catch admin without
@@ -65,25 +59,15 @@ export class AllInitiativeComponent implements OnInit {
           this.isAdmin = false;
           console.log("option6");
         }
-        
-        if(this.isAdmin==true){
+        if (this.isAdmin == true) {
           return true;
-       }
-        //if admin, set isAmin = true;
+        }
       }
-      
-
-      //do not refresh in oninit...
     );
-    
-    //...
-    //not working
-    // this.subscription = this.userService.currentUser //this is an observable
-    // .subscribe(user=> {this.currentUser = user;
-    //   console.log(user);
-    // })
-  }
+  } //end ngOnInit
 
+
+  //functions
   openAddInitiativeDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;

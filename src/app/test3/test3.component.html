@@ -1,11 +1,11 @@
 <div class="main-div" *ngIf="currentInitiative">
-  <mat-card-title class="main-title">{{ currentInitiative.title }}</mat-card-title>
+  <mat-card-title class="main-title"></mat-card-title>
   <div class="flex-container major-div" fxLayout="row" fxLayoutAlign="none" fxLayoutGap="3px">
     <div class="child-1 minor-div" >
       <!-- fxFlex="80" -->
       <mat-card-title>Initiative Title: {{ currentInitiative.title }}</mat-card-title>
       <mat-card class="description">
-        <span>Description</span>{{ currentInitiative.description }}
+        {{ currentInitiative.description }}
       </mat-card>
       
       <div class="flex-container1" fxLayout="row" fxLayoutAlign="none" fxLayoutGap="20px">

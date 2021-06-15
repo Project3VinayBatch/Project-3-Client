@@ -55,7 +55,7 @@ export class AllInitiativeComponent implements OnInit {
       }
     );
   }
-
+//functions:
   openAddInitiativeDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;

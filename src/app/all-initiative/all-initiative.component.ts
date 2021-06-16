@@ -37,9 +37,6 @@ export class AllInitiativeComponent implements OnInit {
     this.dataSource = new AllInitiativeDataSource(this.initiativeService);
     this.dataSource.loadInitiatives();
 
-    //WIP
-    //seems to work
-    // this.currentUser = 
     this.userService.getUserFromApi().subscribe(
       res =>
       {
@@ -60,19 +57,11 @@ export class AllInitiativeComponent implements OnInit {
         if(this.isAdmin==true){
           return true;
        }
-        //if admin, set isAmin = true;
+
       }
       
-
-      //do not refresh in oninit...
     );
     
-    //...
-    //not working
-    // this.subscription = this.userService.currentUser //this is an observable
-    // .subscribe(user=> {this.currentUser = user;
-    //   console.log(user);
-    // })
   }
 
   openAddInitiativeDialog() {

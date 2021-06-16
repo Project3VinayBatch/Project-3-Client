@@ -1,5 +1,5 @@
 <div class="main-div round">
-  
+
   <div class="mat-elevation-z8 round">
     <mat-table class="full-width-table" [dataSource]="dataSource">
       <!-- Title Column -->
@@ -17,7 +17,7 @@
         </mat-header-cell>
         <mat-cell *matCellDef="let initiative">{{
           initiative.description
-        }}</mat-cell>
+          }}</mat-cell>
       </ng-container>
 
       <!-- State Column -->
@@ -28,26 +28,13 @@
         <mat-cell *matCellDef="let initiative">{{ initiative.state }}</mat-cell>
       </ng-container>
 
+      <!--  -->
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row
-        *matRowDef="let initiative; columns: displayedColumns"
-        (click)="getRecord(initiative)"
-      ></mat-row>
+      <mat-row *matRowDef="let initiative; columns: displayedColumns" (click)="getRecord(initiative)"></mat-row>
     </mat-table>
-
     <div class="plus-btn-div">
-      <i class="fas fa-plus-circle" (click)="openAddInitiativeDialog()"*ngIf="isAdmin"></i>
-      <!-- <i class="fas fa-plus"></i> -->
-      <!-- above is no circle plus icon -->
+      <!-- fontawesome icon V-->
+      <i class="fas fa-plus-circle fa-2x" (click)="openAddInitiativeDialog()" *ngIf="isAdmin"></i>
     </div>
-    <!-- <mat-paginator
-      #paginator
-      [length]="dataSource?.data?.length"
-      [pageIndex]="0"
-      [pageSize]="10"
-      [pageSizeOptions]="[5, 10, 20]"
-      class="round"
-    >
-    </mat-paginator> -->
   </div>
 </div>

@@ -1,10 +1,7 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Initiative } from '../model/initiative';
 import { Role, User } from '../model/user';
 import { NewInitiativeFormComponent } from '../new-initiative-form/new-initiative-form.component';
@@ -18,16 +15,14 @@ import { AllInitiativeDataSource } from './all-initiative-datasource';
   styleUrls: ['./all-initiative.component.css'],
 })
 export class AllInitiativeComponent implements OnInit {
+  //variables
   initiatives: Initiative[];
-
   dataSource: AllInitiativeDataSource;
-
-  displayedColumns: string[] = ['title', 'description'];
-
-    isAdmin:boolean;
+  displayedColumns: string[] = ['title', 'description', 'state'];
+  isAdmin: boolean;
   currentUser: User;
   subscription: Subscription;
-  
+  //constructor
   constructor(
     public router: Router,
     private initiativeService: InitiativeService,
@@ -39,57 +34,33 @@ export class AllInitiativeComponent implements OnInit {
   ngOnInit() {
     this.dataSource = new AllInitiativeDataSource(this.initiativeService);
     this.dataSource.loadInitiatives();
-
-    //WIP
-    //seems to work
-    // this.currentUser = 
-    this.userService.getUserFromApi().subscribe(
-      res =>
-      {
-        console.log(res);
+    this.userService.getUserFromApi().subscribe( //sets isAdmin true is user is an admin
+      res => {
         this.currentUser = res;
-        console.log(this.currentUser);
         if (res.role == Role.ADMIN) {// do not delete this, will not catch admin without
           this.isAdmin = true;
-          console.log("option1");
         }
         else if (res.role == Role.USER) {// this needs to be here 
-          this.isAdmin =false;
-          console.log("option2");
+          this.isAdmin = false;
         }
         else if (res.role == "ADMIN") { // do not delete this, will not catch admin without
           this.isAdmin = true;
-          console.log("option5");
         }
         else if (res.role == "USER") {
           this.isAdmin = false;
-          console.log("option6");
         }
-        
-        if(this.isAdmin==true){
-          return true;
-       }
-        //if admin, set isAmin = true;
+        if (this.isAdmin == true) {
+          return true;  //sets isAdmin true is user is an admin
+        }
       }
-      
-
-      //do not refresh in oninit...
     );
-    
-    //...
-    //not working
-    // this.subscription = this.userService.currentUser //this is an observable
-    // .subscribe(user=> {this.currentUser = user;
-    //   console.log(user);
-    // })
   }
-
+//functions:
   openAddInitiativeDialog() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
-    dialogConfig.height = '55vh';
-    dialogConfig.minHeight = '800px';
-    dialogConfig.width = '55vw';
+    dialogConfig.height = '90vh';
+    dialogConfig.width = '60vw';
 
     const dialogRef = this.addInitiativeDialog.open(
       NewInitiativeFormComponent,
@@ -97,15 +68,12 @@ export class AllInitiativeComponent implements OnInit {
     );
 
     dialogRef.afterClosed().subscribe((val) => {
-      console.log(val);
       dialogConfig.data = null;
       this.dataSource.loadInitiatives();
     });
   }
-
   getRecord(row: Initiative) { //sends data to the specific initiative component
     this.initiativeService.saveCurrentInitiative(row);
     this.router.navigate(['view-initiative']);
-    console.log(row);
   }
 }

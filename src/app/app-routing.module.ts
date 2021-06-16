@@ -6,7 +6,6 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { Test3Component } from './test3/test3.component';
 import { AuthService } from './services/auth.service';
 import { UserGuardGuard } from './guard/user-guard.guard';
-import { InitiativeGuard } from './guard/initiative.guard';
 import { CallbackComponent } from './callback/callback.component';
 
 

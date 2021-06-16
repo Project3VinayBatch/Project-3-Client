@@ -1,10 +1,8 @@
-import { ThisReceiver } from '@angular/compiler';
 import {
   Component,
   OnInit,
   ViewChild,
   ElementRef,
-  OnDestroy,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 // import { String } from 'aws-sdk/clients/appstream';
@@ -36,6 +34,7 @@ export class Test3Component implements OnInit {
   subscription: Subscription;
   currentUser: User;
   poC: string;
+  canUpload: boolean;
   //CONSTRUCTOR
   constructor(
     private initiativeService: InitiativeService,
@@ -70,7 +69,6 @@ export class Test3Component implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('test');
     this.subscription = this.initiativeService.currentInitiative.subscribe(
       (currentInitiative) => {
         this.currentInitiative = currentInitiative;
@@ -78,9 +76,6 @@ export class Test3Component implements OnInit {
           this.isContact = true;
         }
         else{this.isContact = true;}
-        console.log("isContact: "+this.isContact);
-        console.log("isAdmin: "+this.isAdmin);
-        // console.log(this.currentInitiative);
       }
       
     );
@@ -96,6 +91,7 @@ export class Test3Component implements OnInit {
           this.currentInitiative.members == null
         ) {
           this.poC = 'No Point of Contact';
+          this.canUpload = false;
         } else {
           for (var i = 0; i < this.currentInitiative.members.length; i++) {
             if (
@@ -103,8 +99,10 @@ export class Test3Component implements OnInit {
               this.currentInitiative.pointOfContact
             ) {
               this.poC = this.currentInitiative.members[i].username;
+              this.canUpload = true;
               break;
             }
+            this.canUpload = false;
             this.poC = 'No Point of Contact';
           }
         }
@@ -126,26 +124,19 @@ export class Test3Component implements OnInit {
     this.userService.getUserFromApi().subscribe(
       res =>
       {
-        console.log(res);
         this.currentUser = res;
-        console.log(this.currentUser);
         if (res.role == Role.ADMIN) {// do not delete this, will not catch admin without
           this.isAdmin = true;
-          console.log("option1");
         }
         else if (res.role == Role.USER) {// this needs to be here 
           this.isAdmin =false;
-          console.log("option2");
         }
         else if (res.role == "ADMIN") { // do not delete this, will not catch admin without
           this.isAdmin = true;
-          console.log("option5");
         }
         else if (res.role == "USER") {
           this.isAdmin = false;
-          console.log("option6");
         }
-        
         if(this.isAdmin==true){
           return true;
        }
@@ -165,10 +156,8 @@ export class Test3Component implements OnInit {
       user.id
     );
     // this.currentInitiative.members = new Set<User>();
-    console.log(intiiDTO);
     this.service.setPoC(intiiDTO).subscribe((res) => {
       this.currentInitiative = res;
-      console.log(res);
       for (var i = 0; i < this.currentInitiative.members.length; i++) {
         if (
           this.currentInitiative.members[i].id ==
@@ -189,13 +178,12 @@ export class Test3Component implements OnInit {
         this.currentInitiative.initiativeId
       ) //switch 1 for current initiative
       .subscribe((res) => {
-        console.log(res);
+        this.displayFileNames();
         //this.inputClear.nativeElement.value = '';
       });
   }
   getFile(event) {
     this.selectedFile = event.target.files[0];
-    console.log(this.selectedFile);
   }
 
   displayFileNames() {
@@ -204,19 +192,19 @@ export class Test3Component implements OnInit {
       .subscribe((res) => {
         this.documentList = res;
       });
+
   }
   getMembers(): void {
     this.service
       .getMembers(String(this.currentInitiative.initiativeId))
       .subscribe((res1) => {
         this.currentInitiative = res1;
-        console.log(this.currentInitiative.members);
         if (
           this.currentInitiative.members.length == 0 ||
           this.currentInitiative.members == null
         ) {
           this.poC = 'No Point of Contact';
-          console.log(this.currentInitiative.members);
+          this.canUpload = false;
         } else {
           for (var i = 0; i < this.currentInitiative.members.length; i++) {
             if (
@@ -224,9 +212,11 @@ export class Test3Component implements OnInit {
               this.currentInitiative.pointOfContact
             ) {
               this.poC = this.currentInitiative.members[i].username;
+              this.canUpload = true;
               break;
             }
             this.poC = 'No Point of Contact';
+            this.canUpload = false;
           }
         }
       });
@@ -239,19 +229,12 @@ export class Test3Component implements OnInit {
       )
       .subscribe((res) => {
         this.user = res;
-        console.log(res);
         if (res == null) {
-          console.log('what the! it worked!');
           this.currentInitiative.members[this.currentInitiative.members.length]=this.currentUser;
           this.isButtonVisible = false;
         } else {
-          console.log('this wont work');
           this.isButtonVisible = true;
         }
       });
   }
-
-  // setActive():void{
-  //   this.service.
-  // }
 }

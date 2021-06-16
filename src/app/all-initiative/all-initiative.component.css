@@ -30,20 +30,19 @@
   border-radius: 0px 13px 0px 0px;
 }
 .plus-btn-div{
+  /* div around the font awesome button */
   display: flex;
   flex-direction: row-reverse;
   min-height: 1em;
 }
 .fa-plus-circle{
+  /* font awesome icon */
 color: #474C55;
 background-color: #F26925;
-/* color: #F26925;
-background-color: #474C55; */
 margin: 1em 1em ;
 padding: 0px;
 border-radius: 100%;
-/* padding: -10px; */
-/* background-size: 0; */
+cursor: pointer;
 }
-/* header size needs to be responsive for small screens */
-/* should consider making font sizes rem or em so that they shrink or otherwise adapt them ot small screens... */
+/* header size needs to be more responsive for small screens */
+/* should consider making font sizes rem or em so that they shrink or otherwise adapt them ot small screens */

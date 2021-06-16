@@ -28,7 +28,6 @@ export class NewInitiativeFormComponent{
   ) {
     this.initiativeService.getUser().subscribe((res) => {
       this.user = res;
-
     });
   }
 
@@ -36,11 +35,9 @@ export class NewInitiativeFormComponent{
     this.dialogRef.close();
   }
   onSubmit() {
-
     this.initiativeService.postInitiative(
       this.initiativeForm.value,
       this.user.id
-
     );
     this.dialogRef.close('Saved!');
   }

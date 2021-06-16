@@ -23,8 +23,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { AllInitiativeComponent } from './all-initiative/all-initiative.component';
-import { LinksComponent } from './links/links.component';
-import { HeaderComponent } from './header/header.component';
 import { Test3Component } from './test3/test3.component';
 import { MatCardModule } from '@angular/material/card';
 import { SignInComponent } from './sign-in/sign-in.component';
@@ -38,11 +36,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     NewInitiativeFormComponent,
     NavBarComponent,
     AllInitiativeComponent,
-    LinksComponent,
     Test3Component,
     SignInComponent,
     CallbackComponent,

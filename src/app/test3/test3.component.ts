@@ -69,7 +69,6 @@ export class Test3Component implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('test');
     this.subscription = this.initiativeService.currentInitiative.subscribe(
       (currentInitiative) => {
         this.currentInitiative = currentInitiative;
@@ -77,9 +76,6 @@ export class Test3Component implements OnInit {
           this.isContact = true;
         }
         else{this.isContact = true;}
-        console.log("isContact: "+this.isContact);
-        console.log("isAdmin: "+this.isAdmin);
-        // console.log(this.currentInitiative);
       }
       
     );
@@ -128,9 +124,7 @@ export class Test3Component implements OnInit {
     this.userService.getUserFromApi().subscribe(
       res =>
       {
-        console.log(res);
         this.currentUser = res;
-        console.log(this.currentUser);
         if (res.role == Role.ADMIN) {// do not delete this, will not catch admin without
           this.isAdmin = true;
         }
@@ -162,10 +156,8 @@ export class Test3Component implements OnInit {
       user.id
     );
     // this.currentInitiative.members = new Set<User>();
-    console.log(intiiDTO);
     this.service.setPoC(intiiDTO).subscribe((res) => {
       this.currentInitiative = res;
-      console.log(res);
       for (var i = 0; i < this.currentInitiative.members.length; i++) {
         if (
           this.currentInitiative.members[i].id ==
@@ -187,13 +179,11 @@ export class Test3Component implements OnInit {
       ) //switch 1 for current initiative
       .subscribe((res) => {
         this.displayFileNames();
-        console.log(res);
         //this.inputClear.nativeElement.value = '';
       });
   }
   getFile(event) {
     this.selectedFile = event.target.files[0];
-    console.log(this.selectedFile);
   }
 
   displayFileNames() {
@@ -209,7 +199,6 @@ export class Test3Component implements OnInit {
       .getMembers(String(this.currentInitiative.initiativeId))
       .subscribe((res1) => {
         this.currentInitiative = res1;
-        console.log(this.currentInitiative.members);
         if (
           this.currentInitiative.members.length == 0 ||
           this.currentInitiative.members == null
@@ -240,7 +229,6 @@ export class Test3Component implements OnInit {
       )
       .subscribe((res) => {
         this.user = res;
-        console.log(res);
         if (res == null) {
           this.currentInitiative.members[this.currentInitiative.members.length]=this.currentUser;
           this.isButtonVisible = false;

@@ -57,17 +57,13 @@
         <mat-card-title>Members</mat-card-title>
         <mat-list *ngFor="let member of currentInitiative.members">
           <mat-list-item> {{ member.username }} </mat-list-item>
-          <button (click)="makePoC(member)">Make PoC</button>
+          <button (click)="makePoC(member)" *ngIf="isAdmin">Make PoC</button>
+          <!-- I want this to dissappear -->
         </mat-list>
       </div>
       <br />
       <br />
-      <button
-        *ngIf="this.isButtonVisible"
-        (click)="addMembers()"
-        mat-raised-button
-        class="button2"
-      >
+      <button *ngIf="this.isButtonVisible" (click)="addMembers()" mat-raised-button class="button2">
         Join Initiative
       </button>
     </div>

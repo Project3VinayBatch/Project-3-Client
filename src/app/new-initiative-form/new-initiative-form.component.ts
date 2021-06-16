@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { InitiativeService } from '../services/initiative.service';
-import { InitiativeDTO } from '../model/initiativeDTO';
-import { Router } from '@angular/router';
 import { MatDialogRef } from '@angular/material/dialog';
 import { User } from '../model/user';
 
@@ -11,7 +9,8 @@ import { User } from '../model/user';
   templateUrl: './new-initiative-form.component.html',
   styleUrls: ['./new-initiative-form.component.css'],
 })
-export class NewInitiativeFormComponent {
+
+export class NewInitiativeFormComponent{
   public title: string;
   public description: string;
   user: User;

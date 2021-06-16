@@ -109,7 +109,7 @@ export class Test3Component implements OnInit {
         for(var i = 0; i < this.currentInitiative.members.length; i++){
           if (
             this.currentInitiative.members[i].id ==
-            this.currentInitiative.pointOfContact
+            this.currentUser.id
           ) {
             this.isButtonVisible = false;
             break;

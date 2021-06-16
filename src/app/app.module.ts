@@ -32,6 +32,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CallbackComponent } from './callback/callback.component';
 import { AuthHeaderInterceptor } from './auth-header.interceptor';
 import { MatDialogModule } from '@angular/material/dialog';
+import {generate} from 'swagger-angular-generator';
 
 @NgModule({
   declarations: [
@@ -78,5 +79,6 @@ import { MatDialogModule } from '@angular/material/dialog';
     },
   ],
   bootstrap: [AppComponent],
+  
 })
 export class AppModule {}

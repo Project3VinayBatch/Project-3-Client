@@ -99,7 +99,7 @@ describe('AllInitiativeComponent', () => {
     
     //component.fill(dummyData);   
     //expect(component.dataSource.initiativeList).toBe(dummyData);
-
+    //component.
   });
 
 

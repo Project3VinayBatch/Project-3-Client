@@ -11,6 +11,7 @@ import { NewInitiativeFormComponent } from './new-initiative-form.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MatDialogRef } from '@angular/material/dialog';
 
 describe('NewInitiativeFormComponent', () => {
   let component: NewInitiativeFormComponent;
@@ -34,7 +35,8 @@ describe('NewInitiativeFormComponent', () => {
       providers: [ 
         HttpClientModule,
         RouterTestingModule,
-        { provide: Router, useValue: routerSpy }
+        { provide: Router, useValue: routerSpy },
+        {provide: MatDialogRef, useValue: {}}
       ]
     }).compileComponents();
   }));
@@ -51,13 +53,13 @@ describe('NewInitiativeFormComponent', () => {
   });
 
   it('should cancel',()=>{
-    component.clickCancel();
+    component.onCancel();
 
     expect(routerSpy.navigate).toHaveBeenCalledWith(['all-initiative']);
   });
 
   it('should submit',()=>{
-    component.clickSubmit();
+    component.onSubmit();
     if(!component.initiativeForm.controls.title.value){ //if null
       expect(routerSpy.navigate).not.toHaveBeenCalledWith();
     }

@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "compodoc": "npx compodoc -p tsconfig.doc.json"
   },
   "private": true,
   "dependencies": {
@@ -25,6 +26,9 @@
     "aws-s3": "^2.0.5",
     "aws-sdk": "^2.926.0",
     "rxjs": "~6.6.0",
+    "swagger-angular-generator": "^4.2.2",
+    "swagger-ui": "^3.50.0",
+    "swagger-ui-dist": "^3.50.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },
@@ -47,4 +51,5 @@
     "tslint": "~6.1.0",
     "typescript": "~4.1.5"
   }
+  
 }

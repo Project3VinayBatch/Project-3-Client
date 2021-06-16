@@ -27,7 +27,9 @@ describe('FileComponent', () => {
     length:2,
     item:(index: 0)=>fakeFile,
   };
-
+  let fakeUploadNull={
+    length:0,
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -58,13 +60,18 @@ describe('FileComponent', () => {
     //input.dispatchEvent(new Event('input'));
 
     let d={target:{files:fakeUpload}};
-    
+    let e={target:{files:fakeUploadNull}};
     //let c=fixture.detectChanges();
-    let spyTau=spyOn(component,"fileUpload");
+    let spyTau=spyOn(component,"fileUpload").and.callThrough();
     component.ngOnInit();
 
     component.fileUpload(d);
+    component.fileUpload(e);
+
+    //spyTau.call;
     expect(spyTau).toHaveBeenCalledWith(d);
+    expect(spyTau).toHaveBeenCalledWith(e);
+
     //expect(fileSpy.fileList).toBe(fakeUpload);
   });
 });

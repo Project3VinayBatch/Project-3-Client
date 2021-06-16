@@ -12,6 +12,7 @@ import { CallbackComponent } from './callback/callback.component';
 
 
 const routes: Routes = [
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { 
     path: '', component: SignInComponent ,
     // redirectTo: '/sign-in', pathMatch: 'full',
@@ -41,6 +42,7 @@ const routes: Routes = [
   },
   {
     path: 'callback',
+    redirectTo:'/all-initiatives',
     component: CallbackComponent,
   },
   // redirect after it works...

@@ -19,7 +19,8 @@ export class AllInitiativeComponent implements OnInit {
   initiatives: Initiative[];
   dataSource: AllInitiativeDataSource;
   displayedColumns: string[] = ['title', 'description', 'state'];
-  isAdmin: boolean;
+
+  isAdmin:boolean;
   currentUser: User;
   subscription: Subscription;
   //constructor
@@ -34,8 +35,10 @@ export class AllInitiativeComponent implements OnInit {
   ngOnInit() {
     this.dataSource = new AllInitiativeDataSource(this.initiativeService);
     this.dataSource.loadInitiatives();
-    this.userService.getUserFromApi().subscribe( //sets isAdmin true is user is an admin
-      res => {
+
+    this.userService.getUserFromApi().subscribe(
+      res =>
+      {
         this.currentUser = res;
         if (res.role == Role.ADMIN) {// do not delete this, will not catch admin without
           this.isAdmin = true;
@@ -49,11 +52,15 @@ export class AllInitiativeComponent implements OnInit {
         else if (res.role == "USER") {
           this.isAdmin = false;
         }
-        if (this.isAdmin == true) {
-          return true;  //sets isAdmin true is user is an admin
-        }
+        
+        if(this.isAdmin==true){
+          return true;
+       }
+
       }
+      
     );
+    
   }
 //functions:
   openAddInitiativeDialog() {

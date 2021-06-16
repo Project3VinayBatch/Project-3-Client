@@ -3,7 +3,6 @@
     border-radius: 10px;
     padding: 20px;
     min-width: 250px;
-    color: #FFFFFF;
     }
 .child-2{
     /* background-color: #F26925; */
@@ -56,6 +55,7 @@ button{
     background-color: #F26925;
     padding: .5em;
     border-radius: 15px 15px 0 0 ;
+    color: #FFFFFF;
 }
 .main-title{
  background-color: #474C55;

@@ -23,6 +23,7 @@
   * Or by running the built Java app.
     * Do `gradle build` or `gradlew build` in terminal
     * Run Java jar.
+      *located in`\Project-3-Services\build\libs\project-3-server-0.0.1-SNAPSHOT.jar`
   
 * Step 3) Run Angular Application
   * Within Visual Code

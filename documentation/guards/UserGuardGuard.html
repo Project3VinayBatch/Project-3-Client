@@ -265,7 +265,6 @@ export class UserGuardGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable&lt;boolean | UrlTree&gt; | Promise&lt;boolean | UrlTree&gt; | boolean | UrlTree {
-    console.log(this.auth.isLoggedIn());
       if(this.auth.isLoggedIn()){
        return true;
     }
@@ -273,7 +272,6 @@ export class UserGuardGuard implements CanActivate {
       window.alert(&#x27;You don\&#x27;t have permission to view this page&#x27;); //temp
       this.router.navigate([&#x27;sign-in&#x27;]);
        return false;
-       //should probably reroute to login
      }
   }
   

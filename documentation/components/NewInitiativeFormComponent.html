@@ -182,7 +182,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/new-initiative-form/new-initiative-form.component.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/new-initiative-form/new-initiative-form.component.ts:21</a></div>
                             </td>
                         </tr>
 
@@ -275,8 +275,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/app/new-initiative-form/new-initiative-form.component.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="34"
+                            class="link-to-prism">src/app/new-initiative-form/new-initiative-form.component.ts:34</a></div>
                 </td>
             </tr>
 
@@ -314,8 +314,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/app/new-initiative-form/new-initiative-form.component.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/app/new-initiative-form/new-initiative-form.component.ts:37</a></div>
                 </td>
             </tr>
 
@@ -358,7 +358,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/new-initiative-form/new-initiative-form.component.ts:16</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/new-initiative-form/new-initiative-form.component.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -386,7 +386,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/new-initiative-form/new-initiative-form.component.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/new-initiative-form/new-initiative-form.component.ts:26</a></div>
                             </td>
                         </tr>
 
@@ -415,7 +415,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/new-initiative-form/new-initiative-form.component.ts:19</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/new-initiative-form/new-initiative-form.component.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -443,7 +443,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/new-initiative-form/new-initiative-form.component.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/new-initiative-form/new-initiative-form.component.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -470,7 +470,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/new-initiative-form/new-initiative-form.component.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/new-initiative-form/new-initiative-form.component.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -483,11 +483,9 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component} from &#x27;@angular/core&#x27;;
 import { FormBuilder, Validators } from &#x27;@angular/forms&#x27;;
 import { InitiativeService } from &#x27;../services/initiative.service&#x27;;
-import { InitiativeDTO } from &#x27;../model/initiativeDTO&#x27;;
-import { Router } from &#x27;@angular/router&#x27;;
 import { MatDialogRef } from &#x27;@angular/material/dialog&#x27;;
 import { User } from &#x27;../model/user&#x27;;
 
@@ -496,7 +494,8 @@ import { User } from &#x27;../model/user&#x27;;
   templateUrl: &#x27;./new-initiative-form.component.html&#x27;,
   styleUrls: [&#x27;./new-initiative-form.component.css&#x27;],
 })
-export class NewInitiativeFormComponent {
+
+export class NewInitiativeFormComponent{
   public title: string;
   public description: string;
   user: User;
@@ -514,7 +513,6 @@ export class NewInitiativeFormComponent {
   ) {
     this.initiativeService.getUser().subscribe((res) &#x3D;&gt; {
       this.user &#x3D; res;
-
     });
   }
 
@@ -522,11 +520,9 @@ export class NewInitiativeFormComponent {
     this.dialogRef.close();
   }
   onSubmit() {
-
     this.initiativeService.postInitiative(
       this.initiativeForm.value,
       this.user.id
-
     );
     this.dialogRef.close(&#x27;Saved!&#x27;);
   }
@@ -554,7 +550,7 @@ export class NewInitiativeFormComponent {
       &lt;/mat-form-field&gt;
       &lt;mat-form-field&gt;
         &lt;mat-label&gt;Description&lt;/mat-label&gt;
-        &lt;textarea rows&#x3D;&quot;15&quot; matInput formControlName&#x3D;&quot;description&quot;&gt; &lt;/textarea&gt;
+        &lt;textarea rows&#x3D;&quot;5&quot; matInput formControlName&#x3D;&quot;description&quot;&gt; &lt;/textarea&gt;
         &lt;mat-error
           *ngIf&#x3D;&quot;initiativeForm.controls[&#x27;description&#x27;].hasError(&#x27;required&#x27;)&quot;
         &gt;
@@ -714,8 +710,8 @@ textarea {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="form-div">  <!-- replacing main-div -->  <form [formGroup]="initiativeForm" (ngSubmit)="onSubmit()">    <div class="header alignment">      <mat-card-title>Create Initiative</mat-card-title>    </div>    <div class="alignment">      <mat-form-field>        <mat-label>Title</mat-label>        <!-- test this with full width class -->        <input matInput formControlName="title" />        <mat-error          *ngIf="initiativeForm.controls[\'title\'].hasError(\'required\')"        >          Title is <strong>required</strong>        </mat-error>      </mat-form-field>      <mat-form-field>        <mat-label>Description</mat-label>        <textarea rows="15" matInput formControlName="description"> </textarea>        <mat-error          *ngIf="initiativeForm.controls[\'description\'].hasError(\'required\')"        >          Description is <strong>required</strong>        </mat-error>      </mat-form-field>      <!-- need to style this... why is it blue?-->      <div class="flex-container alignment">        <button          mat-raised-button          color="primary"          type="button"          (click)="onSubmit()"          [disabled]="!initiativeForm.valid"        >          Submit        </button>        <button mat-raised-button type="button" (click)="onCancel()">          Cancel        </button>      </div>    </div>  </form></div></div>'
-    var COMPONENTS = [{'name': 'AllInitiativeComponent', 'selector': 'app-all-initiative'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CallbackComponent', 'selector': 'app-callback'},{'name': 'FileComponent', 'selector': 'app-file'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'LinksComponent', 'selector': 'app-links'},{'name': 'NavBarComponent', 'selector': 'app-nav-bar'},{'name': 'NewInitiativeFormComponent', 'selector': 'app-new-initiative-form'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'Test3Component', 'selector': 'app-test3'}];
+        var COMPONENT_TEMPLATE = '<div><div class="form-div">  <!-- replacing main-div -->  <form [formGroup]="initiativeForm" (ngSubmit)="onSubmit()">    <div class="header alignment">      <mat-card-title>Create Initiative</mat-card-title>    </div>    <div class="alignment">      <mat-form-field>        <mat-label>Title</mat-label>        <!-- test this with full width class -->        <input matInput formControlName="title" />        <mat-error          *ngIf="initiativeForm.controls[\'title\'].hasError(\'required\')"        >          Title is <strong>required</strong>        </mat-error>      </mat-form-field>      <mat-form-field>        <mat-label>Description</mat-label>        <textarea rows="5" matInput formControlName="description"> </textarea>        <mat-error          *ngIf="initiativeForm.controls[\'description\'].hasError(\'required\')"        >          Description is <strong>required</strong>        </mat-error>      </mat-form-field>      <!-- need to style this... why is it blue?-->      <div class="flex-container alignment">        <button          mat-raised-button          color="primary"          type="button"          (click)="onSubmit()"          [disabled]="!initiativeForm.valid"        >          Submit        </button>        <button mat-raised-button type="button" (click)="onCancel()">          Cancel        </button>      </div>    </div>  </form></div></div>'
+    var COMPONENTS = [{'name': 'AllInitiativeComponent', 'selector': 'app-all-initiative'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CallbackComponent', 'selector': 'app-callback'},{'name': 'FileComponent', 'selector': 'app-file'},{'name': 'NavBarComponent', 'selector': 'app-nav-bar'},{'name': 'NewInitiativeFormComponent', 'selector': 'app-new-initiative-form'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'Test3Component', 'selector': 'app-test3'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'NewInitiativeFormComponent'};
 </script>

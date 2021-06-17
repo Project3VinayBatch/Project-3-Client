@@ -1,11 +1,14 @@
 import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 
 import { AuthService } from './auth.service';
 
 
 describe('AuthService', () => {
   let service: AuthService;
+  let routerSpy = {navigate: jasmine.createSpy('navigate')};
+
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -13,7 +16,8 @@ describe('AuthService', () => {
         HttpClientModule
       ],
       providers: [ 
-        HttpClientModule
+        HttpClientModule,
+        { provide: Router, useValue: routerSpy },
       ]
 
     });
@@ -44,5 +48,10 @@ describe('AuthService', () => {
     expect(sessionStorage.length).toBe(0);
   });
 
+  it('should update token', ()=>{
+    const fakeToken='Fake Login';
+      service.updateToken(fakeToken);
+      expect(service.getToken()).toBe(fakeToken);
+  });
 
 });

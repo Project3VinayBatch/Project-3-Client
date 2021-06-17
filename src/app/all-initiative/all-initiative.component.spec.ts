@@ -9,10 +9,14 @@ import { AllInitiativeComponent } from './all-initiative.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Initiative } from '../model/initiative';
-import { User } from '../model/user';
+import { Role, User } from '../model/user';
 import { AuthService } from '../services/auth.service';
 import { AllInitiativeDataSource } from './all-initiative-datasource';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { NewInitiativeFormComponent } from '../new-initiative-form/new-initiative-form.component';
+import { NEVER, never, of } from 'rxjs';
+import { UserService } from '../services/user.service';
+import { Observable } from 'rxjs';
 
 
 describe('AllInitiativeComponent', () => {
@@ -20,8 +24,12 @@ describe('AllInitiativeComponent', () => {
   let fixture: ComponentFixture<AllInitiativeComponent>;
   let routerSpy = {navigate: jasmine.createSpy('navigate')};
   let authSrvc:AuthService;
+  let userSrvc:UserService;
 
-  
+  let dialogMock={open: jasmine.createSpy('open')};
+  //let userSpy={getUserFromApi: jasmine.createSpy('getUserFromApi')};
+ 
+  //let AllMock={getState: jasmine.createSpy('getState')};
   let fakeMembers: User[]=[{
     "id":333,
     "username":"Dog123",
@@ -42,7 +50,33 @@ describe('AllInitiativeComponent', () => {
     "files": null,
   }];
 
+  let userXray:User={
+    "id":6,
+    "username":"Xray",
+    "role": null,
+    "initiatives":null,
+    "files":null
+  };
+  let userYankee:User={
+    "id":7,
+    "username":"Yankee",
+    "role": 0,
+    "initiatives":null,
+    "files":null
+  };
 
+  let userZulu:User={
+    "id":7,
+    "username":"Zulu",
+    "role": 1,
+    "initiatives":null,
+    "files":null
+  };
+
+  let dialogConfig = new MatDialogConfig();
+  dialogConfig.autoFocus = true;
+  dialogConfig.height = '90vh';
+  dialogConfig.width = '60vw';
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -56,11 +90,15 @@ describe('AllInitiativeComponent', () => {
         
       ],
       providers: [ 
-        HttpClientModule,         
-        
+        HttpClientModule,     
+
         { provide: Router, useValue: routerSpy },
         {provide: ActivatedRoute, useValue: routerSpy},
-        {provide: MatDialog, useValue: {}}
+        {provide: MatDialog, useValue: dialogMock},
+        //{provide: MatDialogRef, useValue: dialogMock},
+        //{provide: MatDialogRef,useValue:dialogRefSpy}
+        //{provide: UserService,useValue: userSpy },
+
 
 
       ]
@@ -83,23 +121,66 @@ describe('AllInitiativeComponent', () => {
   });
 
   it('should open add initiative dialogue',()=>{
+    dialogMock.open.and
+    .returnValue(
+      {
+        afterClosed: () => of(true)
+      }  as MatDialogRef<typeof component> );;
+ 
     component.openAddInitiativeDialog();
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['new-initiative']);
+    expect(dialogMock.open).toHaveBeenCalled();
+    
 
   });
 
   it('should get record',()=>{
+    
     component.getRecord(dummyData[0]);
   
     expect(component.getRecord(dummyData[0])).toBeFalsy();
 
   });
 
-  it('should fill intiative list',()=>{
+  it('should detect user role onInit: admin',()=>{    
+
+    userXray.role=0;
+    userSrvc=TestBed.inject(UserService);
+    let response=userXray;
+
+    let spyTau=spyOn(userSrvc,'getUserFromApi').and.returnValue(of(response));
+    component.ngOnInit();
+    fixture.detectChanges();
+    expect(response.role).toBe(0);
     
-    //component.fill(dummyData);   
-    //expect(component.dataSource.initiativeList).toBe(dummyData);
-    //component.
+  });
+
+  it('should detect user role onInit: user',()=>{    
+
+    userSrvc=TestBed.inject(UserService);
+    let response=userZulu;
+
+    let spyTau=spyOn(userSrvc,'getUserFromApi').and.returnValue(of(response));
+    component.ngOnInit();
+    fixture.detectChanges();
+    expect(response.role).toBe(1);
+
+    
+  });
+
+  it('should detect user role onInit: never',()=>{    
+
+
+    /* Those if statements will never execute..... */
+    /*lines 46-51 */
+    userSrvc=TestBed.inject(UserService);
+    let response=userZulu;
+    response.role=Role.USER;
+    let spyTau=spyOn(userSrvc,'getUserFromApi').and.returnValue(of(response));
+    component.ngOnInit();
+    fixture.detectChanges();
+    expect(response.role).toBe(1);
+
+    
   });
 
 

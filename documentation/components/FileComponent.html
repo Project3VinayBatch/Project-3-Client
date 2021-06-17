@@ -154,7 +154,7 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(fileService: <a href="../injectables/FileService.html">FileService</a>)</code>
+<code>constructor()</code>
                     </td>
                 </tr>
                         <tr>
@@ -163,36 +163,6 @@
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>fileService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/FileService.html" target="_self" >FileService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
 </section>
@@ -318,7 +288,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
-import { FileService } from &#x27;../services/file.service&#x27;;
+
 
 @Component({
   selector: &#x27;app-file&#x27;,
@@ -326,7 +296,7 @@ import { FileService } from &#x27;../services/file.service&#x27;;
   styleUrls: [&#x27;./file.component.css&#x27;],
 })
 export class FileComponent implements OnInit {
-  constructor(private fileService: FileService) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
@@ -379,7 +349,7 @@ export class FileComponent implements OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><input type="file" (change)="fileUpload($event)" placeholder="Upload file" /></div>'
-    var COMPONENTS = [{'name': 'AllInitiativeComponent', 'selector': 'app-all-initiative'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CallbackComponent', 'selector': 'app-callback'},{'name': 'FileComponent', 'selector': 'app-file'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'LinksComponent', 'selector': 'app-links'},{'name': 'NavBarComponent', 'selector': 'app-nav-bar'},{'name': 'NewInitiativeFormComponent', 'selector': 'app-new-initiative-form'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'Test3Component', 'selector': 'app-test3'}];
+    var COMPONENTS = [{'name': 'AllInitiativeComponent', 'selector': 'app-all-initiative'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CallbackComponent', 'selector': 'app-callback'},{'name': 'FileComponent', 'selector': 'app-file'},{'name': 'NavBarComponent', 'selector': 'app-nav-bar'},{'name': 'NewInitiativeFormComponent', 'selector': 'app-new-initiative-form'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'Test3Component', 'selector': 'app-test3'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'FileComponent'};
 </script>

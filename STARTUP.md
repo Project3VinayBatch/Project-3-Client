@@ -13,11 +13,6 @@
     * `src\main\resources\application.properties`
     * `src\main\resources\secret.properties`
 
-  * You must also modify `@CrossOrigin` annotations on the `Controller Classes` with the address your Angular application is running from.
-    * By default it is on <http://localhost:4200>
-  
-  ![](./images/controller.png)
-
 ---
 
 * Step 2b) Run Java Server Application
@@ -38,6 +33,9 @@
 
 ---
 
-* Step 4) Login through GitHub and use the App
-  * GitHub OAuth for the application may need to be reregistered on your end.
+* Step 4) Go to Github. Go to settings > Developer Settings > Oauth Apps. Generate a secret key and put the client id and secret key in your secret.properties file in your Spring application. Your homepage url will be http://localhost:4200 or the s3 bucket url depending on how you are running the frontend. The callback url will be the homepage url plus /callback. For example: http://localhost:4200/callback or http://s3-url/callback. The application name can be anything but we named it Revature Initiatives. Then hit save.
+
+---
+
+* Step 5) Login through GitHub and use the App
   

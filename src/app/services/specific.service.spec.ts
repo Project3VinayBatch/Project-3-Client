@@ -39,24 +39,11 @@ describe('SpecificService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should get files',()=>{
-    const check=service.getFiles();
-    expect(check).toBeTruthy();
-
-  });
-  it('should post files',()=>{
-    const check=service.postFiles();
-    expect(check).toBeTruthy();    
-
-  });
   it('should get members',()=>{
     const check=service.getMembers(0);
     expect(check).toBeTruthy();
   });
-  it('should post members',()=>{
-    const check=service.postMembers();
-    expect(check).toBeTruthy();
-  });
+
   it('should add members',()=>{
    
     const check=service.addMembers(userXray.username);

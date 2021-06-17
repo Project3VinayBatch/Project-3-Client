@@ -27,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: 'callback',
-    redirectTo:'/all-initiatives',
+    //redirectTo:'/all-initiatives',
     component: CallbackComponent,
   },
   { 

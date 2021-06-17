@@ -78,6 +78,10 @@ describe('NavBarComponent', () => {
     expect(btn).toEqual('/all-initiative')
   });
 
+  it('should on change',()=>{
+
+    component.ngOnChanges();
+  });
   
 
 });

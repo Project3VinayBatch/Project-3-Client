@@ -66,12 +66,6 @@
 
 
 
-    <p class="comment">
-        <h3>Implements</h3>
-    </p>
-    <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
-    </p>
 
 
 <section>
@@ -150,9 +144,6 @@
                             <li>
                                 <a href="#login">login</a>
                             </li>
-                            <li>
-                                <a href="#ngOnInit">ngOnInit</a>
-                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -176,7 +167,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/sign-in/sign-in.component.ts:25</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/sign-in/sign-in.component.ts:24</a></div>
                             </td>
                         </tr>
 
@@ -257,47 +248,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="38"
-                            class="link-to-prism">src/app/sign-in/sign-in.component.ts:38</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ngOnInit"></a>
-                    <span class="name">
-                        <b>
-                            ngOnInit
-                        </b>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngOnInit()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">src/app/sign-in/sign-in.component.ts:32</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="28"
+                            class="link-to-prism">src/app/sign-in/sign-in.component.ts:28</a></div>
                 </td>
             </tr>
 
@@ -342,7 +294,6 @@
         Validators.required, 
         // Validators.minLength(8),
       ]
-            
   })</code>
                         </td>
                     </tr>
@@ -399,7 +350,7 @@ import { AuthService } from &#x27;../services/auth.service&#x27;;
   templateUrl: &#x27;./sign-in.component.html&#x27;,
   styleUrls: [&#x27;./sign-in.component.css&#x27;]
 })
-export class SignInComponent implements OnInit {
+export class SignInComponent{
 
   user: User;
   loginForm &#x3D; this.fb.group({
@@ -411,23 +362,12 @@ export class SignInComponent implements OnInit {
         Validators.required, 
         // Validators.minLength(8),
       ]
-            
   })
 
-  constructor(private fb: FormBuilder, private authService:AuthService) {
-    // this.user.username&#x3D;&quot;&quot;;
-    // this.user.password&#x3D;&quot;&quot;; 
-  }
-
-  ngOnInit(): void {
-
-  }
-
-
+  constructor(private fb: FormBuilder, private authService:AuthService) {}
 
   login(): void{
-    this.authService.login();
-    
+    this.authService.login();  
   }
 
 }
@@ -553,7 +493,7 @@ export class SignInComponent implements OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div class="form-div">    <form [formGroup]="loginForm" novalidate>        <div class="header alignment">            <mat-card-title>Login to account</mat-card-title>        </div>        <div class="buffer">            <!-- <img src="../../assets/img/rev-logo.png" alt="revature Logo"> -->            <p>Please login through Github to access the Strategic Initiative Board</p>        </div>        <div class="flex-container">            <button mat-raised-button (click)="login()">Login Through Github <img                    src="../../assets/img/GitHub-Mark-32px.png" alt="Github Mark Logo"></button>        </div>    </form></div></div>'
-    var COMPONENTS = [{'name': 'AllInitiativeComponent', 'selector': 'app-all-initiative'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CallbackComponent', 'selector': 'app-callback'},{'name': 'FileComponent', 'selector': 'app-file'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'LinksComponent', 'selector': 'app-links'},{'name': 'NavBarComponent', 'selector': 'app-nav-bar'},{'name': 'NewInitiativeFormComponent', 'selector': 'app-new-initiative-form'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'Test3Component', 'selector': 'app-test3'}];
+    var COMPONENTS = [{'name': 'AllInitiativeComponent', 'selector': 'app-all-initiative'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CallbackComponent', 'selector': 'app-callback'},{'name': 'FileComponent', 'selector': 'app-file'},{'name': 'NavBarComponent', 'selector': 'app-nav-bar'},{'name': 'NewInitiativeFormComponent', 'selector': 'app-new-initiative-form'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'Test3Component', 'selector': 'app-test3'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SignInComponent'};
 </script>

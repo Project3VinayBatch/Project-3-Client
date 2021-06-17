@@ -145,51 +145,45 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 import { AllInitiativeComponent } from &#x27;./all-initiative/all-initiative.component&#x27;;
-import { NewInitiativeFormComponent } from &#x27;./new-initiative-form/new-initiative-form.component&#x27;;
 
 import { SignInComponent } from &#x27;./sign-in/sign-in.component&#x27;;
 import { Test3Component } from &#x27;./test3/test3.component&#x27;;
 import { AuthService } from &#x27;./services/auth.service&#x27;;
 import { UserGuardGuard } from &#x27;./guard/user-guard.guard&#x27;;
-import { InitiativeGuard } from &#x27;./guard/initiative.guard&#x27;;
 import { CallbackComponent } from &#x27;./callback/callback.component&#x27;;
 
 
 const routes: Routes &#x3D; [
-  { path: &#x27;&#x27;, redirectTo: &#x27;/home&#x27;, pathMatch: &#x27;full&#x27; },
-  { 
-    path: &#x27;&#x27;, component: SignInComponent ,
-    // redirectTo: &#x27;/sign-in&#x27;, pathMatch: &#x27;full&#x27;,
-    // canActivate: [UserGuardGuard],
-  },
+ 
   { 
     path: &#x27;all-initiative&#x27;, 
     component: AllInitiativeComponent ,
     canActivate: [UserGuardGuard],
   },
-  {
-    path: &#x27;new-initiative&#x27;,
-    component: NewInitiativeFormComponent,
-    canDeactivate: [InitiativeGuard],
-    canActivate: [UserGuardGuard],
-  },
   { 
-    path: &#x27;sign-in&#x27;, component: SignInComponent },
+    path: &#x27;sign-in&#x27;, 
+    component: SignInComponent 
+  },
   {
     path: &#x27;view-initiative&#x27;,
     component: Test3Component,
     canActivate: [UserGuardGuard],
   },
-  { 
-    path: &#x27;success-initiative&#x27;, component: AllInitiativeComponent,
-    canActivate: [UserGuardGuard], 
-  },
   {
     path: &#x27;callback&#x27;,
-    redirectTo:&#x27;/all-initiatives&#x27;,
+    //redirectTo:&#x27;/all-initiatives&#x27;,
     component: CallbackComponent,
   },
-  // redirect after it works...
+  { 
+    path: &#x27;&#x27;, component: SignInComponent ,
+    // redirectTo: &#x27;/sign-in&#x27;, pathMatch: &#x27;full&#x27;,
+    canActivate: [UserGuardGuard],
+  },
+  {
+  path: &#x27;**&#x27;, component:  AllInitiativeComponent ,
+  canActivate: [UserGuardGuard],
+  
+  }
 ];
 
 @NgModule({

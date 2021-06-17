@@ -38,7 +38,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li>SpecificService</li>
+  <li>UserService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -56,7 +56,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/services/specific.service.ts</code>
+            <code>src/app/services/user.service.ts</code>
         </p>
 
 
@@ -75,24 +75,15 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#addmemberurl">addmemberurl</a>
+                                <a href="#currentUser">currentUser</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#getfilesUrl">getfilesUrl</a>
+                                <a href="#UserGetUrl">UserGetUrl</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#getInitiativeUrl">getInitiativeUrl</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#getmembersUrl">getmembersUrl</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#setPoCUrl">setPoCUrl</a>
+                                <a href="#userSource">userSource</a>
                             </li>
                         </ul>
                     </td>
@@ -107,20 +98,16 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#addMembers">addMembers</a>
+                                <a href="#changeUser">changeUser</a>
                             </li>
                             <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#getInitiative">getInitiative</a>
+                                <a href="#getUserFromApi">getUserFromApi</a>
                             </li>
                             <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#getMembers">getMembers</a>
+                                <a href="#setUser">setUser</a>
                             </li>
                             <li>
-                                    <span class="modifier">Public</span>
-                                <a href="#setPoC">setPoC</a>
+                                <a href="#setUserFromApi">setUserFromApi</a>
                             </li>
                         </ul>
                     </td>
@@ -145,7 +132,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/services/specific.service.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/services/user.service.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -192,28 +179,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="addMembers"></a>
+                    <a name="changeUser"></a>
                     <span class="name">
                         <b>
-                            <span class="modifier">Public</span>
-                            addMembers
+                            changeUser
                         </b>
-                        <a href="#addMembers"><span class="icon ion-ios-link"></span></a>
+                        <a href="#changeUser"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>addMembers(userinfo: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>changeUser(user: <a href="../classes/User.html">User</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="30"
-                            class="link-to-prism">src/app/services/specific.service.ts:30</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="17"
+                            class="link-to-prism">src/app/services/user.service.ts:17</a></div>
                 </td>
             </tr>
 
@@ -233,9 +218,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>userinfo</td>
+                                    <td>user</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                <code><a href="../classes/User.html" target="_self" >User</a></code>
                                     </td>
 
                                     <td>
@@ -250,7 +235,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/User.html" target="_self" >Observable&lt;User&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                     </div>
                     <div class="io-description">
@@ -264,20 +249,18 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getInitiative"></a>
+                    <a name="getUserFromApi"></a>
                     <span class="name">
                         <b>
-                            <span class="modifier">Public</span>
-                            getInitiative
+                            getUserFromApi
                         </b>
-                        <a href="#getInitiative"><span class="icon ion-ios-link"></span></a>
+                        <a href="#getUserFromApi"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getInitiative(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>getUserFromApi()</code>
                 </td>
             </tr>
 
@@ -285,7 +268,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="26"
-                            class="link-to-prism">src/app/services/specific.service.ts:26</a></div>
+                            class="link-to-prism">src/app/services/user.service.ts:26</a></div>
                 </td>
             </tr>
 
@@ -294,39 +277,8 @@
                 <td class="col-md-4">
 
                     <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>id</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                        <b>Returns : </b>        <code><a href="../classes/User.html" target="_self" >Observable&lt;User&gt;</a></code>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/Initiative.html" target="_self" >Observable&lt;Initiative&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
                     </div>
                 </td>
             </tr>
@@ -336,28 +288,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getMembers"></a>
+                    <a name="setUser"></a>
                     <span class="name">
                         <b>
-                            <span class="modifier">Public</span>
-                            getMembers
+                            setUser
                         </b>
-                        <a href="#getMembers"><span class="icon ion-ios-link"></span></a>
+                        <a href="#setUser"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getMembers(initId)</code>
+<code>setUser()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">src/app/services/specific.service.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/app/services/user.service.ts:31</a></div>
                 </td>
             </tr>
 
@@ -366,35 +316,8 @@
                 <td class="col-md-4">
 
                     <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>initId</td>
+                        <b>Returns : </b>        <code><a href="../classes/User.html" target="_self" >Observable&lt;User&gt;</a></code>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/Initiative.html" target="_self" >Observable&lt;Initiative&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
                     </div>
                 </td>
             </tr>
@@ -404,28 +327,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="setPoC"></a>
+                    <a name="setUserFromApi"></a>
                     <span class="name">
                         <b>
-                            <span class="modifier">Public</span>
-                            setPoC
+                            setUserFromApi
                         </b>
-                        <a href="#setPoC"><span class="icon ion-ios-link"></span></a>
+                        <a href="#setUserFromApi"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>setPoC(initiative: <a href="../classes/InitiativeDTO.html">InitiativeDTO</a>)</code>
+<code>setUserFromApi()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="38"
-                            class="link-to-prism">src/app/services/specific.service.ts:38</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="20"
+                            class="link-to-prism">src/app/services/user.service.ts:20</a></div>
                 </td>
             </tr>
 
@@ -434,39 +355,8 @@
                 <td class="col-md-4">
 
                     <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>initiative</td>
-                                    <td>
-                                                <code><a href="../classes/InitiativeDTO.html" target="_self" >InitiativeDTO</a></code>
-                                    </td>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/Initiative.html" target="_self" >Observable&lt;Initiative&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
                     </div>
                 </td>
             </tr>
@@ -482,24 +372,22 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="addmemberurl"></a>
+                        <a name="currentUser"></a>
                         <span class="name">
                             <b>
-                                <span class="modifier">Private</span>
-                            addmemberurl</b>
-                            <a href="#addmemberurl"><span class="icon ion-ios-link"></span></a>
+                            currentUser</b>
+                            <a href="#currentUser"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" target="_blank" >String</a></code>
-
+                            <i>Default value : </i><code>this.userSource.asObservable()</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/services/specific.service.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/services/user.service.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -510,12 +398,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="getfilesUrl"></a>
+                        <a name="UserGetUrl"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Private</span>
-                            getfilesUrl</b>
-                            <a href="#getfilesUrl"><span class="icon ion-ios-link"></span></a>
+                            UserGetUrl</b>
+                            <a href="#UserGetUrl"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -525,9 +413,14 @@
 
                         </td>
                     </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;http://localhost:8080/user&#x27;</code>
+                        </td>
+                    </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/services/specific.service.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/services/user.service.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -538,80 +431,23 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="getInitiativeUrl"></a>
+                        <a name="userSource"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Private</span>
-                            getInitiativeUrl</b>
-                            <a href="#getInitiativeUrl"><span class="icon ion-ios-link"></span></a>
+                            userSource</b>
+                            <a href="#userSource"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
+                            <i>Default value : </i><code>new BehaviorSubject&lt;User&gt;(new User)</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/services/specific.service.ts:16</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="getmembersUrl"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Private</span>
-                            getmembersUrl</b>
-                            <a href="#getmembersUrl"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/services/specific.service.ts:14</a></div>
-                            </td>
-                        </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="setPoCUrl"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Private</span>
-                            setPoCUrl</b>
-                            <a href="#setPoCUrl"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/services/specific.service.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/services/user.service.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -626,44 +462,38 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient } from &#x27;@angular/common/http&#x27;;
 import { Injectable } from &#x27;@angular/core&#x27;;
-import { Observable } from &#x27;rxjs&#x27;;
-import { Files } from &#x27;../model/files&#x27;;
-import { Initiative } from &#x27;../model/initiative&#x27;;
-import { InitiativeDTO } from &#x27;../model/initiativeDTO&#x27;;
+import { BehaviorSubject, Observable } from &#x27;rxjs&#x27;;
 import { User } from &#x27;../model/user&#x27;;
 
 @Injectable({
-  providedIn: &#x27;root&#x27;,
+  providedIn: &#x27;root&#x27;
 })
-export class SpecificService {
-  private getfilesUrl: string;
-  private getmembersUrl: string;
-  private addmemberurl: String;
-  private getInitiativeUrl: string;
-  private setPoCUrl: string;
+export class UserService {
+  private UserGetUrl &#x3D; &#x27;http://localhost:8080/user&#x27;;
+  //need to move url to environmental variable
+  private userSource &#x3D; new BehaviorSubject&lt;User&gt;(new User); //Im worried this wil lcover user with a new user object
+  currentUser &#x3D; this.userSource.asObservable();
 
-  constructor(private http: HttpClient) {
-    this.getmembersUrl &#x3D; &#x27;http://localhost:8080/initiatives/id/&#x27;;
-    this.addmemberurl &#x3D; &#x27;http://localhost:8080/initiative/signup/&#x27;;
-    this.getInitiativeUrl &#x3D; &#x27;http://localhost:8080/initiatives/id/&#x27;;
-    this.setPoCUrl &#x3D; &#x27;http://localhost:8080/updatepoc&#x27;;
+  //CONSTRUCTOR
+  constructor(private http: HttpClient) { }
+  changeUser(user:User){ 
+    this.userSource.next(user);
   }
+  setUserFromApi():void{//needs to be async...
+    // this.userSource.next();
+    // nextUser:User &#x3D; this.http.get&lt;User&gt;(this.UserGetUrl);
+    this.currentUser &#x3D; this.http.get&lt;User&gt;(this.UserGetUrl);
 
-  public getInitiative(id: string): Observable&lt;Initiative&gt; {
-    return this.http.get&lt;Initiative&gt;(this.getInitiativeUrl + id);
   }
+  getUserFromApi(): Observable&lt;User&gt;{ //this now sets user from api call to
+    return this.http.get&lt;User&gt;(this.UserGetUrl);
+  } //just make something work... send this directly to component
 
-  public addMembers(userinfo: string): Observable&lt;User&gt; {
-    return this.http.post&lt;User&gt;(this.addmemberurl + userinfo, User);
-  }
-
-  public getMembers(initId): Observable&lt;Initiative&gt; {
-    return this.http.get&lt;Initiative&gt;(this.getmembersUrl + initId);
+  
+  setUser(): Observable&lt;User&gt;{ //this now sets user from api call to
+    return this.http.get&lt;User&gt;(this.UserGetUrl);
   }
   
-public setPoC(initiative: InitiativeDTO):Observable&lt;Initiative&gt;{
-      return this.http.patch&lt;Initiative&gt;(this.setPoCUrl, initiative);
-    }
 }
 </code></pre>
     </div>
@@ -698,7 +528,7 @@ public setPoC(initiative: InitiativeDTO):Observable&lt;Initiative&gt;{
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'SpecificService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'UserService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

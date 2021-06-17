@@ -289,10 +289,8 @@ export class CallbackComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((p) &#x3D;&gt; {
-      console.log(p);
       this.authService.fetchToken(p.code, p.state).subscribe((data) &#x3D;&gt; {
         this.authService.updateToken(data.accessToken);
-        console.log(data);
         this.router.navigate([&#x27;all-initiative&#x27;]);
       });
     });
@@ -341,7 +339,7 @@ export class CallbackComponent implements OnInit {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><p>logging in</p></div>'
-    var COMPONENTS = [{'name': 'AllInitiativeComponent', 'selector': 'app-all-initiative'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CallbackComponent', 'selector': 'app-callback'},{'name': 'FileComponent', 'selector': 'app-file'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'LinksComponent', 'selector': 'app-links'},{'name': 'NavBarComponent', 'selector': 'app-nav-bar'},{'name': 'NewInitiativeFormComponent', 'selector': 'app-new-initiative-form'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'Test3Component', 'selector': 'app-test3'}];
+    var COMPONENTS = [{'name': 'AllInitiativeComponent', 'selector': 'app-all-initiative'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CallbackComponent', 'selector': 'app-callback'},{'name': 'FileComponent', 'selector': 'app-file'},{'name': 'NavBarComponent', 'selector': 'app-nav-bar'},{'name': 'NewInitiativeFormComponent', 'selector': 'app-new-initiative-form'},{'name': 'SignInComponent', 'selector': 'app-sign-in'},{'name': 'Test3Component', 'selector': 'app-test3'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'CallbackComponent'};
 </script>
